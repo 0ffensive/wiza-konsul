@@ -3,7 +3,7 @@
 
     <head>
         <meta charset="utf-8">
-        <title>Zarządzanie sprawami</title>
+        <title>Placówka - strona główna</title>
         <meta name="decription" content="...">
         <meta name="keywords" content="...">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
