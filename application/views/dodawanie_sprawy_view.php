@@ -7,8 +7,8 @@
         <meta name="decription" content="...">
         <meta name="keywords" content="...">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <link rel="stylesheet" type="text/css" href="../styles/i_dodawanie_sprawy.css">
-        <link rel="stylesheet" type="text/css" href="../style.css">
+        <link rel="stylesheet" type="text/css" href="styles/style.css">
+        <link rel="stylesheet" type="text/css" href="styles/i_dodawanie_sprawy.css">
         <link href="https://fonts.googleapis.com/css?family=Slabo+27px&display=swap&subset=latin-ext" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Muli:400,800&display=swap" rel="stylesheet">
 
