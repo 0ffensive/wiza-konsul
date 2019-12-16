@@ -20,5 +20,19 @@
             <button onclick="window.location.href='./source/zarzadzanie_sprawami.html'">Zarządzanie sprawami</button>
             <button onclick="window.location.href='./source/generowanie_raportu.html'">Generowanie raportu</button>
         </div>
+
+	<?php
+		
+		foreach($userArray as $key => $value){
+			echo "<pre>";
+			print_r($value);
+			echo "</pre>";
+		}
+		
+	?>
+
     </body>
 </html>
+
+
+
