@@ -1,0 +1,65 @@
+
+
+form {
+    display: grid;
+    grid-template-columns: 40% 40%;
+    column-gap: 80px;
+    row-gap: 10px;
+    margin: 10px;
+
+    
+}
+form label, form input, select{
+    /*width: 200px;*/
+
+}
+
+#wyszukanie-profilu {
+    border: solid 1px;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+button{
+    margin: 10px;
+}
+
+#zarzadzaj-zalacznikami-nowa-sprawa, #dodaj-sprawe-nowa-sprawa {
+    width: 400px;
+}
+
+#wyszukane-profile {
+    font-size: 12px;
+    padding: 5px;
+    text-align: center;
+    margin-top:0;
+}
+
+.kontener-dodanie-sprawy {
+
+    display: grid;
+    grid-template-columns: 40% 40%;
+    column-gap: 80px;
+}
+#kontener-dodanie-sprawy button{
+    width: 190px;
+    margin: 5px;
+}
+
+#przyciski-dodawanie-sprawy {
+    text-align: center;
+}
+
+#przyciski-dodawanie-sprawy button{
+    width: 100%;
+}
+
+#przyciski-zatwierdzajace {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+#przyciski-zatwierdzajace button{
+    
+}

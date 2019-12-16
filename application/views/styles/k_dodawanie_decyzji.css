@@ -1,0 +1,13 @@
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+div.inside-container {
+    width: 100%;
+    margin: 20px 0;
+    display: grid;
+    grid-template-columns: auto auto;
+    row-gap: 10px;
+}

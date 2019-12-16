@@ -1,0 +1,48 @@
+#opcje-raport {
+    text-align: center;
+}
+
+#opcje-raport button{
+    width: 300px;
+    margin: 50px;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+#data {
+    text-align: right;
+}
+
+#info {
+    margin: 50px;
+}
+
+#info td{
+    vertical-align: top;
+    padding: 10px;
+    padding-top:5px;
+    padding-bottom:5px;
+
+}
+
+#dane thead {
+    font-weight: 700;
+    text-align: center;
+}
+
+#dane{
+    border-collapse: collapse;
+    margin-top: 50px;
+
+}
+
+#dane td{
+    padding: 10px;
+    border: solid 1px;
+}
+
+#numer{
+    display: block;
+    margin-top: 100px;
+    text-align: center;
+}

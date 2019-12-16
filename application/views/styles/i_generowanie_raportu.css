@@ -1,0 +1,35 @@
+form {
+    margin-top: 10px;
+}
+
+form input:not([type="checkbox"]), select, button {
+    width: 70%;
+    margin: 10px;
+    font-size: 18px;
+}
+
+.kontener-generowanie-raportu {
+    width: 80%;
+}
+
+#wybrane-placowki-generowanie-raportu {
+    list-style: none;
+    padding: 5px;
+    margin: 10px;
+}
+
+#wybrane-placowki-generowanie-raportu input{
+    margin: 10px;
+}
+
+#wybor-placowek-generowanie-raportu h3 {
+    margin: 20px 0 5px 0;
+}
+
+#wybor-placowek-generowanie-raportu button{
+    width: 30%;
+    margin: 4px;
+}
+
+
+

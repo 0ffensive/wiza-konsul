@@ -1,0 +1,39 @@
+div.container {
+    width: 80%;
+}
+
+form {
+    display: grid;
+    grid-template-columns: 175px 175px;
+    column-gap: 20px;
+    row-gap: 10px;
+    margin: 10px;
+}
+
+#wyszukaj-zarzadzanie-sprawami, #wyczysc-zarzadzanie-sprawami {
+    width: 400px;
+    margin-top: 30px;
+
+}
+
+#wyszukane-sprawy-zarzadzanie-sprawami, #wyszukane-sprawy-zarzadzanie-sprawami button, #wyszukane-sprawy-zarzadzanie-sprawami td{
+    font-size: 10px;
+    padding: 5px;
+    text-align: center;
+}
+
+.wyswietl-zarzadzanie-sprawami, .edytuj-zarzadzanie-sprawami {
+    width:60px;
+}
+
+#dodaj-sprawe-zarzadzanie-spraw{
+    width: 400px;
+    display:flex;
+    margin-left: auto;
+    margin-right: 0;
+    justify-content: center;
+}
+
+table#wyszukane-sprawy-zarzadzanie-sprawami button {
+    min-width: 70px;
+}
