@@ -6,8 +6,8 @@
         <title>Placówka - strona główna</title>
         <meta name="decription" content="...">
         <meta name="keywords" content="...">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <link rel="stylesheet" type="text/css" href="styles/style.css">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<link rel="stylesheet" type="text/css" href ="<?php echo base_url(); ?>css/style.css">
         <link href="https://fonts.googleapis.com/css?family=Slabo+27px&display=swap&subset=latin-ext" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Muli:400,800&display=swap" rel="stylesheet">
     </head>
@@ -19,18 +19,33 @@
 
             <button onclick="window.location.href='./source/zarzadzanie_sprawami.html'">Zarządzanie sprawami</button>
             <button onclick="window.location.href='./source/generowanie_raportu.html'">Generowanie raportu</button>
-        </div>
-
-	<?php
-		
-		foreach($userArray as $key => $value){
-			echo "<pre>";
-			print_r($value);
-			echo "</pre>";
-		}
-		
-	?>
-
+    
+			<div>
+				<h2>Dane osobowe</h2>
+				<div>
+					<form>
+						<h3>Dodaj dane osobowe</h3>
+						<label for="#nazwisko">Nazwisko</label><input id="nazwisko" type="text" name="nazwisko"><br>
+						<label for="#imie">Imie</label><input id="imie" type="text" name="imie"><br>
+						<label for="#nr-dokumentu">Nr dokumentu</label><input id="nr-dokumentu" type="text" name="nr_dokumentu"><br>
+						<input type="submit" value="Dodaj">
+					</form>
+				</div>
+				<br>
+				<div>
+					<table>
+						<thead>
+							<td>Id <td>Nazwisko <td>Imię <td>Nr dokumentu
+						<tbody>
+							<?php
+							foreach($userArray as $key => $value){
+								echo "<tr><td>$value->id <td>$value->nazwisko <td>$value->imie <td>$value->nr_dokumentu";
+							}
+							?>
+					</table>
+				</div>
+			</div>
+		</div>
     </body>
 </html>
 
