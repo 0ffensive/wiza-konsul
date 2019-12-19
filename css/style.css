@@ -70,3 +70,20 @@ table thead {
     font-weight: bold;
     text-align: center;
 }
+
+.error-message {
+	color: crimson;
+	font-size: 0.9rem;
+}
+
+form#dodawanie-form {
+	margin: 20px 0;
+	display: grid;
+	grid-template-columns: 20% 30%;
+	row-gap: 5px;
+}
+
+div.container > div {
+	margin: 50px 30px;
+}
+
