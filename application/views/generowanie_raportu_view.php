@@ -7,8 +7,8 @@
     <meta name="decription" content="...">
     <meta name="keywords" content="...">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" type="text/css" href="styles/style.css">
-    <link rel="stylesheet" type="text/css" href="styles/i_generowanie_raportu.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/style.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/i_generowanie_raportu.css">
     <link href="https://fonts.googleapis.com/css?family=Slabo+27px&display=swap&subset=latin-ext" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Muli:400,800&display=swap" rel="stylesheet">
 </head>
@@ -17,6 +17,9 @@
     <div class="container">
         <h1>Generownie raportu</h1>
         <div class="kontener-generowanie-raportu">
+			<form method="post" action="<?php echo site_url('linki/do_strona_glowna'); ?>">
+				<input type="submit" value="Cofnij">
+			</form>
             <form>
                 <input class="generuj" type="submit" value="Generuj raport ">
                 <select id="zawartosc-generowanie-raportu">

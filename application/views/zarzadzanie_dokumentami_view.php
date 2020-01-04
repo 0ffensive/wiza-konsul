@@ -8,15 +8,18 @@
     <meta name="keywords" content="...">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <link rel="stylesheet" type="text/css" href="styles/style.css">
-    <link rel="stylesheet" type="text/css" href="styles/k_zarzadanie_dokumentami.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/style.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/k_zarzadanie_dokumentami.css">
     <link href="https://fonts.googleapis.com/css?family=Muli:400,800&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
     <div class="container">
-        <h1>Dokumenty sprawy</h1>
+		<h1>Dokumenty sprawy</h1>
+		<form method="post" action="<?php echo site_url('linki/do_zarzadzanie_sprawami'); ?>">
+			<input type="submit" value="Cofnij">
+		</form>
         <div class="inside-container">
             <table>
                 <thead>
@@ -28,9 +31,13 @@
                         <td>2 <td>certyfikat.pdf <td>24.11.2019 <td><a href="#">link</a> <td><button>usuń</button>
             </table>
             <div>
-                <button onclick="window.location.href='dodawanie_dokumentu.html'">Dodaj nowy</button>
-                <button onclick="window.location.href='zalaczanie_z_istniejacych.html'">Załącz z istniejących</button>
-            </div>
+				<form method="post" action="<?php echo site_url('linki/do_dodawanie_dokumentu'); ?>">
+					<input type="submit" value="Dodaj nowy">
+				</form>
+				<form method="post" action="<?php echo site_url('linki/do_zalaczanie_z_istniejacych'); ?>">
+					<input type="submit" value="Załącz z istniejących">
+				</form>
+			</div>
         </div>
     </div>
 </body>

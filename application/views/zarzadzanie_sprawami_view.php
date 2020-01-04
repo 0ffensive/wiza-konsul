@@ -7,8 +7,8 @@
     <meta name="decription" content="...">
     <meta name="keywords" content="...">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" type="text/css" href="styles/style.css">
-    <link rel="stylesheet" type="text/css" href="styles/i_zarzadzanie_sprawami.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/style.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/i_zarzadzanie_sprawami.css">
     <link href="https://fonts.googleapis.com/css?family=Slabo+27px&display=swap&subset=latin-ext" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Muli:400,800&display=swap" rel="stylesheet">
 </head>
@@ -16,7 +16,13 @@
 <body>
     <div class="container">
         <h1>Zarządzanie sprawami</h1>
-        <button id="dodaj-sprawe-zarzadzanie-spraw" onclick="window.location.href='dodawanie_sprawy.html'">Dodaj nową sprawę</button>
+		<form method="post" action="<?php echo site_url('linki/do_strona_glowna'); ?>">
+			<input type="submit" value="Cofnij">
+		</form>
+		<form method="post" action="<?php echo site_url('linki/do_dodawanie_sprawy'); ?>">
+			<input type="submit" value="Dodaj sprawę">
+		</form>
+
         <h2>Wyszukaj sprawę</h2>
         <div id="wyszukanie-spraw-zarzadzanie-sprawami">
             <form>
@@ -64,13 +70,33 @@
         <h2>Lista spraw</h2>
         <table id="wyszukane-sprawy-zarzadzanie-sprawami">
             <thead>
-                <td>L.p.<td>ID globalne<td>ID lokalne<td>ID placówki<td>ID wnioskodawcy<td>Nazwisko<td>Imię<td>Data urodzenia<td>Data załozenia sprawy<td>Cel<td>Rozstrzygnięta<td><td><td><td><td>
+                <td>L.p.<td>ID globalne<td>ID lokalne<td>ID placówki<td>ID wnioskodawcy<td>Nazwisko<td>Imię<td>Data urodzenia<td>Data załozenia sprawy<td>Cel<td>Rozstrzygnięta<td>Dokumenty<td>Decyzje<td><td><td>
             </thead>
-            <tr><td>1<td>154351<td>5265<td>TB<td>19/466<td>Dąbrowski<td>Martin<td>1985-05-20<td>2019-05-31<td>Utworzenie KP<td>Nie<td><button class="dokumenty-zarzadzanie-sprawami" onclick="window.location.href='zarzadzanie_dokumentami.html'">Dokumenty</button><td><button class="decyzje-zarzadzanie-sprawami" onclick="window.location.href='zarzadzanie_decyzjami.html'">Decyzje</button><td><button class="wyswietl-zarzadzanie-sprawami" onclick="window.location.href='przegladanie_sprawy.html'">Wyświetl</button><td><button class="edytuj-zarzadzanie-sprawami">Edytuj</button><td><button class="usun-zarzadzanie-sprawami">Usuń</button>
-            <tr><td>2<td>325345<td>3541<td>WB<td>19/423<td>Kowalski<td>Daniel<td>1955-09-20<td>2019-05-31<td>Duplikat KP<td>Nie<td><button class="dokumenty-zarzadzanie-sprawami" onclick="window.location.href='zarzadzanie_dokumentami.html'">Dokumenty</button><td><button class="decyzje-zarzadzanie-sprawami" onclick="window.location.href='zarzadzanie_decyzjami.html'">Decyzje</button><td><button class="wyswietl-zarzadzanie-sprawami" onclick="window.location.href='przegladanie_sprawy.html'">Wyświetl</button><td><button class="edytuj-zarzadzanie-sprawami">Edytuj</button><td><button class="usun-zarzadzanie-sprawami">Usuń</button>
+            <tr><td>1<td>154351<td>5265<td>TB<td>19/466<td>Dąbrowski<td>Martin<td>1985-05-20<td>2019-05-31<td>Utworzenie KP<td>Nie
+				<td>
+					<form method="post" action="<?php echo site_url('linki/do_zarzadzanie_dokumentami'); ?>">
+						<input type="submit" value="Dokumenty">
+					</form>
+				<td>
+					<form method="post" action="<?php echo site_url('linki/do_zarzadzanie_decyzjami'); ?>">
+						<input type="submit" value="Decyzje">
+					</form>
+				<td>
+					<form method="post" action="<?php echo site_url('linki/do_przegladanie_sprawy'); ?>">
+						<input type="submit" value="Wyświetl">
+					</form>
+				<td>
+					<form method="post" action="<?php echo site_url('linki/do_edycja_sprawy'); ?>">
+						<input type="submit" value="Edytuj">
+					</form>
+				<td>
+					<form method="post" action="<?php echo site_url('linki/usun_sprawe'); ?>">
+						<input type="submit" value="Usuń">
+					</form>
+            <!-- <tr><td>2<td>325345<td>3541<td>WB<td>19/423<td>Kowalski<td>Daniel<td>1955-09-20<td>2019-05-31<td>Duplikat KP<td>Nie<td><button class="dokumenty-zarzadzanie-sprawami" onclick="window.location.href='zarzadzanie_dokumentami.html'">Dokumenty</button><td><button class="decyzje-zarzadzanie-sprawami" onclick="window.location.href='zarzadzanie_decyzjami.html'">Decyzje</button><td><button class="wyswietl-zarzadzanie-sprawami" onclick="window.location.href='przegladanie_sprawy.html'">Wyświetl</button><td><button class="edytuj-zarzadzanie-sprawami">Edytuj</button><td><button class="usun-zarzadzanie-sprawami">Usuń</button>
             <tr><td>3<td>526452<td>5134<td>ZT<td>19/563<td>Nowak<td>Joanna<td>1965-03-20<td>2019-05-31<td>Utworzenie KP<td>Tak<td><button class="dokumenty-zarzadzanie-sprawami" onclick="window.location.href='zarzadzanie_dokumentami.html'">Dokumenty</button><td><button class="decyzje-zarzadzanie-sprawami" onclick="window.location.href='zarzadzanie_decyzjami.html'">Decyzje</button><td><button class="wyswietl-zarzadzanie-sprawami" onclick="window.location.href='przegladanie_sprawy.html'">Wyświetl</button><td><button class="edytuj-zarzadzanie-sprawami">Edytuj</button><td><button class="usun-zarzadzanie-sprawami">Usuń</button>
             <tr><td>4<td>321000<td>3123<td>VF<td>19/432<td>Horak<td>Maria<td>1983-04-20<td>2019-05-31<td>Utworzenie KP<td>Tak<td><button class="dokumenty-zarzadzanie-sprawami" onclick="window.location.href='zarzadzanie_dokumentami.html'">Dokumenty</button><td><button class="decyzje-zarzadzanie-sprawami" onclick="window.location.href='zarzadzanie_decyzjami.html'">Decyzje</button><td><button class="wyswietl-zarzadzanie-sprawami" onclick="window.location.href='przegladanie_sprawy.html'">Wyświetl</button><td><button class="edytuj-zarzadzanie-sprawami">Edytuj</button><td><button class="usun-zarzadzanie-sprawami">Usuń</button>
-            <tr><td>5<td>543154<td>3242<td>TB<td>19/653<td>Smith<td>Andrew<td>1995-03-20<td>2019-05-31<td>Utworzenie KP<td>Nie<td><button class="dokumenty-zarzadzanie-sprawami" onclick="window.location.href='zarzadzanie_dokumentami.html'">Dokumenty</button><td><button class="decyzje-zarzadzanie-sprawami" onclick="window.location.href='zarzadzanie_decyzjami.html'">Decyzje</button><td><button class="wyswietl-zarzadzanie-sprawami" onclick="window.location.href='przegladanie_sprawy.html'">Wyświetl</button><td><button class="edytuj-zarzadzanie-sprawami">Edytuj</button><td><button class="usun-zarzadzanie-sprawami">Usuń</button>
+            <tr><td>5<td>543154<td>3242<td>TB<td>19/653<td>Smith<td>Andrew<td>1995-03-20<td>2019-05-31<td>Utworzenie KP<td>Nie<td><button class="dokumenty-zarzadzanie-sprawami" onclick="window.location.href='zarzadzanie_dokumentami.html'">Dokumenty</button><td><button class="decyzje-zarzadzanie-sprawami" onclick="window.location.href='zarzadzanie_decyzjami.html'">Decyzje</button><td><button class="wyswietl-zarzadzanie-sprawami" onclick="window.location.href='przegladanie_sprawy.html'">Wyświetl</button><td><button class="edytuj-zarzadzanie-sprawami">Edytuj</button><td><button class="usun-zarzadzanie-sprawami">Usuń</button> -->
         </table>
     </div>
 </body>

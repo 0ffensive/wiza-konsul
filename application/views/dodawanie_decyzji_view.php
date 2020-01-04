@@ -7,8 +7,8 @@
         <meta name="keywords" content="...">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <link rel="stylesheet" type="text/css" href="styles/style.css">
-        <link rel="stylesheet" type="text/css" href="styles/k_dodawanie_decyzji.css">
+        <link rel="stylesheet" type="text/css" href ="<?php echo base_url(); ?>css/style.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/k_dodawanie_decyzji.css">
         <link href="https://fonts.googleapis.com/css?family=Muli:400,800&display=swap" rel="stylesheet">
     </head>
     <body>

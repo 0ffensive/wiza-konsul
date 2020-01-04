@@ -34,6 +34,12 @@ form {
     justify-content: center;
 }
 
-table#wyszukane-sprawy-zarzadzanie-sprawami button {
-    min-width: 70px;
+table#wyszukane-sprawy-zarzadzanie-sprawami form{
+	display: block;
+	margin: 0;
+}
+
+table#wyszukane-sprawy-zarzadzanie-sprawami form input[type="submit"] {
+	min-width: 70px;
+	font-size: 10px;
 }

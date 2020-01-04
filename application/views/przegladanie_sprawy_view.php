@@ -7,8 +7,8 @@
         <meta name="decription" content="...">
         <meta name="keywords" content="...">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <link rel="stylesheet" type="text/css" href="styles/style.css">
-        <link rel="stylesheet" type="text/css" href="styles/i_przegladanie_sprawy.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/style.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/i_przegladanie_sprawy.css">
         <link href="https://fonts.googleapis.com/css?family=Slabo+27px&display=swap&subset=latin-ext" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Muli:400,800&display=swap" rel="stylesheet">
 
@@ -33,9 +33,11 @@
                 <input disabled type="text" id="rozstrzygnieta-przegladanie-sprawy" value="TAK">
                 
                
-            </form>
-            <button id="decyzje-przegladanie-sprawy" onclick="window.location.href='zarzadzanie_decyzjami.html'">Decyzje</button>
-            <div class="kontener-dodanie-sprawy">
+			</form>
+			<form method="post" action="<?php echo site_url('linki/do_zarzadzania_decyzjami'); ?>">
+				<input type="submit" value="Decyzje">
+			</form>
+			<div class="kontener-dodanie-sprawy">
                 <div>
 
                     <h2>Dane wnioskodawcy</h2>
@@ -112,9 +114,13 @@
                </div>
             </div>             
             <div id="przyciski-przegladanie-sprawy">
-                <button id="zalaczniki-przegladanie-sprawy"  onclick="window.location.href='zarzadzanie_dokumentami.html'">Załączniki</button>
-                <br>
-                <button id="edytuj-przegladanie-sprawy">Edytuj sprawę</button>
+				<form method="post" action="<?php echo site_url('linki/do_zarzadzania_dokumentami'); ?>">
+					<input type="submit" value="Dokumenty">
+				</form>
+				<br>
+				<form method="post" action="<?php echo site_url('linki/do_edycja_sprawy'); ?>">
+					<input type="submit" value="Edytuj sprawę">
+				</form>
             </div>   
 
  

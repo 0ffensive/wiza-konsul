@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <title>Raport</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
-        <link rel="stylesheet" type="text/css" href="styles/i_raport.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/i_raport.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paper-css/0.4.1/paper.css">
         
         <style>@page { size: A4 }</style>
