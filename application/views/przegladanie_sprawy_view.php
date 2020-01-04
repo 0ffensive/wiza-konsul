@@ -34,7 +34,7 @@
                 
                
 			</form>
-			<form method="post" action="<?php echo site_url('linki/do_zarzadzania_decyzjami'); ?>">
+			<form method="post" action="<?php echo site_url('linki/do_zarzadzanie_decyzjami'); ?>">
 				<input type="submit" value="Decyzje">
 			</form>
 			<div class="kontener-dodanie-sprawy">
@@ -114,7 +114,7 @@
                </div>
             </div>             
             <div id="przyciski-przegladanie-sprawy">
-				<form method="post" action="<?php echo site_url('linki/do_zarzadzania_dokumentami'); ?>">
+				<form method="post" action="<?php echo site_url('linki/do_zarzadzanie_dokumentami'); ?>">
 					<input type="submit" value="Dokumenty">
 				</form>
 				<br>
