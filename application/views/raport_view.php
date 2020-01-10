@@ -24,6 +24,7 @@
         <h1>Raport</h1>
         <table id="info">
             <tr><td><b>Identyfikator raportu</b><td>2019/451
+			<tr><td><b>Identyfikator administratora generującego</b><td>2341
             <tr><td><b>Przedział czasowy</b><td>1 dzień
             <tr><td><b>Łączna liczba przesyłek</b><td>132
             <tr><td><b>Typ zawartości przesyłek</b><td>Sprawy   

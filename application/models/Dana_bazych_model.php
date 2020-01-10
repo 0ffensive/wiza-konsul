@@ -1,3 +1,5 @@
+<!----------------do usuniecia------------------->
+
 <?php
 
 class Dana_bazych_model extends CI_Model {
