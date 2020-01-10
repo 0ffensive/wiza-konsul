@@ -217,11 +217,11 @@
                     załącznikami</button>
                 <br>
                 <div id="przyciski-zatwierdzajace">
-                    <button id="dodaj-sprawe-nowa-sprawa">Dodaj</button>
-                    <button id="anuluj-dodawanie-nowa-sprawa">Anuluj</button>  
+					<input id="submit" name ="submit" type="submit" value="Dodaj">
+                	<input id="reset" name ="reset" type="submit" value="Anuluj">
                 </div>
             </div>   
-
+			<!-- <form ... method="post" action="<?php //echo site_url('zarzadzanie_sprawami/dodawanie_sprawy'); ?>"> -->
  
 
         </div>

@@ -14,7 +14,7 @@
     <body>
         <div class="container">
             <h1>Dodaj decyzję</h1>
-            <form >
+            <form id="dodawanie-decyzji" method="post" action="<?php echo site_url('zarzadzanie_decyzjami/dodawanie_decyzji'); ?>">
                 <div class="inside-container">
                     <label for="#decyzja">Decyzja</label>
                     <select id="decyzja">
@@ -27,8 +27,8 @@
                     <textarea id="uzasadnienie"></textarea>
                 </div>
                 <div>
-                    <input id="submit" type="submit" value="Dodaj">
-                    <input id="reset" type="reset" value="Anuluj">
+					<input id="submit" name ="submit" type="submit" value="Dodaj">
+                	<input id="reset" name ="reset" type="submit" value="Anuluj">
                 </div>
             </form>
 
