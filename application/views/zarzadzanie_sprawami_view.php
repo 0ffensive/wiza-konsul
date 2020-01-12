@@ -26,8 +26,6 @@
         <h2>Wyszukaj sprawę</h2>
         <div id="wyszukanie-spraw-zarzadzanie-sprawami">
             <form>
-                <label for="#id-placowki-zarzadzanie-sprawami">ID placówki</label>
-                <input type="text" id="id-placowki-zarzadzanie-sprawami">
                 <label for="#id-lokalne-zarzadzanie-sprawami">ID lokalne sprawy</label>
                 <input type="text" id="id-lokalne-zarzadzanie-sprawami">
                 <label for="#id-globalne-zarzadzanie-sprawami">ID globalne sprawy</label>
@@ -47,10 +45,10 @@
                 <label for="#cel-sprawy-zarzadzanie-sprawami">Cel sprawy</label>
                 <select id="cel-sprawy-zarzadzanie-sprawami">
                     <option value="-1">Wybierz cel</option>
-                    <option value="0">Utworzenie KP</option>
-                    <option value="1">Duplikat KP</option>
-                    <option value="2">Modyfikacja KP</option>
-                    <option value="3">Przedłużenie KP</option>
+                    <option value="0">Utworzenie</option>
+                    <option value="1">Duplikat</option>
+                    <option value="2">Modyfikacja</option>
+                    <option value="3">Przedłużenie</option>
                 </select>
                 <label for="#rozstrzygnieta-zarzadzanie-sprawami">Rozstrzygnięta</label>
 
@@ -67,37 +65,43 @@
             <button id="wyczysc-zarzadzanie-sprawami">Wyczyść pola</button>  
         </div>
 
-        <h2>Lista spraw</h2>
+		<h2>Lista spraw</h2>
         <table id="wyszukane-sprawy-zarzadzanie-sprawami">
             <thead>
                 <td>L.p.<td>ID globalne<td>ID lokalne<td>ID placówki<td>ID wnioskodawcy<td>Nazwisko<td>Imię<td>Data urodzenia<td>Data załozenia sprawy<td>Cel<td>Rozstrzygnięta<td>Dokumenty<td>Decyzje<td><td><td>
-            </thead>
-            <tr><td>1<td>154351<td>5265<td>TB<td>19/466<td>Dąbrowski<td>Martin<td>1985-05-20<td>2019-05-31<td>Utworzenie KP<td>Nie
-				<td>
-					<form method="post" action="<?php echo site_url('linki/do_zarzadzanie_dokumentami'); ?>">
-						<input type="submit" value="Dokumenty">
-					</form>
-				<td>
-					<form method="post" action="<?php echo site_url('linki/do_zarzadzanie_decyzjami'); ?>">
-						<input type="submit" value="Decyzje">
-					</form>
-				<td>
-					<form method="post" action="<?php echo site_url('linki/do_przegladanie_sprawy'); ?>">
-						<input type="submit" value="Wyświetl">
-					</form>
-				<td>
-					<form method="post" action="<?php echo site_url('linki/do_edycja_sprawy'); ?>">
-						<input type="submit" value="Edytuj">
-					</form>
-				<td>
-					<form method="post" action="<?php echo site_url('linki/usun_sprawe'); ?>">
-						<input type="submit" value="Usuń">
-					</form>
-            <!-- <tr><td>2<td>325345<td>3541<td>WB<td>19/423<td>Kowalski<td>Daniel<td>1955-09-20<td>2019-05-31<td>Duplikat KP<td>Nie<td><button class="dokumenty-zarzadzanie-sprawami" onclick="window.location.href='zarzadzanie_dokumentami.html'">Dokumenty</button><td><button class="decyzje-zarzadzanie-sprawami" onclick="window.location.href='zarzadzanie_decyzjami.html'">Decyzje</button><td><button class="wyswietl-zarzadzanie-sprawami" onclick="window.location.href='przegladanie_sprawy.html'">Wyświetl</button><td><button class="edytuj-zarzadzanie-sprawami">Edytuj</button><td><button class="usun-zarzadzanie-sprawami">Usuń</button>
-            <tr><td>3<td>526452<td>5134<td>ZT<td>19/563<td>Nowak<td>Joanna<td>1965-03-20<td>2019-05-31<td>Utworzenie KP<td>Tak<td><button class="dokumenty-zarzadzanie-sprawami" onclick="window.location.href='zarzadzanie_dokumentami.html'">Dokumenty</button><td><button class="decyzje-zarzadzanie-sprawami" onclick="window.location.href='zarzadzanie_decyzjami.html'">Decyzje</button><td><button class="wyswietl-zarzadzanie-sprawami" onclick="window.location.href='przegladanie_sprawy.html'">Wyświetl</button><td><button class="edytuj-zarzadzanie-sprawami">Edytuj</button><td><button class="usun-zarzadzanie-sprawami">Usuń</button>
-            <tr><td>4<td>321000<td>3123<td>VF<td>19/432<td>Horak<td>Maria<td>1983-04-20<td>2019-05-31<td>Utworzenie KP<td>Tak<td><button class="dokumenty-zarzadzanie-sprawami" onclick="window.location.href='zarzadzanie_dokumentami.html'">Dokumenty</button><td><button class="decyzje-zarzadzanie-sprawami" onclick="window.location.href='zarzadzanie_decyzjami.html'">Decyzje</button><td><button class="wyswietl-zarzadzanie-sprawami" onclick="window.location.href='przegladanie_sprawy.html'">Wyświetl</button><td><button class="edytuj-zarzadzanie-sprawami">Edytuj</button><td><button class="usun-zarzadzanie-sprawami">Usuń</button>
-            <tr><td>5<td>543154<td>3242<td>TB<td>19/653<td>Smith<td>Andrew<td>1995-03-20<td>2019-05-31<td>Utworzenie KP<td>Nie<td><button class="dokumenty-zarzadzanie-sprawami" onclick="window.location.href='zarzadzanie_dokumentami.html'">Dokumenty</button><td><button class="decyzje-zarzadzanie-sprawami" onclick="window.location.href='zarzadzanie_decyzjami.html'">Decyzje</button><td><button class="wyswietl-zarzadzanie-sprawami" onclick="window.location.href='przegladanie_sprawy.html'">Wyświetl</button><td><button class="edytuj-zarzadzanie-sprawami">Edytuj</button><td><button class="usun-zarzadzanie-sprawami">Usuń</button> -->
-        </table>
+			</thead>
+				<?php
+					$lp = 1;
+					foreach($dane as $key => $value){
+						echo '
+							<tr><td>'.$lp.'<td>'.($value->id_globalne == NULL ? "-" : $value->id_globalne).' <td>'.$value->id_lokalne.' <td>'.$value->placowka.' 
+							<td>'.$value->wnioskodawca.' <td>'.$value->nazwisko.' <td>'.$value->imie.' <td>'.$value->data_urodzenia.' 
+							<td>'.date("Y-m-d", strtotime($value->data_zalozenia)).' <td>'.$value->cel.' <td>'.($value->czy_rozstrzygnieta == 1 ? "Tak" : "Nie").'
+							<td>
+								<form method="post" action="'.site_url('linki/do_zarzadzanie_dokumentami').'">
+									<input type="submit" value="Dokumenty">
+								</form>
+							<td>
+								<form method="post" action="'.site_url('linki/do_zarzadzanie_decyzjami').'">
+									<input type="submit" value="Decyzje">
+								</form>
+							<td>
+								<form method="post" action="'.site_url('linki/do_przegladanie_sprawy').'">
+									<input type="submit" value="Wyświetl">
+								</form>
+							<td>
+								<form method="post" action="'.site_url('linki/do_edycja_sprawy').'">
+									<input type="submit" value="Edytuj">
+								</form>
+							<td>
+								<form method="post" action="'.site_url('linki/usun_sprawe').'">
+									<input type="submit" value="Usuń">
+								</form>
+						';
+						$lp += 1;
+					}
+				?>
+		</table>
     </div>
 </body>
 

@@ -23,7 +23,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://konsulat-placowka.rf.gd/';
+
+// -----  strona na serwerze  ------
+// $config['base_url'] = 'http://konsulat-placowka.rf.gd/';
+
+// ------ strona na localhost -------
+$config['base_url'] = 'http://localhost/wiza-konsul/';
 
 /*
 |--------------------------------------------------------------------------

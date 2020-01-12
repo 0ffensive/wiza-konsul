@@ -19,7 +19,10 @@ class Linki extends CI_Controller {
 	}
 
 	function do_zarzadzanie_sprawami(){
-		$this->load->view('zarzadzanie_sprawami_view');
+		$this->load->model('Sprawa_model', 'sprawa');
+
+		$wyniki['dane'] = $this->sprawa->pobierz_dane_lista();
+		$this->load->view('zarzadzanie_sprawami_view', $wyniki);
 	}
 
 	function do_generowanie_raportu(){

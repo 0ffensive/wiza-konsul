@@ -11,7 +11,7 @@ class Zarzadzanie_sprawami extends CI_Controller {
 	}
 
 	public function index(){
-
+		
 	}
 
 	function dodawanie_sprawy(){
