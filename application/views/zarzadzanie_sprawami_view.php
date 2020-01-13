@@ -25,45 +25,47 @@
 
         <h2>Wyszukaj sprawę</h2>
         <div id="wyszukanie-spraw-zarzadzanie-sprawami">
-            <form>
-                <label for="#id-lokalne-zarzadzanie-sprawami">ID lokalne sprawy</label>
-                <input type="text" id="id-lokalne-zarzadzanie-sprawami">
-                <label for="#id-globalne-zarzadzanie-sprawami">ID globalne sprawy</label>
-                <input type="text" id="id-globalne-zarzadzanie-sprawami">
-                <label for="#id-wnioskodawcy-zarzadzanie-sprawami">ID wnioskodawcy</label>
-                <input type="text" id="id-wnioskodawcy-zarzadzanie-sprawami">
-                <label for="#nazwisko-zarzadzanie-sprawami">Nazwisko</label>
-                <input type="text" id="nazwisko-zarzadzanie-sprawami">
-                <label for="#imie-zarzadzanie-sprawami">Imię</label>
-                <input type="text" id="imie-zarzadzanie-sprawami">
-                <label for="#data-urodzenia-zarzadzanie-sprawami">Data urodzenia</label>
-                <input type="date" id="data-urodzenia-zarzadzanie-sprawami">
-                <label for="#numer-kp-zarzadzanie-sprawami">Numer KP</label>
-                <input type="text" id="numer-kp-zarzadzanie-sprawami">
-                <label for="#data-zalozenia-zarzadzanie-sprawami">Data założenia sprawy</label>
-                <input type="date" id="data-zalozenia-zarzadzanie-sprawami">
-                <label for="#cel-sprawy-zarzadzanie-sprawami">Cel sprawy</label>
-                <select id="cel-sprawy-zarzadzanie-sprawami">
-                    <option value="-1">Wybierz cel</option>
-                    <option value="0">Utworzenie</option>
-                    <option value="1">Duplikat</option>
-                    <option value="2">Modyfikacja</option>
-                    <option value="3">Przedłużenie</option>
-                </select>
-                <label for="#rozstrzygnieta-zarzadzanie-sprawami">Rozstrzygnięta</label>
-
-                <div id="rozstrzygnieta-zarzadzanie-sprawami">
-                    <input type="radio" id="kobieta-nowa-sprawa" name="plec-w-nowa-sprawa" value="1">
-                    <label for="tak-rozstrzygnieta-zarzadzanie-sprawami">Tak</label>
+            <form method="post" action="<?php echo site_url('zarzadzanie_sprawami/wyszukaj_sprawy'); ?>">
+                <label for="#id-lokalne">ID lokalne sprawy</label>
+                <input type="text" id="id-lokalne" name="id_lokalne">
+                <label for="#id-globalne">ID globalne sprawy</label>
+                <input type="text" id="id-globalne" name="id_globalne">
+                <label for="#id-wnioskodawcy">ID wnioskodawcy</label>
+                <input type="text" id="id-wnioskodawcy" name="wnioskodawca">
+                <label for="#nazwisko">Nazwisko</label>
+                <input type="text" id="nazwisko" name="nazwisko">
+                <label for="#imie">Imię</label>
+                <input type="text" id="imie" name="imie">
+                <label for="#data-urodzenia">Data urodzenia</label>
+                <input type="date" id="data-urodzenia" name="data_urodzenia">
+                <label for="#nr-karty">Numer KP</label>
+                <input type="text" id="nr-karty" name="nr_karty">
+                <label for="#data-zalozenia">Data założenia sprawy</label>
+				<input type="date" id="data-zalozenia" name="data_zalozenia">
+				
+                <label for="#cel">Cel sprawy</label>
+                <select id="cel" name="cel">
+                    <option value="">Wybierz cel</option>
+                    <option value="Utworzenie">Utworzenie</option>
+                    <option value="Duplikat">Duplikat</option>
+                    <option value="Modyfikacja">Modyfikacja</option>
+                    <option value="Przedłużenie">Przedłużenie</option>
+				</select>
+				
+                <label for="#czy-rozstrzygnieta">Rozstrzygnięta</label>
+                <div id="czy-rozstrzygnieta">
+                    <input type="radio" id="czy-rozstrzygnięta-tak" name="czy_rozstrzygnieta" value=1>
+                    <label for="czy-rozstrzygnięta-tak">Tak</label>
                     <br>
-                    <input type="radio" id="mezczyzna-nowa-sprawa" name="plec-w-nowa-sprawa" value="0">
-                    <label for="nie-rozstrzygnieta-zarzadzanie-sprawami">Nie</label>    
+                    <input type="radio" id="czy-rozstrzygnięta-nie" name="czy_rozstrzygnieta" value=0>
+                    <label for="czy-rozstrzygnięta-nie">Nie</label>    
                 </div>    
-            </form>
-            <button id="wyszukaj-zarzadzanie-sprawami">Wyszukaj</button>
-            <br>
-            <button id="wyczysc-zarzadzanie-sprawami">Wyczyść pola</button>  
-        </div>
+            
+            	<input type="submit" id="submit" value="Wyszukaj">
+            	<br>
+				<input type="reset" id="reset" value="Wyczyść pola"> 
+			</form> 
+		</div>
 
 		<h2>Lista spraw</h2>
         <table id="wyszukane-sprawy-zarzadzanie-sprawami">
