@@ -17,40 +17,6 @@
     <body>
         <div class="container">
             <h1>Dodaj nową sprawę</h1>
-            <div id="wyszukanie-profilu">
-                <h2>Wyszukaj profil wnioskodawcy</h2>
-
-                <div class="kontener-dodanie-sprawy">
-                    <div>
-                        <form>
-                            <label for="#id-w">ID wnioskodawcy</label>
-                            <input type="text" id="id-w">
-                            <label for="#nazwisko-w">Nazwisko</label>
-                            <input type="text" id="nazwisko-w">
-                            <label for="#imie-w">Imię</label>
-                            <input type="text" id="imie-w">
-                            <label for="#data-urodzenia-w">Data urodzenia</label>
-                            <input type="date" id="data-urodzenia-w">
-                            <label for="#numer-kp">Numer KP</label>
-                            <input type="text" id="numer-kp">
-                            <button id="wyszukaj-profil-nowa-sprawa">Wyszukaj</button>
-                            <button id="wyczysc-nowa-sprawa">Wyczyść</button>  
-                        </form>
-                         
-                    </div>
-                                                      
-
-                    <table id="wyszukane-profile">
-                        <thead> 
-                            <td>ID<td>Nr KP<td>Nazwisko<td>Imię<td>Data urodzenia<td>
-                        </thead>
-                        <tr>
-                            <td>35145<td>EF 13545<td>Kowalski<td>Jan<td>1963-06-23<td><button>Wybierz</button>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            <h2>Dane nowej sprawy</h2>
             <form>
                 <label for="#cel-sprawy">Cel sprawy</label>
                 <select id="cel-sprawy">
@@ -60,8 +26,6 @@
                     <option value="2">Modyfikacja KP</option>
                     <option value="3">Przedłuenie KP</option>
                 </select>
-                <label for="#numer-aktualnej-kp">Numer aktualnej KP</label>
-                <input type="text" id="numer-aktualnej-kp">
             </form>
             <div class="kontener-dodanie-sprawy">
                 <div>

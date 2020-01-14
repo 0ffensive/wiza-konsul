@@ -29,6 +29,14 @@ class Linki extends CI_Controller {
 		$this->load->view('generowanie_raportu_view');
 	}
 
+	function do_dodawanie_sprawy_wybor(){
+		$this->load->view('dodawanie_sprawy_wybor_view');
+	}
+
+	function do_wyszukiwanie_wnioskodawcy(){
+		$this->load->view('wyszukiwanie_wnioskodawcy_view');
+	}
+
 	function do_dodawanie_sprawy(){
 		$this->load->view('dodawanie_sprawy_view');
 	}

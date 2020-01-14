@@ -16,7 +16,7 @@ class Zarzadzanie_sprawami extends CI_Controller {
 
 	function wyszukaj_sprawy(){
 		
-		$inputs = array("id_lokalne", "id_globalne", "wnioskodawca", "nazwisko", "imie", "data_urodzenia", "nr_karty", "data_zalozenia", "cel", "czy_rozstrzygnieta");
+		$inputs = array("id_lokalne", "id_globalne", "wnioskodawca", "nazwisko", "imie", "data_urodzenia", "data_zalozenia", "cel", "czy_rozstrzygnieta");
 		$search_parameters = array();
 
 		foreach ($inputs as $input){

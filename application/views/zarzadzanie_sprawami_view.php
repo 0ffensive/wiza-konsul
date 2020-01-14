@@ -19,7 +19,7 @@
 		<form method="post" action="<?php echo site_url('linki/do_strona_glowna'); ?>">
 			<input type="submit" value="Cofnij">
 		</form>
-		<form method="post" action="<?php echo site_url('linki/do_dodawanie_sprawy'); ?>">
+		<form method="post" action="<?php echo site_url('linki/do_dodawanie_sprawy_wybor'); ?>">
 			<input type="submit" value="Dodaj sprawę">
 		</form>
 
@@ -38,8 +38,6 @@
                 <input type="text" id="imie" name="imie">
                 <label for="#data-urodzenia">Data urodzenia</label>
                 <input type="date" id="data-urodzenia" name="data_urodzenia">
-                <label for="#nr-karty">Numer KP</label>
-                <input type="text" id="nr-karty" name="nr_karty">
                 <label for="#data-zalozenia">Data założenia sprawy</label>
 				<input type="date" id="data-zalozenia" name="data_zalozenia">
 				
