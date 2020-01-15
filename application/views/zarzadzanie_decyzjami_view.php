@@ -13,7 +13,7 @@
     </head>
     <body>
         <div class="container">
-			<h1>Decyzje sprawy</h1>
+			<h1>Decyzje rozstrzygające sprawę</h1>
 			<form method="post" action="<?php echo site_url('linki/do_zarzadzanie_sprawami'); ?>">
 				<input type="submit" value="Cofnij">
 			</form>
@@ -28,7 +28,7 @@
                             <td>2 <td>Do uzupełnienia <td>24.11.2019 <td>Nowak Adam, 43 <td>Niepoprawne wymiary zdjęcia znowu
 				</table>
 				<form method="post" action="<?php echo site_url('linki/do_dodawanie_decyzji'); ?>">
-					<input type="submit" value="Dodaj">
+					<input type="submit" value="Dodaj nową decyzję">
 				</form>
             </div>
         </div>

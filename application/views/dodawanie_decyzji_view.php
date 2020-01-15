@@ -13,21 +13,21 @@
     </head>
     <body>
         <div class="container">
-            <h1>Dodaj decyzję</h1>
+            <h1>Dodawanie decyzji</h1>
             <form id="dodawanie-decyzji" method="post" action="<?php echo site_url('zarzadzanie_decyzjami/dodawanie_decyzji'); ?>">
                 <div class="inside-container">
                     <label for="#decyzja">Decyzja</label>
                     <select id="decyzja">
-                        <option>Wybierz decyzję</option>
-                        <option value="pozytywna">pozytywna</option>
-                        <option value="negatywna">negatywna</option>
-                        <option value="do-uzupelnienia">do uzupełnienia</option>
+                        <option>Wybierz</option>
+                        <option value="Pozytywny">Pozytywna</option>
+                        <option value="Negatywny">Negatywna</option>
+                        <option value="Do uzupełnienia">Do uzupełnienia</option>
                     </select>
                     <label for="#uzasadnienie">Uzasadnienie</label>
                     <textarea id="uzasadnienie"></textarea>
                 </div>
                 <div>
-					<input id="submit" name ="submit" type="submit" value="Dodaj">
+					<input id="submit" name ="submit" type="submit" value="Zatwierdź">
                 	<input id="reset" name ="reset" type="submit" value="Anuluj">
                 </div>
             </form>
