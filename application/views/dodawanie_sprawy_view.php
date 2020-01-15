@@ -89,7 +89,7 @@
                     </form>
                 </div>
                 <div>
-                    <h2>Dane pierwszego przodka</h2>
+                    <div class="data-checkbox"><input type="checkbox"></div><h2 class="relative">Dane pierwszego przodka</h2>
                     <form>
                         <label for="#nazwisko-przodka-1-nowa-sprawa">Nazwisko</label>
                         <input type="text" id="nazwisko-przodka-1-nowa-sprawa">
@@ -132,7 +132,7 @@
                         <input type="text" id="nr-dokumentu-przodka-1-nowa-sprawa">                   
                     </form>
 
-                    <h2>Dane drugiego przodka</h2>
+                    <div class="data-checkbox"><input type="checkbox"></div><h2 class="relative">Dane drugiego przodka</h2>
                     <form>
                         <label for="#nazwisko-przodka-2-nowa-sprawa">Nazwisko</label>
                         <input type="text" id="nazwisko-przodka-2-nowa-sprawa">
@@ -177,9 +177,6 @@
                </div>
             </div>             
             <div id="przyciski-dodawanie-sprawy">
-                <button id="zarzadzaj-zalacznikami-nowa-sprawa" onclick="window.location.href='zarzadzanie_dokumentami.html'">Zarządzaj
-                    załącznikami</button>
-                <br>
                 <div id="przyciski-zatwierdzajace">
 					<input id="submit" name ="submit" type="submit" value="Dodaj">
                 	<input id="reset" name ="reset" type="submit" value="Anuluj">

@@ -63,3 +63,20 @@ button{
 #przyciski-zatwierdzajace button{
     
 }
+
+div.data-checkbox {
+	display: inline-block;
+	margin: 10px;
+	border: 2px solid black;
+	width: 17px;
+	height: 17px;
+	box-sizing: border-box;
+}
+
+div.data-checkbox input{
+	vertical-align: text-top;
+}
+
+h2.relative{
+	display: inline;
+}

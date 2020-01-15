@@ -7,3 +7,25 @@ div.inside-container {
 form {
 	display: inline-block;
 }
+
+div#doc-preview {
+	width: 100%;
+	min-height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: #00000073;
+	display: flex;
+	justify-content: center;
+	padding: 40px;
+	
+	display: none;
+}
+
+div#doc-preview i#exit {
+	color: white;
+	font-size: 30px;
+	position: relative;
+	bottom: 25px;
+	left: 5px;
+}

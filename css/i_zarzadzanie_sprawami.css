@@ -43,3 +43,8 @@ table#wyszukane-sprawy-zarzadzanie-sprawami form input[type="submit"] {
 	min-width: 70px;
 	font-size: 10px;
 }
+
+i.fas {
+	font-size: 20px;
+	margin: 5px;
+}

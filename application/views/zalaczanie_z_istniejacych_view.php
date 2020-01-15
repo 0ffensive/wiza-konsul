@@ -16,7 +16,7 @@
 
 <body>
     <div class="container">
-        <h1>Istniejące dokumenty wnioskodawcy</h1>
+        <h1>Wszystkie dokumenty wnioskodawcy</h1>
         <form>
             <table>
                 <thead>
@@ -30,7 +30,7 @@
                         <td><input type="checkbox"> <td>3 <td>zaswiadczenie o znajomosci jezyka.pdf <td>19.05.2017 <td><a href="#">link</a>          
             </table>
             <div>
-                <input id="submit" type="submit" value="Załącz">
+                <input id="submit" type="submit" value="Załącz do sprawy">
                 <input id="reset" type="reset" value="Anuluj">
             </div>
         </form>

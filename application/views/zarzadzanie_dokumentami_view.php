@@ -11,7 +11,8 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/style.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/k_zarzadanie_dokumentami.css">
     <link href="https://fonts.googleapis.com/css?family=Muli:400,800&display=swap" rel="stylesheet">
-
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 
 <body>
@@ -23,12 +24,12 @@
         <div class="inside-container">
             <table>
                 <thead>
-                    <td>Id <td>Nazwa <td>Data dodania <td>Podgląd <td>
+                    <td>L.p. <td>Nazwa <td>Data dodania <td> <td>
                 <tbody>
                     <tr>
-                        <td>1 <td>zdjecie.jpg <td>21.11.2019 <td><a href="#">link</a> <td><button>usuń</button>
+                        <td>1 <td>zdjecie.jpg <td>21.11.2019 <td><button>Podgląd</button> <td><button>Usuń</button>
                     <tr>
-                        <td>2 <td>certyfikat.pdf <td>24.11.2019 <td><a href="#">link</a> <td><button>usuń</button>
+                        <td>2 <td>certyfikat.pdf <td>24.11.2019 <td><button>Podgląd</button> <td><button>Usuń</button>
             </table>
             <div>
 				<form method="post" action="<?php echo site_url('linki/do_dodawanie_dokumentu'); ?>">
@@ -39,7 +40,12 @@
 				</form>
 			</div>
         </div>
-    </div>
+	</div>
+	
+	<div id="doc-preview">
+		<img src="<?php echo base_url(); ?>images/Karta_Polaka_-_wniosek_wzór_strona_1.png">
+		<i id="exit" class="far fa-times-circle"></i>
+	</div>	
 </body>
 
 </html>
