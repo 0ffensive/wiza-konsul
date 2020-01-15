@@ -20,7 +20,7 @@
             <form>
                 <label for="#cel-sprawy">Cel sprawy</label>
                 <select id="cel-sprawy">
-                    <option value="-1">Wybierz cel</option>
+                    <option value="-1">Wybierz</option>
                     <option value="0">Utworzenie KP</option>
                     <option value="1">Duplikat KP</option>
                     <option value="2">Modyfikacja KP</option>
@@ -48,7 +48,7 @@
                         <input type="date" id="data-urodzenia-nowa-sprawa">
                         <label for="#obywatelstwo-nowa-sprawa">Obywatelstwo</label>
                         <select id="obywatelstwo-nowa-sprawa">
-                            <option value="-1">Wybierz obywatelstwo</option>
+                            <option value="-1">Wybierz</option>
                             <option value="0">obywatelstwo1</option>
                             <option value="1">obywatelstwo1</option>
                             <option value="2">obywatelstwo1</option>
@@ -56,7 +56,7 @@
                         </select>
                         <label for="#narodowosc-nowa-sprawa">Narodowość</label>
                         <select id="narodowosc-nowa-sprawa">
-                            <option value="-1">Wybierz narodowość</option>
+                            <option value="-1">Wybierz</option>
                             <option value="0">narodowosc</option>
                             <option value="1">narodowosc</option>
                             <option value="2">narodowosc</option>
@@ -64,7 +64,7 @@
                         </select>
                         <label for="#typ-dokumentu-nowa-sprawa">Typ dokumentu</label>
                         <select id="typ-dokumentu-nowa-sprawa"> <!--to musi być zaciągnięte potem ze słownika-->
-                            <option value="-1">Wybierz typ dokumentu</option>
+                            <option value="-1">Wybierz</option>
                             <option value="0">Paszport</option>
                             <option value="1">Dowód osobisty</option>
                             <option value="2">Prawo jazdy</option>
@@ -97,7 +97,7 @@
                         <input type="text" id="imie-przodka-1-nowa-sprawa">
                         <label for="#pokrewienstwo-przodka-1-nowa-sprawa">Stopień pokrewieństwa</label>
                         <select id="obywatelstwo-przodka-1-nowa-sprawa">
-                            <option value="-1">Wybierz stopień pokrewieństwa</option>
+                            <option value="-1">Wybierz</option>
                             <option value="0">Matka</option>
                             <option value="1">Ojciec</option>
                             <option value="2">Babcia</option>
@@ -107,7 +107,7 @@
                         </select>
                         <label for="#obywatelstwo-przodka-1-nowa-sprawa">Obywatelstwo</label>
                         <select id="obywatelstwo-przodka-1-nowa-sprawa">
-                            <option value="-1">Wybierz obywatelstwo</option>
+                            <option value="-1">Wybierz</option>
                             <option value="0">obywatelstwo1</option>
                             <option value="1">obywatelstwo1</option>
                             <option value="2">obywatelstwo1</option>
@@ -115,7 +115,7 @@
                         </select>
                         <label for="#narodowosc-przodka-1-nowa-sprawa">Narodowość</label>
                         <select id="narodowosc-przodka-1-nowa-sprawa">
-                            <option value="-1">Wybierz narodowość</option>
+                            <option value="-1">Wybierz</option>
                             <option value="0">narodowosc</option>
                             <option value="1">narodowosc</option>
                             <option value="2">narodowosc</option>
@@ -123,7 +123,7 @@
                         </select>
                         <label for="#typ-dokumentu-przodka-1-nowa-sprawa">Typ dokumentu</label>
                         <select id="typ-dokumentu-przodka-1-nowa-sprawa"> <!--to musi być zaciągnięte potem ze słownika-->
-                            <option value="-1">Wybierz typ dokumentu</option>
+                            <option value="-1">Wybierz</option>
                             <option value="0">Paszport</option>
                             <option value="1">Dowód osobisty</option>
                             <option value="2">Prawo jazdy</option>
@@ -140,7 +140,7 @@
                         <input type="text" id="imie-przodka-2-nowa-sprawa">
                         <label for="#pokrewienstwo-przodka-2-nowa-sprawa">Stopień pokrewieństwa</label>
                         <select id="obywatelstwo-przodka-2-nowa-sprawa">
-                            <option value="-1">Wybierz stopień pokrewieństwa</option>
+                            <option value="-1">Wybierz</option>
                             <option value="0">Matka</option>
                             <option value="1">Ojciec</option>
                             <option value="2">Babcia</option>
@@ -150,7 +150,7 @@
                         </select>
                         <label for="#obywatelstwo-przodka-2-nowa-sprawa">Obywatelstwo</label>
                         <select id="obywatelstwo-przodka-2-nowa-sprawa">
-                            <option value="-1">Wybierz obywatelstwo</option>
+                            <option value="-1">Wybierz</option>
                             <option value="0">obywatelstwo1</option>
                             <option value="1">obywatelstwo1</option>
                             <option value="2">obywatelstwo1</option>
@@ -158,7 +158,7 @@
                         </select>
                         <label for="#narodowosc-przodka-2-nowa-sprawa">Narodowość</label>
                         <select id="narodowosc-przodka-2-nowa-sprawa">
-                            <option value="-1">Wybierz narodowość</option>
+                            <option value="-1">Wybierz</option>
                             <option value="0">narodowosc</option>
                             <option value="1">narodowosc</option>
                             <option value="2">narodowosc</option>
@@ -166,7 +166,7 @@
                         </select>
                         <label for="#typ-dokumentu-przodka-2-nowa-sprawa">Typ dokumentu</label>
                         <select id="typ-dokumentu-przodka-2-nowa-sprawa"> <!--to musi być zaciągnięte potem ze słownika-->
-                            <option value="-1">Wybierz typ dokumentu</option>
+                            <option value="-1">Wybierz</option>
                             <option value="0">Paszport</option>
                             <option value="1">Dowód osobisty</option>
                             <option value="2">Prawo jazdy</option>

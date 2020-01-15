@@ -23,9 +23,9 @@
                         <td>Id <td>Decyzja <td>Data wydania <td>Wydana przez <td>Uzasadnienie
                     <tbody>
                         <tr>
-                            <td>1 <td>Do uzupełnienia <td>21.11.2019 <td>Nowak Adam, 43 <td>Niepoprawne wymiary zdjęcia
+                            <td>1 <td>Do uzupełnienia <td>2019-11-21 <br> 14:33:23 <td>Nowak Adam, 43 <td>Niepoprawne wymiary zdjęcia
                         <tr>
-                            <td>2 <td>Do uzupełnienia <td>24.11.2019 <td>Nowak Adam, 43 <td>Niepoprawne wymiary zdjęcia znowu
+                            <td>2 <td>Do uzupełnienia <td>2019-11-24 <br> 14:37:23 <td>Nowak Adam, 43 <td>Niepoprawne wymiary zdjęcia znowu
 				</table>
 				<form method="post" action="<?php echo site_url('linki/do_dodawanie_decyzji'); ?>">
 					<input type="submit" value="Dodaj nową decyzję">

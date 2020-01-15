@@ -27,9 +27,9 @@
                     <td>L.p. <td>Nazwa <td>Data dodania <td> <td>
                 <tbody>
                     <tr>
-                        <td>1 <td>zdjecie.jpg <td>21.11.2019 <td><button>Podgląd</button> <td><button>Usuń</button>
+                        <td>1 <td>Zdjęcie <td>2019-11-21 <br> 12:45:54<td><button>Podgląd</button> <td><button>Usuń</button>
                     <tr>
-                        <td>2 <td>certyfikat.pdf <td>24.11.2019 <td><button>Podgląd</button> <td><button>Usuń</button>
+                        <td>2 <td>Poświadczenie zdania egzaminu z języka polskiego <td>2019-11-24 <br> 12:47:34 <td><button>Podgląd</button> <td><button>Usuń</button>
             </table>
             <div>
 				<form method="post" action="<?php echo site_url('linki/do_dodawanie_dokumentu'); ?>">

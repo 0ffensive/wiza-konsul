@@ -45,7 +45,7 @@
 				
                 <label for="#cel">Cel sprawy</label>
                 <select id="cel" name="cel">
-                    <option value="">Wybierz cel</option>
+                    <option value="">Wybierz</option>
                     <option value="Utworzenie">Utworzenie</option>
                     <option value="Duplikat">Duplikat</option>
                     <option value="Modyfikacja">Modyfikacja</option>
@@ -78,7 +78,7 @@
 						echo '
 							<tr><td>'.$lp.'<td>'.($value->id_globalne == NULL ? "-" : $value->id_globalne).' <td>'.$value->id_lokalne.' <td>'.$value->placowka.' 
 							<td>'.$value->wnioskodawca.' <td>'.$value->nazwisko.' <td>'.$value->imie.' <td>'.$value->data_urodzenia.' 
-							<td>'.date("Y-m-d", strtotime($value->data_zalozenia)).' <td>'.$value->cel.' <td>'.($value->czy_rozstrzygnieta == 1 ? "Tak" : "Nie").'
+							<td>'.$value->data_zalozenia.' <td>'.$value->cel.' <td>'.($value->czy_rozstrzygnieta == 1 ? "Tak" : "Nie").'
 							<td>
 								<form method="post" action="'.site_url('linki/do_zarzadzanie_dokumentami').'">
 									<input type="submit" value="Dokumenty">

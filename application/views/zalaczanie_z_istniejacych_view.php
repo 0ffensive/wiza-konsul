@@ -20,14 +20,14 @@
         <form>
             <table>
                 <thead>
-                    <td> </td><td>Id <td>Nazwa <td>Data dodania <td>Podgląd
+                    <td> </td><td>L.p. <td>Nazwa <td>Data dodania <td>
                 <tbody>
                     <tr>
-                        <td><input type="checkbox"> <td>1 <td>zdjecie.jpg <td>21.11.2019 <td><a href="#">link</a>
+                        <td><input type="checkbox"> <td>1 <td>Świadectwo ukończenia studiów w Polsce <td>2019-11-28 <br> 12:43:13<td><button>Podgląd</button>
                     <tr>
-                        <td><input type="checkbox"> <td>2 <td>certyfikat.pdf <td>24.11.2019 <td><a href="#">link</a>
+                        <td><input type="checkbox"> <td>2 <td>Świadectwo ukończenia szkoły w Polsce <td>2019-11-24 <br> 12:23:42 <td><button>Podgląd</button>
                     <tr>
-                        <td><input type="checkbox"> <td>3 <td>zaswiadczenie o znajomosci jezyka.pdf <td>19.05.2017 <td><a href="#">link</a>          
+                        <td><input type="checkbox"> <td>3 <td>Zdjęcie <td>2019-11-22 <br> 13:35:34 <td><button>Podgląd</button>          
             </table>
             <div>
                 <input id="submit" type="submit" value="Załącz do sprawy">
