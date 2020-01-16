@@ -17,16 +17,18 @@
 
 <body>
     <div class="container">
-        <h1>Zarządzanie sprawami</h1>
-		<form method="post" action="<?php echo site_url('linki/do_strona_glowna'); ?>">
-			<input type="submit" value="Cofnij">
-		</form>
-		<form method="post" action="<?php echo site_url('linki/do_dodawanie_sprawy_wybor'); ?>">
-			<input type="submit" value="Dodaj sprawę">
-		</form>
-
-        <h2>Wyszukaj sprawę</h2>
+		<h1>Zarządzanie sprawami</h1>
+		<div>
+			<form method="post" class="inline-form" action="<?php echo site_url('linki/do_strona_glowna_placowka'); ?>">
+				<input type="submit" value="Cofnij">
+			</form>
+			<form method="post" class="inline-form" action="<?php echo site_url('linki/do_dodawanie_sprawy_wybor'); ?>">
+				<input type="submit" value="Dodaj sprawę">
+			</form>
+		</div>
+		
         <div id="wyszukanie-spraw-zarzadzanie-sprawami">
+			<h2>Wyszukaj sprawę</h2>
             <form method="post" action="<?php echo site_url('zarzadzanie_sprawami/wyszukaj_sprawy'); ?>">
                 <label for="#id-lokalne">ID lokalne sprawy</label>
                 <input type="text" id="id-lokalne" name="id_lokalne">
@@ -70,13 +72,13 @@
 		<h2>Lista spraw</h2>
         <table id="wyszukane-sprawy-zarzadzanie-sprawami">
             <thead>
-                <td>L.p.<td>ID globalne<td>ID lokalne<td>ID placówki<td>ID wnioskodawcy<td>Nazwisko<td>Imię<td>Data urodzenia<td>Data załozenia sprawy<td>Cel<td>Rozstrzygnięta<td>Dokumenty<td>Decyzje<td><td><td>
+                <td>L.p.<td>ID globalne<td>ID lokalne<td>ID wnioskodawcy<td>Nazwisko<td>Imię<td>Data urodzenia<td>Data załozenia sprawy<td>Cel<td>Rozstrzygnięta<td><td><td><td><td>
 			</thead>
 				<?php
 					$lp = 1;
 					foreach($dane as $key => $value){
 						echo '
-							<tr><td>'.$lp.'<td>'.($value->id_globalne == NULL ? "-" : $value->id_globalne).' <td>'.$value->id_lokalne.' <td>'.$value->placowka.' 
+							<tr><td>'.$lp.'<td>'.($value->id_globalne == NULL ? "-" : $value->id_globalne).' <td>'.$value->id_lokalne.'
 							<td>'.$value->wnioskodawca.' <td>'.$value->nazwisko.' <td>'.$value->imie.' <td>'.$value->data_urodzenia.' 
 							<td>'.$value->data_zalozenia.' <td>'.$value->cel.' <td>'.($value->czy_rozstrzygnieta == 1 ? "Tak" : "Nie").'
 							<td>

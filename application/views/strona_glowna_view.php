@@ -17,11 +17,11 @@
 			<h1>Konsulat</h1>
 			<div>
 				<h2>Oddział ds. Karty Polaka</h2>
-				<form method="post" action="<?php echo site_url('linki/do_zarzadzanie_sprawami'); ?>">
-					<input type="submit" value="Zarządzanie sprawami">
+				<form method="post" action="<?php echo site_url('linki/do_strona_glowna_placowka'); ?>">
+					<input type="submit" value="Placówka">
 				</form>
-				<form method="post" action="<?php echo site_url('linki/do_generowanie_raportu'); ?>">
-					<input type="submit" value="Generowanie raportu">
+				<form method="post" action="<?php echo site_url('linki/do_strona_glowna_centrala'); ?>">
+					<input type="submit" value="Centrala">
 				</form>
 			</div>
 			<!-- <div>

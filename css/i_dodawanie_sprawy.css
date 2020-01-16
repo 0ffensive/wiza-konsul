@@ -1,76 +1,46 @@
-
-
-form {
-    display: grid;
-    grid-template-columns: 40% 40%;
-    column-gap: 80px;
-    row-gap: 10px;
-    margin: 10px;
-
-    
-}
-form label, form input, select{
-    /*width: 200px;*/
-
+form#dodanie-sprawy{
+	display: flex;
+	flex-direction: column;
 }
 
-#wyszukanie-profilu {
-    border: solid 1px;
-    padding: 10px;
-    border-radius: 6px;
+form#dodanie-sprawy>div#cel-container {
+	display: grid;
+	grid-template-columns: 45% 45%;
+	column-gap: 80px;
+	row-gap: 10px;
 }
 
-button{
-    margin: 10px;
-}
-
-#zarzadzaj-zalacznikami-nowa-sprawa, #dodaj-sprawe-nowa-sprawa {
-    width: 400px;
-}
-
-#wyszukane-profile {
-    font-size: 12px;
-    padding: 5px;
-    text-align: center;
-    margin-top:0;
-}
-
-.kontener-dodanie-sprawy {
-
-    display: grid;
-    grid-template-columns: 40% 40%;
-    column-gap: 80px;
-}
-#kontener-dodanie-sprawy button{
-    width: 190px;
-    margin: 5px;
-}
-
-#przyciski-dodawanie-sprawy {
-    text-align: center;
-}
-
-#przyciski-dodawanie-sprawy button{
-    width: 100%;
-}
-
-#przyciski-zatwierdzajace {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-}
-
-#przyciski-zatwierdzajace button{
-    
-}
-
-div.data-checkbox {
-	display: inline-block;
+form#dodanie-sprawy>div#cel-container>div#cel {
+	display: grid;
+	column-gap: 80px;
+	row-gap: 2px;
 	margin: 10px;
+}
+
+
+form#dodanie-sprawy > div > div > div{
+	display: grid;
+	column-gap: 80px;
+	row-gap: 2px;
+	margin: 10px;
+}
+
+form#dodanie-sprawy > div > div > div input,
+form#dodanie-sprawy > div > div > div select {
+	margin-bottom: 10px;
+}
+
+form#dodanie-sprawy > div > div > div > div.data-checkbox {
+	display: inline-block;
+	margin-right: 10px;
 	border: 2px solid black;
 	width: 17px;
 	height: 17px;
 	box-sizing: border-box;
+}
+
+form#dodanie-sprawy>div>div>div.checkbox-header{
+	display: block;
 }
 
 div.data-checkbox input{
@@ -78,5 +48,41 @@ div.data-checkbox input{
 }
 
 h2.relative{
-	display: inline;
+	display: inline-block;
+	margin: 0;
+}
+
+div.kontener-dodanie-sprawy {
+	display: grid;
+	grid-template-columns: 45% 45%;
+	column-gap: 80px;
+	row-gap: 10px;
+}
+
+div.kontener-dodanie-sprawy>div {
+	display: flex;
+	flex-direction: column;
+}
+
+div#plec {
+	margin-bottom: 10px;
+}
+
+div#plec input#mezczyzna,
+div#plec input#kobieta {
+	margin: 0;
+}
+
+div#plec label {
+	margin-right: 20px;
+}
+
+div#przyciski-zatwierdzajace {
+	display: flex;
+	justify-content: center;
+}
+
+div#przyciski-zatwierdzajace input {
+	width: 180px;
+	margin: 10px;
 }

@@ -20,7 +20,7 @@
             <div class="inside-container">
                 <table>
                     <thead>
-                        <td>Id <td>Decyzja <td>Data wydania <td>Wydana przez <td>Uzasadnienie
+                        <td>L.p. <td>Decyzja <td>Data wydania <td>Wydana przez <td>Uzasadnienie
                     <tbody>
                         <tr>
                             <td>1 <td>Do uzupełnienia <td>2019-11-21 <br> 14:33:23 <td>Nowak Adam, 43 <td>Niepoprawne wymiary zdjęcia

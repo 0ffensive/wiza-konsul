@@ -2,7 +2,7 @@ form {
     margin-top: 10px;
 }
 
-form input:not([type="checkbox"]), select, button {
+form input:not([type="checkbox"]):not([type="submit"]), select{
     width: 70%;
     margin: 10px;
     font-size: 18px;
@@ -26,9 +26,27 @@ form input:not([type="checkbox"]), select, button {
     margin: 20px 0 5px 0;
 }
 
-#wybor-placowek-generowanie-raportu button{
+button{
     width: 30%;
     margin: 4px;
+}
+
+form#generowanie-raportu {
+	display: grid;
+	column-gap: 80px;
+	row-gap: 2px;
+	margin: 10px;
+}
+
+form#generowanie-raportu select, 
+form#generowanie-raportu input {
+	margin: 0;
+	margin-bottom: 10px;
+}
+
+form#generowanie-raportu input[type="submit"] {
+	width: 200px;
+	margin: 20px 0;
 }
 
 

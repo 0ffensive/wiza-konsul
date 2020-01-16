@@ -18,6 +18,14 @@ class Linki extends CI_Controller {
 		$this->load->view('strona_glowna_view');
 	}
 
+	public function do_strona_glowna_placowka(){
+		$this->load->view('strona_glowna_placowka_view');
+	}
+
+	public function do_strona_glowna_centrala(){
+		$this->load->view('strona_glowna_centrala_view');
+	}
+
 	function do_zarzadzanie_sprawami(){
 		$this->load->model('Sprawa_model', 'sprawa');
 
@@ -27,6 +35,10 @@ class Linki extends CI_Controller {
 
 	function do_generowanie_raportu(){
 		$this->load->view('generowanie_raportu_view');
+	}
+
+	function do_raport(){
+		$this->load->view('raport_view');
 	}
 
 	function do_dodawanie_sprawy_wybor(){
@@ -66,7 +78,7 @@ class Linki extends CI_Controller {
 	}
 
 	function do_edycja_sprawy(){
-
+		$this->load->view('edytowanie_sprawy_view');
 	}
 
 	function usun_sprawe(){

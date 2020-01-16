@@ -15,33 +15,39 @@
 
 <body>
     <div class="container">
-        <h1>Generownie raportu</h1>
-        <div class="kontener-generowanie-raportu">
-			<form method="post" action="<?php echo site_url('linki/do_strona_glowna'); ?>">
+		<h1>Generownie raportu</h1>
+		<div>
+			<form id="cofnij-form" method="post" action="<?php echo site_url('linki/do_strona_glowna_centrala'); ?>">
 				<input type="submit" value="Cofnij">
 			</form>
-            <form>
-                <input class="generuj" type="submit" value="Generuj raport ">
-                <select id="zawartosc-generowanie-raportu">
-                    <option value="-1">Wybierz typ zawartości przesyłek</option>
+		</div>
+        <div>
+            <form id="generowanie-raportu" method="post" action="<?php echo site_url('linki/do_raport'); ?>">
+				<input class="generuj" type="submit" value="Generuj raport ">
+				
+				<label for="#zawartosc">Typ zawartości przesyłek</label>
+                <select id="zawartosc">
+                    <option value="">Wybierz</option>
                     <option value="0">Sprawy</option>
                     <option value="1">Decyzje</option>
-                </select>
-                <select id="przedzial-generowanie-raportu">
-                    <option value="-1">Wybierz przedział czasowy</option>
+				</select>
+				<label for="#przedzial">Przedział czasowy</label>
+                <select id="przedzial">
+                    <option value="">Wybierz</option>
                     <option value="0">15 min</option>
                     <option value="1">1 godzina</option>
                     <option value="2">1 dzień</option>
                     <option value="3">1 tydzień</option>
-                </select>
-                <select id="format-generowanie-raportu">
-                    <option value="-1">Wybierz format raportu</option>
+				</select>
+				<label for="#format">Format raportu</label>
+                <select id="format">
+                    <option value="-1">Wybierz</option>
                     <option value="0">PDF</option>
                     <option value="1">XML</option>
                     <option value="2">TXT</option>
                 </select>
             
-                <div id="wybor-placowek-generowanie-raportu">
+                <div id="wybor-placowek">
                     <h3>Wybierz placówki</h3>
                     <button>Zaznacz wszystko</button>
                     <button>Odznacz wszystko</button>
@@ -54,7 +60,6 @@
                 </div>
             </form>
         </div>
-        
     </div>
 </body>
 

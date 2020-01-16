@@ -17,8 +17,10 @@
 <body>
     <div class="container">
         <h1>Dodawanie nowego dokumentu</h1>
-        <form id="dodawanie-form" method="post" action="<?php echo site_url('zarzadzanie_dokumentami/dodawanie_dokumentu'); ?>">
-            <div id="drag-and-drop"><i><u>przeciągnij tutaj</u></i></div>
+        <form method="post" action="<?php echo site_url('zarzadzanie_dokumentami/dodawanie_dokumentu'); ?>">
+			<div id="drag-and-drop">
+				<input type="file">
+			</div>
             <div>
                 <input id="submit" name ="submit" type="submit" value="Dodaj">
                 <input id="reset" name ="reset" type="submit" value="Anuluj">

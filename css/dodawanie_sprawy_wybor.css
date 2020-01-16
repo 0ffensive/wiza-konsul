@@ -1,0 +1,15 @@
+form {
+	display: inline-block;
+	margin: 10px;
+}
+
+div#decyzja {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+div#decyzja input {
+	width: 240px;
+}
+
