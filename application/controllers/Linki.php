@@ -13,17 +13,9 @@ class Linki extends CI_Controller {
 	public function index(){
 	
 	}
-	
-	public function do_strona_glowna(){
-		$this->load->view('strona_glowna_view');
-	}
 
 	public function do_strona_glowna_placowka(){
 		$this->load->view('strona_glowna_placowka_view');
-	}
-
-	public function do_strona_glowna_centrala(){
-		$this->load->view('strona_glowna_centrala_view');
 	}
 
 	function do_zarzadzanie_sprawami(){

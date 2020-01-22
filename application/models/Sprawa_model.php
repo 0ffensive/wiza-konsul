@@ -18,14 +18,17 @@ class Sprawa_model extends CI_Model {
 		return $query->result();
 	}
 
-	public function wyszukaj_sprawy($search_parameters){
+	public function wyszukaj_sprawy($parametry_wyszukiwania, $data_zalozenia){
 		$this->db->select('sprawy.id_globalne, sprawy.id_lokalne, sprawy.wnioskodawca, 
 						   dane_osobowe.nazwisko, dane_osobowe.imie, dane_osobowe.data_urodzenia, 
 						   sprawy.data_zalozenia, sprawy.cel, sprawy.czy_rozstrzygnieta');
 		$this->db->from('sprawy');							
 		$this->db->join('dane_osobowe', 'dane_osobowe.id = sprawy.dane_osobowe', 'left');
 		$this->db->join('zatrudnienia', 'zatrudnienia.pracownik_placowki = sprawy.pracownik_zakladajacy', 'left');
-		$this->db->where($search_parameters);
+		$this->db->where($parametry_wyszukiwania);
+		if ($data_zalozenia != NULL){
+			$this->db->where('CAST(sprawy.data_zalozenia AS DATE) =', $data_zalozenia);
+		}
 		$this->db->order_by('sprawy.id_lokalne','ASC');
 		$query = $this->db->get();
 		

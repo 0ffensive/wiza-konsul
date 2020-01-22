@@ -16,16 +16,21 @@ class Zarzadzanie_sprawami extends CI_Controller {
 
 	function wyszukaj_sprawy(){
 		
-		$inputs = array("id_lokalne", "id_globalne", "wnioskodawca", "nazwisko", "imie", "data_urodzenia", "data_zalozenia", "cel", "czy_rozstrzygnieta");
-		$search_parameters = array();
+		$parametry = array("id_lokalne", "id_globalne", "wnioskodawca", "nazwisko", "imie", "data_urodzenia", "data_zalozenia", "cel", "czy_rozstrzygnieta");
+		$parametry_wyszukiwania = array();
+		$data_zalozenia = NULL;
 
-		foreach ($inputs as $input){
-			if($this->input->post($input) != NULL){
-				$search_parameters += array($input => ($this->input->post($input)));
+		foreach ($parametry as $param){
+			if($this->input->post($param) != NULL){
+				if ($param == "data_zalozenia"){
+					$data_zalozenia = $this->input->post($param);
+				} else{
+					$parametry_wyszukiwania += array($param => ($this->input->post($param)));
+				}
 			}
 		}
 		
-		$wyniki['dane'] = $this->sprawa_model->wyszukaj_sprawy($search_parameters);
+		$wyniki['dane'] = $this->sprawa_model->wyszukaj_sprawy($parametry_wyszukiwania, $data_zalozenia);
 		$this->load->view('zarzadzanie_sprawami_view', $wyniki);
 	}
 

@@ -23,7 +23,7 @@ class Glowny extends CI_Controller {
 		// $result['dataArray'] = $this->baza->getData();
 		// $this->load->view('home_view', $result);
 
-		$this->load->view('strona_glowna_view');
+		$this->load->view('strona_glowna_placowka_view');
 	}
 
 	// function data_form(){
