@@ -6,7 +6,13 @@ form {
 
 div#drag-and-drop {
     margin: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	display: grid;
+	column-gap: 80px;
+	row-gap: 2px;
+	margin: 10px;
+}
+ 
+div#drag-and-drop select,
+div#drag-and-drop input {
+	margin-bottom: 15px;
 }

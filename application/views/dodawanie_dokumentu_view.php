@@ -19,6 +19,14 @@
         <h1>Dodawanie nowego dokumentu</h1>
         <form method="post" action="<?php echo site_url('zarzadzanie_dokumentami/dodawanie_dokumentu'); ?>">
 			<div id="drag-and-drop">
+				<label for="#nazwa">Nazwa dokumentu</label>
+				<select id="nazwa">
+					<option value="">Wybierz</option>
+					<option value="0">nazwa</option>
+					<option value="1">nazwa</option>
+					<option value="2">nazwa</option>
+					<option value="3">nazwa</option>
+				</select>
 				<input type="file">
 			</div>
             <div>
