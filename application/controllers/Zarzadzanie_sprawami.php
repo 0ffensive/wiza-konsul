@@ -30,7 +30,7 @@ class Zarzadzanie_sprawami extends CI_Controller {
 		}
 		
 		$wyniki['dane'] = $this->sprawa_model->wyszukaj_sprawy($parametry_wyszukiwania, $data_zalozenia);
-		$this->load->view('zarzadzanie_sprawami_view', $wyniki);
+		$this->load->view('zarzadzanie_sprawami/zarzadzanie_sprawami_view', $wyniki);
 	}
 
 	function dodawanie_sprawy(){
