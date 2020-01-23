@@ -15,7 +15,6 @@ class Zarzadzanie_sprawami extends CI_Controller {
 	}
 
 	function wyszukaj_sprawy(){
-		
 		$parametry = array("id_lokalne", "id_globalne", "wnioskodawca", "nazwisko", "imie", "data_urodzenia", "data_zalozenia", "cel", "czy_rozstrzygnieta");
 		$parametry_wyszukiwania = array();
 		$data_zalozenia = NULL;
@@ -39,6 +38,8 @@ class Zarzadzanie_sprawami extends CI_Controller {
 			$this->load->view('zarzadzanie_decyzjami_view');
 		} else if ($this->input->post('submit') == "Dodaj") {
 			echo "Dodaj";
+
+			// substr($string, 0, -1);  --dla przodków
 		}
 	}
 }

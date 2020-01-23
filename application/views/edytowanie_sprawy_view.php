@@ -112,6 +112,7 @@
                         <label for="#nr-dokumentu-przodka-2-przegladanie-sprawy">Nr dokumentu</label>
                         <input type="text" id="nr-dokumentu-przodka-2-przegladanie-sprawy" value="EFG 24353">                     
                     </form>
+					<input type="submit" value="Zatwierdź"></input>
                </div>
             </div>  
         </div>

@@ -19,9 +19,9 @@ class Linki extends CI_Controller {
 	}
 
 	function do_zarzadzanie_sprawami(){
-		$this->load->model('Sprawa_model', 'sprawa');
+		$this->load->model('Sprawa_model', 'sprawa_m');
 
-		$wyniki['dane'] = $this->sprawa->pobierz_dane_lista();
+		$wyniki['dane'] = $this->sprawa_m->pobierz_dane_lista();
 		$this->load->view('zarzadzanie_sprawami_view', $wyniki);
 	}
 
@@ -42,7 +42,12 @@ class Linki extends CI_Controller {
 	}
 
 	function do_dodawanie_sprawy(){
-		$this->load->view('dodawanie_sprawy_view');
+		$this->load->model('Kraj_model', 'kraj_m');
+		$this->load->model('Typ_dokumentu_identyfikacyjnego_model', 'typ_dok_m');
+
+		$dane['kraje'] = $this->kraj_m->pobierz_dane();
+		$dane['typy'] = $this->typ_dok_m->pobierz_dane();
+		$this->load->view('dodawanie_sprawy_view', $dane);
 	}
 
 	function do_zarzadzanie_dokumentami(){
