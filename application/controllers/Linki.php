@@ -35,7 +35,7 @@ class Linki extends CI_Controller {
 		$this->load->model('Wnioskodawca_model', 'wnioskodawca_m');
 
 		$dane['wnioskodawcy'] = $this->wnioskodawca_m->pobierz_dane();
-		$this->load->view('zarzadzanie_sprawami/wyszukiwanie_wnioskodawcy_view', $dane);
+		$this->load->view('zarzadzanie_sprawami/wyszukiwanie_wnioskodawcow_view', $dane);
 	}
 
 	function do_dodawanie_sprawy(){

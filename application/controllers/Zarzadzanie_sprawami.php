@@ -5,7 +5,8 @@ class Zarzadzanie_sprawami extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
-		$this->load->model('Sprawa_model', 'sprawa_model');
+		$this->load->model('Sprawa_model', 'sprawa_m');
+		$this->load->model('Wnioskodawca_model', 'wnioskodawca_m');
 		$this->load->helper(array('url', 'form'));
 		$this->load->library('form_validation');
 	}
@@ -29,7 +30,7 @@ class Zarzadzanie_sprawami extends CI_Controller {
 			}
 		}
 		
-		$wyniki['dane'] = $this->sprawa_model->wyszukaj_sprawy($parametry_wyszukiwania, $data_zalozenia);
+		$wyniki['dane'] = $this->sprawa_m->wyszukaj_sprawy($parametry_wyszukiwania, $data_zalozenia);
 		$this->load->view('zarzadzanie_sprawami/zarzadzanie_sprawami_view', $wyniki);
 	}
 
@@ -41,5 +42,26 @@ class Zarzadzanie_sprawami extends CI_Controller {
 
 			// substr($string, 0, -1);  --dla przodków
 		}
+	}
+
+
+	function wyszukaj_wnioskodawcow(){
+		$parametry = array('id', "nazwisko", "imie", "data_urodzenia");
+		$parametry_wyszukiwania = array();
+
+		foreach ($parametry as $param){
+			if($this->input->post($param) != NULL){
+				if ($param == "id"){
+					$parametry_wyszukiwania += array("wnioskodawcy.id" => ($this->input->post($param)));
+				} else {
+					$parametry_wyszukiwania += array($param => ($this->input->post($param)));
+				}
+			}
+		}
+		
+		print_r($parametry_wyszukiwania);
+
+		$dane['wnioskodawcy'] = $this->wnioskodawca_m->wyszukaj_wnioskodawcow($parametry_wyszukiwania);
+		$this->load->view('zarzadzanie_sprawami/wyszukiwanie_wnioskodawcow_view', $dane);
 	}
 }

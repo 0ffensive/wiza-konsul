@@ -22,17 +22,18 @@
 			<input type="submit" value="Cofnij">
 		</form>
 		<div class="wyszukaj-wnioskodawce">
-            <form>
+            <form method="post" action="<?php echo site_url('zarzadzanie_sprawami/wyszukaj_wnioskodawcow'); ?>">
                 <label for="#id-w">ID wnioskodawcy</label>
-                <input type="text" id="id-w">
+                <input type="text" id="id-w" name='id'>
 				<label for="#nazwisko-w">Nazwisko</label>
-                <input type="text" id="nazwisko-w">
+                <input type="text" id="nazwisko-w" name="nazwisko">
                 <label for="#imie-w">Imię</label>
-                <input type="text" id="imie-w">
+                <input type="text" id="imie-w" name="imie">
                 <label for="#data-urodzenia-w">Data urodzenia</label>
-                <input type="date" id="data-urodzenia-w">
-                <button id="wyszukaj-profil-nowa-sprawa">Wyszukaj</button>
-                <button id="wyczysc-nowa-sprawa">Wyczyść</button>  
+                <input type="date" id="data-urodzenia-w" name="data_urodzenia">
+
+            	<input type="submit" id="submit" value="Wyszukaj">
+				<input type="reset" id="reset" value="Wyczyść">
             </form>
                          
             <table id="wyszukane-profile">
