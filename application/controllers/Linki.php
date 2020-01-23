@@ -23,8 +23,8 @@ class Linki extends CI_Controller {
 	function do_zarzadzanie_sprawami(){
 		$this->load->model('Sprawa_model', 'sprawa_m');
 
-		$wyniki['dane'] = $this->sprawa_m->pobierz_dane_lista();
-		$this->load->view('zarzadzanie_sprawami/zarzadzanie_sprawami_view', $wyniki);
+		$dane['dane'] = $this->sprawa_m->pobierz_dane_lista();
+		$this->load->view('zarzadzanie_sprawami/zarzadzanie_sprawami_view', $dane);
 	}
 
 	function do_dodawanie_sprawy_wybor(){
@@ -32,7 +32,10 @@ class Linki extends CI_Controller {
 	}
 
 	function do_wyszukiwanie_wnioskodawcy(){
-		$this->load->view('zarzadzanie_sprawami/wyszukiwanie_wnioskodawcy_view');
+		$this->load->model('Wnioskodawca_model', 'wnioskodawca_m');
+
+		$dane['wnioskodawcy'] = $this->wnioskodawca_m->pobierz_dane();
+		$this->load->view('zarzadzanie_sprawami/wyszukiwanie_wnioskodawcy_view', $dane);
 	}
 
 	function do_dodawanie_sprawy(){

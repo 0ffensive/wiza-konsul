@@ -39,8 +39,11 @@
                 <thead> 
                     <td>ID<td>Nazwisko<td>Imię<td>Data urodzenia<td>
                 <tbody>
-                    <tr>
-                        <td>35145<td>Kowalski<td>Jan<td>1963-06-23<td><button>Wybierz</button>
+					<?php
+						foreach($wnioskodawcy as $klucz => $wartosc){
+							echo "<tr><td>$wartosc->id<td>$wartosc->nazwisko<td>$wartosc->imie<td>$wartosc->data_urodzenia<td><button>Wybierz</button>";
+						}
+					?>
 			</table>
 			<div>
 				<i class="fas fa-angle-left"></i>

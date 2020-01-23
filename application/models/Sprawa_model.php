@@ -13,9 +13,9 @@ class Sprawa_model extends CI_Model {
 		$this->db->join('dane_osobowe', 'dane_osobowe.id = sprawy.dane_osobowe', 'left');
 		$this->db->join('zatrudnienia', 'zatrudnienia.pracownik_placowki = sprawy.pracownik_zakladajacy', 'left');
 		$this->db->order_by('sprawy.id_lokalne','ASC');
-		$query = $this->db->get();
+		$zapytanie = $this->db->get();
 		
-		return $query->result();
+		return $zapytanie->result();
 	}
 
 	public function wyszukaj_sprawy($parametry_wyszukiwania, $data_zalozenia){
@@ -30,20 +30,20 @@ class Sprawa_model extends CI_Model {
 			$this->db->where('CAST(sprawy.data_zalozenia AS DATE) =', $data_zalozenia);
 		}
 		$this->db->order_by('sprawy.id_lokalne','ASC');
-		$query = $this->db->get();
+		$zapytanie = $this->db->get();
 		
-		return $query->result();
+		return $zapytanie->result();
 	}
 
 	public function pobierz_dane($id){
 				 $this->db->where('id', $id);
-		$query = $this->db->get('adresy');
+		$zapytanie = $this->db->get('adresy');
 
-		return $query->result();
+		return $zapytanie->result();
 	}
 
 	public function dodaj_dane($dane){
-		$this->db->insert('adresy', $data);
+		$this->db->insert('adresy', $date);
 		$this->db->insert_id();
 	}
 

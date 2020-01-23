@@ -76,7 +76,7 @@
 								<option value="">Wybierz</option>
 								<?php
 									foreach($typy as $klucz => $wartosc){
-										echo '<option value='.$wartosc->nazwa.'>'.$wartosc->nazwa.'</option>';
+										echo "<option value=$wartosc->nazwa>$wartosc->nazwa</option>";
 									}
 								?>
 							</select>
