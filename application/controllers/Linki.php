@@ -31,13 +31,6 @@ class Linki extends CI_Controller {
 		$this->load->view('zarzadzanie_sprawami/dodawanie_sprawy_wybor_view');
 	}
 
-	function do_wyszukiwanie_wnioskodawcy(){
-		$this->load->model('Wnioskodawca_model', 'wnioskodawca_m');
-
-		$dane['wnioskodawcy'] = $this->wnioskodawca_m->pobierz_dane();
-		$this->load->view('zarzadzanie_sprawami/wyszukiwanie_wnioskodawcow_view', $dane);
-	}
-
 	function do_dodawanie_sprawy(){
 		$this->load->model('Kraj_model', 'kraj_m');
 		$this->load->model('Typ_dokumentu_identyfikacyjnego_model', 'typ_dok_m');
@@ -46,6 +39,13 @@ class Linki extends CI_Controller {
 		$dane['kraje'] = $this->kraj_m->pobierz_dane();
 		$dane['typy'] = $this->typ_dok_m->pobierz_dane();
 		$this->load->view('zarzadzanie_sprawami/dodawanie_sprawy_view', $dane);
+	}
+
+	function do_wyszukiwanie_wnioskodawcy(){
+		$this->load->model('Wnioskodawca_model', 'wnioskodawca_m');
+
+		$dane['wnioskodawcy'] = $this->wnioskodawca_m->pobierz_dane();
+		$this->load->view('zarzadzanie_sprawami/wyszukiwanie_wnioskodawcow_view', $dane);
 	}
 
 	function do_przegladanie_sprawy(){

@@ -76,6 +76,9 @@ table thead {
 }
 
 .error-message {
+	position: relative;
+	bottom: 10px;
+	margin-left: 0 !important;
 	color: crimson;
 	font-size: 0.9rem;
 }
