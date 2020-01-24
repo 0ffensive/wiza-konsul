@@ -22,3 +22,8 @@ i.fas {
 	font-size: 20px;
 	margin: 5px;
 }
+
+form.wybierz-form {
+	display: block;
+	margin: 0;
+}

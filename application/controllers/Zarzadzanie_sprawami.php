@@ -7,6 +7,9 @@ class Zarzadzanie_sprawami extends CI_Controller {
 		parent::__construct();
 		$this->load->model('Sprawa_model', 'sprawa_m');
 		$this->load->model('Wnioskodawca_model', 'wnioskodawca_m');
+		$this->load->model('Kraj_model', 'kraj_m');
+		$this->load->model('Typ_dokumentu_identyfikacyjnego_model', 'typ_dok_m');
+
 		$this->load->helper(array('url', 'form'));
 		$this->load->library('form_validation');
 	}
@@ -59,9 +62,16 @@ class Zarzadzanie_sprawami extends CI_Controller {
 			}
 		}
 		
-		print_r($parametry_wyszukiwania);
-
 		$dane['wnioskodawcy'] = $this->wnioskodawca_m->wyszukaj_wnioskodawcow($parametry_wyszukiwania);
 		$this->load->view('zarzadzanie_sprawami/wyszukiwanie_wnioskodawcow_view', $dane);
+	}
+
+	function wybierz_wnioskodawce(){
+		$parametry_wyszukiwania = array("wnioskodawcy.id" => ($this->input->post("id")));
+
+		$dane['wnioskodawca'] = $this->wnioskodawca_m->wyszukaj_wnioskodawcow($parametry_wyszukiwania)[0];
+		$dane['kraje'] = $this->kraj_m->pobierz_dane();
+		$dane['typy'] = $this->typ_dok_m->pobierz_dane();
+		$this->load->view('zarzadzanie_sprawami/dodawanie_sprawy_view', $dane);
 	}
 }

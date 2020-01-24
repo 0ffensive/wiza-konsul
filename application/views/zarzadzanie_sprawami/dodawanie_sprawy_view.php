@@ -22,7 +22,7 @@
 					<div id="cel">
 						<label for="#cel-sprawy">Cel sprawy</label>
 						<select id="cel-sprawy" name="cel">
-							<option value="">Wybierz</option>
+							<option value="" hidden>Wybierz</option>
 							<option value="Utworzenie">Utworzenie</option>
 							<option value="Duplikat">Duplikat</option>
 							<option value="Modyfikacja">Modyfikacja</option>
@@ -35,54 +35,54 @@
 						<h2>Dane wnioskodawcy</h2>
 						<div>
 							<label for="#nazwisko">Nazwisko</label>
-							<input type="text" id="nazwisko" name="nazwisko">
+							<input type="text" id="nazwisko" name="nazwisko" <?php echo ($wnioskodawca == NULL ? "" : "value=".$wnioskodawca->nazwisko); ?>>
 								
 							<label for="#imie">Imię</label>
-							<input type="text" id="imie" name="imie">
+							<input type="text" id="imie" name="imie" <?php echo ($wnioskodawca == NULL ? "" : "value=".$wnioskodawca->imie); ?>>
 								
 							<label for="#plec">Płeć</label>
 							<div id="plec">
-								<input type="radio" id="kobieta" name="plec" value="Kobieta">
+								<input type="radio" id="kobieta" name="plec" value="Kobieta" <?php echo ($wnioskodawca == NULL ? "" : ($wnioskodawca->plec == "Kobieta" ? "checked":"" )); ?>>
 								<label for="kobieta">Kobieta</label>
-								<input type="radio" id="mezczyzna" name="plec" value="Mężczyzna">
+								<input type="radio" id="mezczyzna" name="plec" value="Mężczyzna" <?php echo ($wnioskodawca == NULL ? "" : ($wnioskodawca->plec == "Mężczyzna" ? "checked":"" )); ?>>
 								<label for="mezczyzna">Mężczyzna</label>                        
 							</div>
 								
 							<label for="#data-urodzenia">Data urodzenia</label>
-							<input type="date" id="data-urodzenia" name="data_urodzenia">
+							<input type="date" id="data-urodzenia" name="data_urodzenia" <?php echo ($wnioskodawca == NULL ? "" : "value=".$wnioskodawca->data_urodzenia); ?>>
 								
 							<label for="#obywatelstwo">Obywatelstwo</label>
 							<select id="obywatelstwo" name="obywatelstwo">
-								<option value="">Wybierz</option>
+								<option value="" hidden>Wybierz</option>
 								<?php
 									foreach($kraje as $klucz => $wartosc){
-										echo '<option value='.$wartosc->nazwa.'>'.$wartosc->nazwa.'</option>';
+										echo '<option value="'.$wartosc->nazwa.'" '.($wnioskodawca == NULL ? "" : ($wnioskodawca->obywatelstwo == $wartosc->nazwa ? "selected=selected":"" )).'>'.$wartosc->nazwa.'</option>';
 									}
 								?>
 							</select>
 
 							<label for="#narodowosc">Narodowość</label>
 							<select id="narodowosc" name="narodowosc">
-								<option value="">Wybierz</option>
+								<option value="" hidden>Wybierz</option>
 								<?php
 									foreach($kraje as $klucz => $wartosc){
-										echo '<option value='.$wartosc->nazwa.'>'.$wartosc->nazwa.'</option>';
+										echo '<option value="'.$wartosc->nazwa.'" '.($wnioskodawca == NULL ? "" : ($wnioskodawca->narodowosc == $wartosc->nazwa ? "selected=selected":"" )).'>'.$wartosc->nazwa.'</option>';
 									}
 								?>
 							</select>
 								
 							<label for="#typ-dokumentu">Typ dokumentu</label>
 							<select id="typ-dokumentu" name="typ_dokumentu_identyfikacyjnego">
-								<option value="">Wybierz</option>
+								<option value="" hidden>Wybierz</option>
 								<?php
 									foreach($typy as $klucz => $wartosc){
-										echo "<option value=$wartosc->nazwa>$wartosc->nazwa</option>";
+										echo '<option value="'.$wartosc->nazwa.'" '.($wnioskodawca == NULL ? "" : ($wnioskodawca->typ_dokumentu_identyfikacyjnego == $wartosc->nazwa ? "selected=selected":"" )).'>'.$wartosc->nazwa.'</option>';
 									}
 								?>
 							</select>
 								
 							<label for="#nr-dokumentu">Nr dokumentu</label>
-							<input type="text" id="nr-dokumentu" name="nr_dokumentu_identyfikacyjnego">        
+							<input type="text" id="nr-dokumentu" name="nr_dokumentu_identyfikacyjnego" <?php echo ($wnioskodawca == NULL ? "" : "value=".$wnioskodawca->nr_dokumentu_identyfikacyjnego); ?>>        
 						</div>
 					</div>
 					<div>
@@ -100,7 +100,7 @@
 
 							<label for="#pokrewienstwo-1">Stopień pokrewieństwa</label>
 							<select id="pokrewienstwo-1" name="pokrewienstwo1">
-								<option value="">Wybierz</option>
+								<option value="" hidden>Wybierz</option>
 								<option value="Matka">Matka</option>
 								<option value="Ojciec">Ojciec</option>
 								<option value="Babcia">Babcia</option>
@@ -111,7 +111,7 @@
 
 							<label for="#obywatelstwo-1">Obywatelstwo</label>
 							<select id="obywatelstwo-1" name="obywatelstwo1">
-								<option value="">Wybierz</option>
+								<option value="" hidden>Wybierz</option>
 								<?php
 									foreach($kraje as $klucz => $wartosc){
 										echo '<option value='.$wartosc->nazwa.'>'.$wartosc->nazwa.'</option>';
@@ -121,7 +121,7 @@
 
 							<label for="#narodowosc-1">Narodowość</label>
 							<select id="narodowosc-1" name="narodowosc1">
-								<option value="">Wybierz</option>
+								<option value="" hidden>Wybierz</option>
 								<?php
 									foreach($kraje as $klucz => $wartosc){
 										echo '<option value='.$wartosc->nazwa.'>'.$wartosc->nazwa.'</option>';
@@ -130,7 +130,7 @@
 							</select>
 							<label for="#typ-dokumentu-1">Typ dokumentu</label>
 							<select id="typ-dokumentu-1" name="typ_dokumentu_identyfikacyjnego1">
-								<option value="">Wybierz</option>
+								<option value="" hidden>Wybierz</option>
 								<?php
 									foreach($typy as $klucz => $wartosc){
 										echo '<option value='.$wartosc->nazwa.'>'.$wartosc->nazwa.'</option>';
@@ -145,23 +145,23 @@
 						<h2>Adres zamieszkania</h2>
 						<div>
 							<label for="#ulica">Ulica</label>
-							<input type="text" id="ulica" name="ulica">
+							<input type="text" id="ulica" name="ulica" <?php echo ($wnioskodawca == NULL ? "" : "value=".$wnioskodawca->ulica); ?>>
 							<label for="#nr-domu">Nr domu</label>
-							<input type="text" id="nr-domu" name="nr_domu">
+							<input type="text" id="nr-domu" name="nr_domu" <?php echo ($wnioskodawca == NULL ? "" : "value=".$wnioskodawca->nr_domu); ?>>
 							<label for="#nr-lokalu">Nr lokalu</label>
-							<input type="text" id="nr-lokalu" name="nr_lokalu">
+							<input type="text" id="nr-lokalu" name="nr_lokalu" <?php echo ($wnioskodawca == NULL ? "" : "value=".$wnioskodawca->nr_lokalu); ?>>
 
 							<label for="#kod">Kod pocztowy</label>
-							<input type="text" id="kod" name="kod_pocztowy">
+							<input type="text" id="kod" name="kod_pocztowy" <?php echo ($wnioskodawca == NULL ? "" : "value=".$wnioskodawca->kod_pocztowy); ?>>
 							<label for="#miejscowosc">Miejscowość</label>
-							<input type="text" id="miejscowosc" name="miejscowosc">
+							<input type="text" id="miejscowosc" name="miejscowosc" <?php echo ($wnioskodawca == NULL ? "" : "value=".$wnioskodawca->miejscowosc); ?>>
 
 							<label for="#panstwo">Państwo</label>
 							<select id="panstwo" name="panstwo">
-								<option value="">Wybierz</option>
+								<option value="" hidden>Wybierz</option>
 								<?php
 									foreach($kraje as $klucz => $wartosc){
-										echo '<option value='.$wartosc->nazwa.'>'.$wartosc->nazwa.'</option>';
+										echo '<option value="'.$wartosc->nazwa.'" '.($wnioskodawca == NULL ? "" : ($wnioskodawca->panstwo == $wartosc->nazwa ? "selected=selected":"" )).'>'.$wartosc->nazwa.'</option>';
 									}
 								?>
 							</select>
@@ -181,7 +181,7 @@
 							<input type="text" id="imie-2" name="imie2">
 							<label for="#pokrewienstwo-2">Stopień pokrewieństwa</label>
 							<select id="pokrewienstwo-2" name="pokrewienstwo2">
-								<option value="">Wybierz</option>
+								<option value="" hidden>Wybierz</option>
 								<option value="Matka">Matka</option>
 								<option value="Ojciec">Ojciec</option>
 								<option value="Babcia">Babcia</option>
@@ -191,7 +191,7 @@
 							</select>
 							<label for="#obywatelstwo-2">Obywatelstwo</label>
 							<select id="obywatelstwo-2" name="obywatelstwo2">
-								<option value="">Wybierz</option>
+								<option value="" hidden>Wybierz</option>
 								<?php
 									foreach($kraje as $klucz => $wartosc){
 										echo '<option value='.$wartosc->nazwa.'>'.$wartosc->nazwa.'</option>';
@@ -200,7 +200,7 @@
 							</select>
 							<label for="#narodowosc-2">Narodowość</label>
 							<select id="narodowosc-2" name="narodowosc2">
-								<option value="">Wybierz</option>
+								<option value="" hidden>Wybierz</option>
 								<?php
 									foreach($kraje as $klucz => $wartosc){
 										echo '<option value='.$wartosc->nazwa.'>'.$wartosc->nazwa.'</option>';
@@ -209,7 +209,7 @@
 							</select>
 							<label for="#typ-dokumentu-2">Typ dokumentu</label>
 							<select id="typ-dokumentu-2" name="typ_dokumentu_identyfikacyjnego2">
-								<option value="">Wybierz</option>
+								<option value="" hidden>Wybierz</option>
 								<?php
 									foreach($typy as $klucz => $wartosc){
 										echo '<option value='.$wartosc->nazwa.'>'.$wartosc->nazwa.'</option>';

@@ -42,6 +42,7 @@ class Linki extends CI_Controller {
 		$this->load->model('Kraj_model', 'kraj_m');
 		$this->load->model('Typ_dokumentu_identyfikacyjnego_model', 'typ_dok_m');
 
+		$dane['wnioskodawca'] = NULL;
 		$dane['kraje'] = $this->kraj_m->pobierz_dane();
 		$dane['typy'] = $this->typ_dok_m->pobierz_dane();
 		$this->load->view('zarzadzanie_sprawami/dodawanie_sprawy_view', $dane);

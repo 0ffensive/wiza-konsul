@@ -42,7 +42,16 @@
                 <tbody>
 					<?php
 						foreach($wnioskodawcy as $klucz => $wartosc){
-							echo "<tr><td>$wartosc->id<td>$wartosc->nazwisko<td>$wartosc->imie<td>$wartosc->data_urodzenia<td><button>Wybierz</button>";
+							echo '<tr>
+									<td>'.$wartosc->id.'
+									<td>'.$wartosc->nazwisko.'
+									<td>'.$wartosc->imie.'
+									<td>'.$wartosc->data_urodzenia.'
+									<td>
+										<form class="wybierz-form" method="post" action='.site_url("zarzadzanie_sprawami/wybierz_wnioskodawce").'>
+											<input type="hidden" value='.$wartosc->id.' name="id">
+											<input type="submit" value="Wybierz">
+										</form>';
 						}
 					?>
 			</table>

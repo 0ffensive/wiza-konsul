@@ -16,6 +16,7 @@ class Wnioskodawca_model extends CI_Model {
 		$this->db->select('*');
 		$this->db->from('wnioskodawcy');							
 		$this->db->join('dane_osobowe', 'wnioskodawcy.dane_osobowe = dane_osobowe.id', 'left');
+		$this->db->join('adresy', 'wnioskodawcy.adres_zamieszkania = adresy.id', 'left');
 		$this->db->where($parametry_wyszukiwania);
 		$this->db->order_by('dane_osobowe.nazwisko, dane_osobowe.imie','ASC');
 		$zapytanie = $this->db->get();
