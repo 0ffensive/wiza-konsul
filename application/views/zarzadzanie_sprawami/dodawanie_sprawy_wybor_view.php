@@ -24,7 +24,7 @@
 			</div>
 			<div id="decyzja">
 				<form method="post" action="<?php echo site_url('linki/do_dodawanie_sprawy'); ?>">
-					<input id="dodaj" name ="dodaj" type="submit" value="Dodaj nową sprawę">
+					<input id="dodaj" name ="dodaj" type="submit" value="Nowy profil wnioskodawcy">
 				</form>
 				<form method="post" action="<?php echo site_url('linki/do_wyszukiwanie_wnioskodawcy'); ?>">	
 					<input id="wyszukaj" name ="wyszukaj" type="submit" value="Wyszukaj wnioskodawcę">
