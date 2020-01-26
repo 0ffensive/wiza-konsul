@@ -25,7 +25,7 @@
                     
                     <?php
                         $lp = 1;
-                        foreach(['decyzje'] as $key => $value){
+                        foreach($decyzje as $key => $value){
                             echo '<tr>
                                 <td>'.$lp.'
                                 <td>'.$value->rodzaj.'
