@@ -19,7 +19,7 @@
     <div class="container">
 		<h1>Zarządzanie sprawami</h1>
 		<div>
-			<form method="post" class="inline-form" action="<?php echo site_url('linki/do_strona_glowna_placowka'); ?>">
+			<form class="inline-form" action="<?php echo site_url('linki/do_strona_glowna_placowka'); ?>">
 				<input type="submit" value="Cofnij">
 			</form>
 			<form method="post" class="inline-form" action="<?php echo site_url('linki/do_dodawanie_sprawy_wybor'); ?>">

@@ -17,7 +17,7 @@
 			<h1>Konsulat - Placówka</h1>
 			<div>
 				<h2>Oddział ds. Karty Polaka</h2>
-				<form method="post" action="<?php echo site_url('linki/do_zarzadzanie_sprawami'); ?>">
+				<form action="<?php echo site_url('linki/do_zarzadzanie_sprawami'); ?>">
 					<input type="submit" value="Zarządzanie sprawami">
 				</form>
 			</div>

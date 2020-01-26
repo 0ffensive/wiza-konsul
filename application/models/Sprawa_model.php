@@ -42,9 +42,17 @@ class Sprawa_model extends CI_Model {
 		return $zapytanie->result();
 	}
 
-	public function dodaj_dane($dane){
-		$this->db->insert('adresy', $date);
-		$this->db->insert_id();
+	public function dodaj_sprawe($input_dane_sprawy,$input_dane_wnioskodawcy,$input_dane_adresu_zamieszkania,$input_dane_pierwszego_przodka,$input_dane_drugiego_przodka){
+		$dane_dane_osobowe = array();
+
+		foreach($input_dane_wnioskodawcy as $klucz => $wartosc){
+			if ($klucz != "plec" && $klucz != "narodowosc")
+			$dane_dane_osobowe += array($klucz => $wartosc);
+		}
+
+		$this->db->insert('dane_osobowe', $dane_dane_osobowe);
+		$dane_osobowe = $this->db->insert_id();
+
 	}
 
 }
