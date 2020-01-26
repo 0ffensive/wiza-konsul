@@ -15,7 +15,7 @@
 
     <body>
         <div class="container">
-            <h1>Dodaj nową sprawę</h1>
+            <h1>Dodawanie sprawy</h1>
             <form id="dodanie-sprawy" method="post" action="<?php echo site_url('zarzadzanie_sprawami/dodawanie_sprawy'); ?>">
 				<div id="cel-container">
 					<div id="cel">

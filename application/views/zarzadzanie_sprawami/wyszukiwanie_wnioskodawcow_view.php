@@ -17,7 +17,7 @@
 
 <body>
     <div class="container">
-        <h1>Wyszukaj profil wnioskodawcy</h1>
+        <h1>Wyszukiwanie profilu wnioskodawcy</h1>
 		<form id="cofnij-form" method="post" action="<?php echo site_url('linki/do_dodawanie_sprawy_wybor'); ?>">
 			<input type="submit" value="Cofnij">
 		</form>
