@@ -79,7 +79,11 @@ class Linki extends CI_Controller {
 	// Zarzadzanie decyzjami
 
 	function do_zarzadzanie_decyzjami(){
-		$this->load->view('zarzadzanie_decyzjami/zarzadzanie_decyzjami_view');
+		$this->load->model('Decyzja_model', 'decyzja_m');
+
+		$parametr = array("decyzje.sprawa" => ($this->input->post("id_lokalne")));
+		$dane['decyzje'] = $this->decyzja_m->pobierz_dane_lista($parametr);
+		$this->load->view('zarzadzanie_decyzjami/zarzadzanie_decyzjami_view', $dane);
 	}
 	
 	function do_dodawanie_decyzji(){

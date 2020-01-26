@@ -93,7 +93,7 @@
 									<input type="submit" value="Dokumenty">
 								</form>
 							<td>
-								<form class="wybierz-form" method="post" action='.site_url("zarzadzanie_sprawami/decyzje_sprawy").'>
+								<form class="wybierz-form" method="post" action='.site_url("linki/do_zarzadzanie_decyzjami").'>
 									<input type="hidden" value='.$value->id_lokalne.' name="id_lokalne">
 									<input type="submit" value="Decyzje">
 								</form>
