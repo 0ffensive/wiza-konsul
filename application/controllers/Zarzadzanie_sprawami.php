@@ -10,7 +10,7 @@ class Zarzadzanie_sprawami extends CI_Controller {
 		$this->load->model('Wnioskodawca_model', 'wnioskodawca_m');
 		$this->load->model('Kraj_model', 'kraj_m');
 		$this->load->model('Typ_dokumentu_identyfikacyjnego_model', 'typ_dok_m');
-
+		$this->load->model('Decyzja_model', 'decyzja_m');
 		$this->load->helper(array('url', 'form'));
 
 		$this->load->library('form_validation');
@@ -133,5 +133,11 @@ class Zarzadzanie_sprawami extends CI_Controller {
 		$dane['kraje'] = $this->kraj_m->pobierz_dane();
 		$dane['typy'] = $this->typ_dok_m->pobierz_dane();
 		$this->load->view('zarzadzanie_sprawami/dodawanie_sprawy_view', $dane);
+	}
+
+	function decyzje_sprawy(){
+		$parametr = array("decyzje.sprawa" => ($this->input->post("id_lokalne")));
+		$dane['decyzje'] = $this->decyzja_m->pobierz_dane_lista($parametr);
+		$this->load->view('zarzadzanie_decyzjami/zarzadzanie_decyzjami_view', $dane);
 	}
 }

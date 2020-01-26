@@ -77,16 +77,24 @@
 				<?php
 					$lp = 1;
 					foreach($dane as $key => $value){
-						echo '
-							<tr><td>'.$lp.'<td>'.($value->id_globalne == NULL ? "-" : $value->id_globalne).' <td>'.$value->id_lokalne.'
-							<td>'.$value->wnioskodawca.' <td>'.$value->nazwisko.' <td>'.$value->imie.' <td>'.$value->data_urodzenia.' 
-							<td>'.$value->data_zalozenia.' <td>'.$value->cel.' <td>'.($value->czy_rozstrzygnieta == 1 ? "Tak" : "Nie").'
+						echo '<tr>
+							<td>'.$lp.'
+							<td>'.($value->id_globalne == NULL ? "-" : $value->id_globalne).' 
+							<td>'.$value->id_lokalne.'
+							<td>'.$value->wnioskodawca.' 
+							<td>'.$value->nazwisko.' 
+							<td>'.$value->imie.' 
+							<td>'.$value->data_urodzenia.' 
+							<td>'.$value->data_zalozenia.' 
+							<td>'.$value->cel.' 
+							<td>'.($value->czy_rozstrzygnieta == 1 ? "Tak" : "Nie").'
 							<td>
 								<form method="post" action="'.site_url('linki/do_zarzadzanie_dokumentami').'">
 									<input type="submit" value="Dokumenty">
 								</form>
 							<td>
-								<form method="post" action="'.site_url('linki/do_zarzadzanie_decyzjami').'">
+								<form class="wybierz-form" method="post" action='.site_url("zarzadzanie_sprawami/decyzje_sprawy").'>
+									<input type="hidden" value='.$value->id_lokalne.' name="id_lokalne">
 									<input type="submit" value="Decyzje">
 								</form>
 							<td>

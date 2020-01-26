@@ -18,15 +18,24 @@
 				<input type="submit" value="Cofnij">
 			</form>
             <div class="inside-container">
-                <table>
+                <table id="decyzje-sprawy">
                     <thead>
                         <td>L.p. <td>Decyzja <td>Data wydania <td>Wydana przez <td>Uzasadnienie
                     <tbody>
-                        <tr>
-                            <td>1 <td>Do uzupełnienia <td>2019-11-21 <br> 14:33:23 <td>Nowak Adam, 43 <td>Niepoprawne wymiary zdjęcia
-                        <tr>
-                            <td>2 <td>Do uzupełnienia <td>2019-11-24 <br> 14:37:23 <td>Nowak Adam, 43 <td>Niepoprawne wymiary zdjęcia znowu
-				</table>
+                    
+                    <?php
+                        $lp = 1;
+                        foreach($dane['decyzje'] as $key => $value){
+                            echo '<tr>
+                                <td>'.$lp.'
+                                <td>'.$value->rodzaj.'
+                                <td>'.$value->data_wydania.' 
+                                <td>'.$value->wydajacy.' 
+                                <td>'.$value->uzasadnienie;
+                            $lp += 1;
+                        }
+                    ?>
+                </table>
 				<form method="post" action="<?php echo site_url('linki/do_dodawanie_decyzji'); ?>">
 					<input type="submit" value="Dodaj nową decyzję">
 				</form>
@@ -34,3 +43,4 @@
         </div>
     </body>
 </html>
+
