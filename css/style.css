@@ -75,6 +75,7 @@ table thead {
     text-align: center;
 }
 
+
 .error-message {
 	position: relative;
 	bottom: 10px;
@@ -100,4 +101,13 @@ form#cofnij-form{
 
 form#cofnij-form input {
 	width: 180px;
+}
+
+form.inline-form {
+	display: inline-block;
+	margin: 10px;
+}
+
+form.inline-form input {
+	width: 250px;
 }

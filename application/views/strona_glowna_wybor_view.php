@@ -3,7 +3,7 @@
 
     <head>
         <meta charset="utf-8">
-        <title>Placówka - strona główna</title>
+        <title>Placówka - wybór pracownika</title>
         <meta name="decription" content="...">
         <meta name="keywords" content="...">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,15 +15,12 @@
         <div class="container">
 			<h1>Konsulat - Placówka</h1>
 			<div>
-				<h2>Oddział ds. Karty Polaka</h2>
-				<div>
-					<form class="inline-form" action="<?php echo site_url('linki/do_strona_glowna_wybor'); ?>">
-						<input type="submit" value="Cofnij">
-					</form>
-					<form class="inline-form" action="<?php echo site_url('linki/do_zarzadzanie_sprawami'); ?>">
-						<input type="submit" value="Zarządzanie sprawami">
-					</form>
-				</div>
+				<h2>Wybór pracownika</h2>
+
+				<form action="<?php echo site_url('linki/do_strona_glowna_placowka'); ?>">
+					<input type="submit" name="pracownik" value="Pracownik">
+					<input type="submit" name="pracownik" value="Kierownik">
+				</form>
 			</div>
 		</div>
     </body>

@@ -12,7 +12,20 @@ class Linki extends CI_Controller {
 
 	public function index(){}
 
+
+	public function do_strona_glowna_wybor(){
+		$this->load->view('strona_glowna_wybor_view');
+	}
+
 	public function do_strona_glowna_placowka(){
+		session_start();
+		if ($this->input->post('pracownik') == "Pracownik"){
+			$_SESSION["id_pracownika_placowki"] = 1;
+
+		} else if ($this->input->post('pracownik') == "Kierownik") {
+			$_SESSION["id_pracownika_placowki"] = 2;
+		}
+
 		$this->load->view('strona_glowna_placowka_view');
 	}
 	
