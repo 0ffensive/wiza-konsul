@@ -55,6 +55,15 @@ class Sprawa_model extends CI_Model {
 
 	}
 
+	public function sprawdz_czy_rozstrzygnieta($id_lokalne) {
+		$this->db->select('czy_rozstrzygnieta');
+		$this->db->from('sprawy');
+		$this->db->where($id_lokalne);
+		$zapytanie = $this->db->get();
+		
+		return $zapytanie->result();
+	}
+
 }
 
 ?>

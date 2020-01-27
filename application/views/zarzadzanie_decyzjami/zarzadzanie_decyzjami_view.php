@@ -28,16 +28,17 @@
                         foreach($decyzje as $key => $value){
                             echo '<tr>
                                 <td>'.$lp.'
-                                <td>'.$value->rodzaj.'
+                                <td>'.($value->rodzaj == 'Pozytywny' ? 'Pozytywna' : $value->rodzaj == 'Negatywny' ? 'Negatywna' : $value->rodzaj).'
                                 <td>'.$value->data_wydania.' 
-                                <td>'.$value->wydajacy.' 
+                                <td>'.$value->wydajacy.', '.$value->nazwisko.' '.$value->imie.'
                                 <td>'.$value->uzasadnienie;
                             $lp += 1;
                         }
                     ?>
                 </table>
-				<form method="post" action="<?php echo site_url('linki/do_dodawanie_decyzji'); ?>">
-					<input type="submit" value="Dodaj nową decyzję">
+                <form method="post" action="<?php echo site_url('linki/do_dodawanie_decyzji');?>">
+                -------------- rozgryźć wartość $czy_rozstrzygnieta
+					<input type="submit" value="Dodaj nową decyzję" <?php echo $czy_rozstrzygnieta == 1 ? "disabled" : ""; ?>>
 				</form>
             </div>
         </div>
