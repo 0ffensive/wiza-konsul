@@ -94,7 +94,8 @@ class Linki extends CI_Controller {
 	function do_zarzadzanie_decyzjami(){
 		$this->load->model('Decyzja_model', 'decyzja_m');
 		$this->load->model('Sprawa_model', 'sprawa_m');
-
+		session_start();
+		$_SESSION["id_lokalne"] = $this->input->post("id_lokalne");
 		$parametr_decyzji = array("decyzje.sprawa" => ($this->input->post("id_lokalne")));
 		$parametr_sprawy = array( "sprawy.id_lokalne" => ($this->input->post("id_lokalne")));
 		$dane['decyzje'] = $this->decyzja_m->pobierz_dane_lista($parametr_decyzji);
@@ -103,6 +104,11 @@ class Linki extends CI_Controller {
 	}
 	
 	function do_dodawanie_decyzji(){
+		$this->load->model('Sprawa_model', 'sprawa_m');
+		
+		$parametr_sprawy = array( "sprawy.id_lokalne" => $parametr_sprawy);
+
+
 		$this->load->view('zarzadzanie_decyzjami/dodawanie_decyzji_view');
 	}
 

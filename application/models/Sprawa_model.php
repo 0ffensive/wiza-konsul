@@ -61,7 +61,7 @@ class Sprawa_model extends CI_Model {
 		$this->db->where($id_lokalne);
 		$zapytanie = $this->db->get();
 		
-		return $zapytanie->result();
+		return $zapytanie->row();
 	}
 
 }

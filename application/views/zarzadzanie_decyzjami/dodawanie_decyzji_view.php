@@ -28,7 +28,9 @@
                 </div>
                 <div>
 					<input id="submit" name ="submit" type="submit" value="Zatwierdź">
-                	<input id="reset" name ="reset" type="submit" value="Anuluj">
+                	<form class="inline-form" action="<?php echo site_url('linki/do_zarzadzanie_decyzjami'); ?>">
+				        <input type="submit" value="Anuluj">
+			        </form>
                 </div>
             </form>
 

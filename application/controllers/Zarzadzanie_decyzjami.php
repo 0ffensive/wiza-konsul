@@ -18,11 +18,10 @@ class Zarzadzanie_decyzjami extends CI_Controller {
 	}
 
 	function dodawanie_decyzji() {
-		/*
 		session_start();
 		$dane['decyzje'] = $this->decyzja_m->pobierz_dane_lista();
 		$_SESSION["id_lokalne"] = NULL;
 		$this->load->view('zarzadzanie_decyzjami/zarzadzanie_decyzjami_view', $dane);
-		*/
+		
 	}
 }
