@@ -23,7 +23,7 @@
                         <option value="Negatywny" <?php echo (set_value('rodzaj') == NULL? "" : (set_value('rodzaj') == "Negatywny" ? "selected" : "" )); ?>>Negatywna</option>
                         <option value="Do uzupełnienia" <?php echo (set_value('rodzaj') == NULL? "" : (set_value('rodzaj') == "Do uzupełnienia" ? "selected" : "" )); ?>>Do uzupełnienia</option>
                     </select>
-                    <?php echo form_error('rodzaj','<div class="error-message">*','</div>') ?>
+                    <?php echo form_error('rodzaj','<div class="error-message">*','</div>');?>
                     <label for="#uzasadnienie">Uzasadnienie</label>
                     <textarea rows="5" id="uzasadnienie" name="uzasadnienie" maxlength="255"><?php echo set_value('uzasadnienie')?></textarea>
                 </div>
