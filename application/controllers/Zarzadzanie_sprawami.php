@@ -133,6 +133,9 @@ class Zarzadzanie_sprawami extends CI_Controller {
 		$_SESSION["id_wnioskodawcy"] = NULL;
 	}
 
+	function edytowanie_sprawy(){
+		
+	}
 
 	function wyszukaj_wnioskodawcow(){
 		$parametry = array('id', "nazwisko", "imie", "data_urodzenia");

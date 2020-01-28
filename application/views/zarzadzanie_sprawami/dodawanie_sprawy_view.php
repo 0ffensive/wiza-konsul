@@ -17,29 +17,27 @@
         <div class="container">
             <h1>Dodawanie sprawy</h1>
             <form id="dodanie-sprawy" method="post" action="<?php echo site_url('zarzadzanie_sprawami/dodawanie_sprawy'); ?>">
-				<div id="cel-container">
-					<div id="cel">
-						<label for="#cel-sprawy">Cel sprawy</label>
-						<select id="cel-sprawy" name="cel">
-							<option value="" hidden>Wybierz</option>
-							<option value="Utworzenie" <?php echo (set_value('cel') == NULL? "" : (set_value('cel') == "Utworzenie" ? "selected":"" )); ?>>Utworzenie</option>
-							<option value="Duplikat" <?php echo (set_value('cel') == NULL? "" : (set_value('cel') == "Duplikat" ? "selected":"" )); ?>>Duplikat</option>
-							<option value="Modyfikacja" <?php echo (set_value('cel') == NULL? "" : (set_value('cel') == "Modyfikacja" ? "selected":"" )); ?>>Modyfikacja</option>
-							<option value="Przedłużenie" <?php echo (set_value('cel') == NULL? "" : (set_value('cel') == "Przedłużenie" ? "selected":"" )); ?>>Przedłużenie</option>
-						</select>
-						<?php echo form_error('cel','<div class="error-message">*','</div>') ?>	
-					</div>
+				<div class="dane-sprawy">
+					<label for="#cel-sprawy">Cel sprawy</label>
+					<select id="cel-sprawy" name="cel">
+						<option value="" hidden>Wybierz</option>
+						<option value="Utworzenie" <?php echo (set_value('cel') == NULL? "" : (set_value('cel') == "Utworzenie" ? "selected":"" )); ?>>Utworzenie</option>
+						<option value="Duplikat" <?php echo (set_value('cel') == NULL? "" : (set_value('cel') == "Duplikat" ? "selected":"" )); ?>>Duplikat</option>
+						<option value="Modyfikacja" <?php echo (set_value('cel') == NULL? "" : (set_value('cel') == "Modyfikacja" ? "selected":"" )); ?>>Modyfikacja</option>
+						<option value="Przedłużenie" <?php echo (set_value('cel') == NULL? "" : (set_value('cel') == "Przedłużenie" ? "selected":"" )); ?>>Przedłużenie</option>
+					</select>
+					<?php echo form_error('cel','<div class="error-message">*','</div>') ?>			
 				</div>
 				<div class="kontener-dodanie-sprawy">
 					<div>
 						<h2>Dane wnioskodawcy</h2>
 						<div>
 							<label for="#nazwisko">Nazwisko</label>
-							<input type="text" id="nazwisko" name="nazwisko" <?php echo 'value='.(set_value('nazwisko') == NULL? ($wnioskodawca == NULL ? "" : $wnioskodawca->nazwisko) : set_value('nazwisko')); ?>>
+							<input type="text" id="nazwisko" name="nazwisko" value="<?php echo (set_value('nazwisko') == NULL? ($wnioskodawca == NULL ? "" : $wnioskodawca->nazwisko) : set_value('nazwisko')); ?>">
 							<?php echo form_error('nazwisko','<div class="error-message">*','</div>') ?>
 								
 							<label for="#imie">Imię</label>
-							<input type="text" id="imie" name="imie" <?php echo 'value='.(set_value('imie') == NULL? ($wnioskodawca == NULL ? "" : $wnioskodawca->imie) : set_value('imie')); ?>>
+							<input type="text" id="imie" name="imie" value="<?php echo (set_value('imie') == NULL? ($wnioskodawca == NULL ? "" : $wnioskodawca->imie) : set_value('imie')); ?>">
 							<?php echo form_error('imie','<div class="error-message">*','</div>') ?>	
 
 							<label for="#plec">Płeć</label>
@@ -52,7 +50,7 @@
 							<?php echo form_error('plec','<div class="error-message">*','</div>') ?>
 								
 							<label for="#data-urodzenia">Data urodzenia</label>
-							<input type="date" id="data-urodzenia" name="data_urodzenia" <?php echo 'value='.(set_value('data_urodzenia') == NULL ? ($wnioskodawca == NULL ? "" : $wnioskodawca->data_urodzenia) : set_value('data_urodzenia')); ?>>
+							<input type="date" id="data-urodzenia" name="data_urodzenia" value="<?php echo (set_value('data_urodzenia') == NULL ? ($wnioskodawca == NULL ? "" : $wnioskodawca->data_urodzenia) : set_value('data_urodzenia')); ?>">
 							<?php echo form_error('data_urodzenia','<div class="error-message">*','</div>') ?>
 							
 							<label for="#obywatelstwo">Obywatelstwo</label>
@@ -89,7 +87,7 @@
 							<?php echo form_error('typ_dokumentu_identyfikacyjnego','<div class="error-message">*','</div>') ?>
 							
 							<label for="#nr-dokumentu">Nr dokumentu</label>
-							<input type="text" id="nr-dokumentu" name="nr_dokumentu_identyfikacyjnego" <?php echo 'value='.(set_value('nr_dokumentu_identyfikacyjnego') == NULL ? ($wnioskodawca == NULL ? "" : $wnioskodawca->nr_dokumentu_identyfikacyjnego) : set_value('nr_dokumentu_identyfikacyjnego')); ?>>        
+							<input type="text" id="nr-dokumentu" name="nr_dokumentu_identyfikacyjnego" value="<?php echo (set_value('nr_dokumentu_identyfikacyjnego') == NULL? ($wnioskodawca == NULL? "" : $wnioskodawca->nr_dokumentu_identyfikacyjnego) : set_value('nr_dokumentu_identyfikacyjnego')); ?>">        
 							<?php echo form_error('nr_dokumentu_identyfikacyjnego','<div class="error-message">*','</div>') ?>
 							
 						</div>
@@ -158,23 +156,23 @@
 						<h2>Adres zamieszkania</h2>
 						<div>
 							<label for="#ulica">Ulica</label>
-							<input type="text" id="ulica" name="ulica" <?php echo 'value='.(set_value('ulica') == NULL ? ($wnioskodawca == NULL ? "" : $wnioskodawca->ulica) : set_value('ulica')); ?>>
+							<input type="text" id="ulica" name="ulica" value="<?php echo (set_value('ulica') == NULL ? ($wnioskodawca == NULL ? "" : $wnioskodawca->ulica) : set_value('ulica')); ?>">
 							<?php echo form_error('ulica','<div class="error-message">*','</div>') ?>
 							
 							<label for="#nr-domu">Nr domu</label>
-							<input type="text" id="nr-domu" name="nr_domu" <?php echo 'value='.(set_value('nr_domu') == NULL ? ($wnioskodawca == NULL ? "" : $wnioskodawca->nr_domu) : set_value('nr_domu')); ?>>
+							<input type="text" id="nr-domu" name="nr_domu" value="<?php echo (set_value('nr_domu') == NULL ? ($wnioskodawca == NULL ? "" : $wnioskodawca->nr_domu) : set_value('nr_domu')); ?>">
 							<?php echo form_error('nr_domu','<div class="error-message">*','</div>') ?>
 							
 							<label for="#nr-lokalu">Nr lokalu</label>
-							<input type="text" id="nr-lokalu" name="nr_lokalu" <?php echo 'value='.(set_value('nr_lokalu') == NULL ? ($wnioskodawca == NULL ? "" : $wnioskodawca->nr_lokalu) : set_value('nr_lokalu')); ?>>
+							<input type="text" id="nr-lokalu" name="nr_lokalu" value="<?php echo (set_value('nr_lokalu') == NULL ? ($wnioskodawca == NULL ? "" : $wnioskodawca->nr_lokalu) : set_value('nr_lokalu')); ?>">
 							<?php echo form_error('nr_lokalu','<div class="error-message">*','</div>') ?>
 
 							<label for="#kod">Kod pocztowy</label>
-							<input type="text" id="kod" name="kod_pocztowy" <?php echo 'value='.(set_value('kod_pocztowy') == NULL ? ($wnioskodawca == NULL ? "" : $wnioskodawca->kod_pocztowy) : set_value('kod_pocztowy')); ?>>
+							<input type="text" id="kod" name="kod_pocztowy" value="<?php echo (set_value('kod_pocztowy') == NULL ? ($wnioskodawca == NULL ? "" : $wnioskodawca->kod_pocztowy) : set_value('kod_pocztowy')); ?>">
 							<?php echo form_error('kod_pocztowy','<div class="error-message">*','</div>') ?>
 							
 							<label for="#miejscowosc">Miejscowość</label>
-							<input type="text" id="miejscowosc" name="miejscowosc" <?php echo 'value='.(set_value('miejscowosc') == NULL ? ($wnioskodawca == NULL ? "" : $wnioskodawca->miejscowosc) : set_value('miejscowosc')); ?>>
+							<input type="text" id="miejscowosc" name="miejscowosc" value="<?php echo (set_value('miejscowosc') == NULL ? ($wnioskodawca == NULL ? "" : $wnioskodawca->miejscowosc) : set_value('miejscowosc')); ?>">
 							<?php echo form_error('miejscowosc','<div class="error-message">*','</div>') ?>
 							
 							<label for="#panstwo">Państwo</label>

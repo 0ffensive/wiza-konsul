@@ -1,16 +1,23 @@
-form#dodanie-sprawy{
+form{
 	display: flex;
 	flex-direction: column;
 }
 
-form#dodanie-sprawy>div#cel-container {
+form>div.dane-sprawy {
 	display: grid;
-	grid-template-columns: 45% 45%;
+	margin: 10px 20px 40px 20px;
+	grid-template-columns: 44%;
 	column-gap: 80px;
-	row-gap: 10px;
+	row-gap: 2px;
 }
 
-form#dodanie-sprawy>div#cel-container>div#cel {
+form>div.dane-sprawy label{
+	display: flex;
+	align-items: center;
+	margin-top: 10px;
+}
+
+form>div>div {
 	display: grid;
 	column-gap: 80px;
 	row-gap: 2px;
@@ -18,19 +25,19 @@ form#dodanie-sprawy>div#cel-container>div#cel {
 }
 
 
-form#dodanie-sprawy > div > div > div{
+form > div > div > div{
 	display: grid;
 	column-gap: 80px;
 	row-gap: 2px;
 	margin: 10px;
 }
 
-form#dodanie-sprawy > div > div > div input,
-form#dodanie-sprawy > div > div > div select {
+form > div > div > div input,
+form > div > div > div select {
 	margin-bottom: 10px;
 }
 
-form#dodanie-sprawy > div > div > div > div.data-checkbox {
+form > div > div > div > div.data-checkbox {
 	display: inline-block;
 	margin-right: 10px;
 	border: 2px solid black;
@@ -39,7 +46,7 @@ form#dodanie-sprawy > div > div > div > div.data-checkbox {
 	box-sizing: border-box;
 }
 
-form#dodanie-sprawy>div>div>div.checkbox-header{
+form>div>div>div.checkbox-header{
 	display: block;
 }
 
@@ -54,8 +61,8 @@ h2.relative{
 
 div.kontener-dodanie-sprawy {
 	display: grid;
-	grid-template-columns: 45% 45%;
-	column-gap: 80px;
+	grid-template-columns: 46% 46%;
+	column-gap: 8%;
 	row-gap: 10px;
 }
 
