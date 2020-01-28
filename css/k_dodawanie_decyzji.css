@@ -5,9 +5,11 @@ form {
 }
 
 div.inside-container {
+    justify-content: center;
     width: 100%;
     margin: 20px 0;
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 70%;
     row-gap: 10px;
+
 }

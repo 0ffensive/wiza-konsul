@@ -164,4 +164,5 @@ class Zarzadzanie_sprawami extends CI_Controller {
 		$this->load->view('zarzadzanie_sprawami/dodawanie_sprawy_view', $dane);
 	}
 
+
 }

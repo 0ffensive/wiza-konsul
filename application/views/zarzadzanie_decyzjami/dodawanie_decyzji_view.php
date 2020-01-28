@@ -17,18 +17,19 @@
             <form id="dodawanie-decyzji" method="post" action="<?php echo site_url('zarzadzanie_decyzjami/dodawanie_decyzji'); ?>">
                 <div class="inside-container">
                     <label for="#decyzja">Decyzja</label>
-                    <select id="decyzja">
-                        <option>Wybierz</option>
-                        <option value="Pozytywny">Pozytywna</option>
-                        <option value="Negatywny">Negatywna</option>
-                        <option value="Do uzupełnienia">Do uzupełnienia</option>
+                    <select id="rodzaj" name="rodzaj">
+                        <option value="" hidden>Wybierz</option>
+                        <option value="Pozytywny" <?php echo (set_value('rodzaj') == NULL? "" : (set_value('rodzaj') == "Pozytywny" ? "selected" : "" )); ?>>Pozytywna</option>
+                        <option value="Negatywny" <?php echo (set_value('rodzaj') == NULL? "" : (set_value('rodzaj') == "Negatywny" ? "selected" : "" )); ?>>Negatywna</option>
+                        <option value="Do uzupełnienia" <?php echo (set_value('rodzaj') == NULL? "" : (set_value('rodzaj') == "Do uzupełnienia" ? "selected" : "" )); ?>>Do uzupełnienia</option>
                     </select>
+                    <?php echo form_error('rodzaj','<div class="error-message">*','</div>') ?>
                     <label for="#uzasadnienie">Uzasadnienie</label>
-                    <textarea id="uzasadnienie"></textarea>
+                    <textarea rows="5" id="uzasadnienie" name="uzasadnienie" maxlength="255"><?php echo set_value('uzasadnienie')?></textarea>
                 </div>
                 <div>
-					<input id="submit" name ="submit" type="submit" value="Zatwierdź">
-                	<input id="reset" name ="reset" type="submit" value="Anuluj">
+					<input name ="submit" type="submit" value="Zatwierdź">
+				    <input name ="reset" type="submit" value="Anuluj">
                 </div>
             </form>
 

@@ -36,10 +36,10 @@
                         }
                     ?>
                 </table>
+
                 <form method="post" action="<?php echo site_url('linki/do_dodawanie_decyzji');?>">
-                -------------- rozgryźć wartość $czy_rozstrzygnieta
-					<input type="submit" value="Dodaj nową decyzję" <?php echo $czy_rozstrzygnieta == 1 ? "disabled" : ""; ?>>
-				</form>
+                    <input type="submit" value="Dodaj nową decyzję" <?php echo ($czy_rozstrzygnieta->czy_rozstrzygnieta == 1 ? "disabled" : ""); ?>>
+                </form>
             </div>
         </div>
     </body>

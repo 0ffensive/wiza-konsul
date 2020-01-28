@@ -93,14 +93,21 @@ class Linki extends CI_Controller {
 
 	// Zarzadzanie decyzjami
 	function do_zarzadzanie_decyzjami(){
-		$parametr_decyzji = array("decyzje.sprawa" => ($this->input->post("id_lokalne")));
-		$parametr_sprawy = array( "sprawy.id_lokalne" => ($this->input->post("id_lokalne")));
+		session_start();
+		($_SESSION["id_lokalne"] == NULL) ? $_SESSION["id_lokalne"] = $this->input->post("id_lokalne") : "";
+		$parametr_decyzji = array("decyzje.sprawa" => $_SESSION["id_lokalne"]);
+		$parametr_sprawy = array( "sprawy.id_lokalne" => $_SESSION["id_lokalne"]);
 		$dane['decyzje'] = $this->decyzja_m->pobierz_dane_lista($parametr_decyzji);
 		$dane['czy_rozstrzygnieta'] = $this->sprawa_m->sprawdz_czy_rozstrzygnieta($parametr_sprawy);
 		$this->load->view('zarzadzanie_decyzjami/zarzadzanie_decyzjami_view', $dane);
 	}
 	
 	function do_dodawanie_decyzji(){
+		$this->load->model('Sprawa_model', 'sprawa_m');
+		session_start();
+		$parametr_sprawy = array("sprawy.id_lokalne" => $_SESSION["id_lokalne"]);
+
+
 		$this->load->view('zarzadzanie_decyzjami/dodawanie_decyzji_view');
 	}
 
