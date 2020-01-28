@@ -65,7 +65,10 @@ class Linki extends CI_Controller {
 	}
 
 	function do_przegladanie_sprawy(){
-		$this->load->view('zarzadzanie_sprawami/przegladanie_sprawy_view');
+		$id_lokalne_sprawy = $this->input->post('id_lokalne');
+
+		$dane['dane'] = $this->sprawa_m->pobierz_dane_sprawy($id_lokalne_sprawy);
+		$this->load->view('zarzadzanie_sprawami/przegladanie_sprawy_view', $dane);
 	}
 
 	function do_edycja_sprawy(){
