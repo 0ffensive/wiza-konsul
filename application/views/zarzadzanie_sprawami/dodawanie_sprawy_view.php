@@ -208,6 +208,7 @@
 
 							<label for="#data-urodzenia-2">Data urodzenia</label>
 							<input type="date" id="data-urodzenia-2" name="data_urodzenia2" value="<?php echo set_value('data_urodzenia2') ?>">
+
 							<?php echo form_error('data_urodzenia2','<div class="error-message">*','</div>') ?>
 
 							<label for="#pokrewienstwo-2">Stopień pokrewieństwa</label>

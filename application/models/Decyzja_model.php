@@ -2,7 +2,6 @@
 
 class Decyzja_model extends CI_Model {
     public function pobierz_dane_lista($parametr){
-       
         $this->db->select('decyzje.rodzaj, decyzje.data_wydania, decyzje.wydajacy, pracownicy_konsulatu.nazwisko, pracownicy_konsulatu.imie, decyzje.uzasadnienie');
         $this->db->from('decyzje');
         $this->db->join('kierownictwa', 'decyzje.wydajacy = kierownictwa.kierownik');

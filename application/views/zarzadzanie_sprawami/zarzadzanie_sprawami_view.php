@@ -103,7 +103,7 @@
 								</form>
 							<td>
 								<form method="post" action="'.site_url('linki/do_edycja_sprawy').'">
-									<input type="submit" value="Edytuj">
+									<input type="submit" value="Edytuj" '. ($value->czy_rozstrzygnieta == 1 ? "disabled" : "").'>
 								</form>
 							<td>
 								<form method="post" action="'.site_url('linki/usun_sprawe').'">
