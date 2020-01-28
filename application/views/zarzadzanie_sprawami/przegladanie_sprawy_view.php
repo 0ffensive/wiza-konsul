@@ -9,7 +9,6 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/style.css">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/i_przegladanie_sprawy.css">
-        <link href="https://fonts.googleapis.com/css?family=Slabo+27px&display=swap&subset=latin-ext" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Muli:400,800&display=swap" rel="stylesheet">
 
     </head>
@@ -25,18 +24,18 @@
 			<div>
 				<h2>Dane sprawy</h2>
 				<form>
-					<label for="#id-lokalne-przegladanie-sprawy">ID lokalne</label>
-					<input disabled type="text" id="id-lokalne-przegladanie-sprawy" value="EF 124354">
-					<label for="#id-globalne-przegladanie-sprawy">ID globalne</label>
-					<input disabled type="text" id="id-globalne-przegladanie-sprawy" value="EF 124354">
-					<label for="#id-placowki-przegladanie-sprawy">ID placówki</label>
-					<input disabled type="text" id="id-placowki-przegladanie-sprawy" value="EF">
-					<label for="#data-przegladanie-sprawy">Data załozenia</label>
-					<input disabled type="text" id="data-przegladanie-sprawy" value="2019-03-04">
-					<label for="#cel-sprawy-przegladanie-sprawy">Cel sprawy</label>
-					<input disabled type="text" id="cel-sprawy-przegladanie-sprawy" value="Duplikat KP">
-					<label for="#rozstrzygnieta-przegladanie-sprawy">Rozstrzygnieta</label>
-					<input disabled type="text" id="rozstrzygnieta-przegladanie-sprawy" value="TAK">
+					<label for="#id-lokalne">ID lokalne</label>
+					<input disabled type="text" id="id-lokalne" value="<?php echo $sprawa->id_lokalne; ?>">
+					<label for="#id-globalne">ID globalne</label>
+					<input disabled type="text" id="id-globalne" value="<?php echo $sprawa->id_globalne; ?>">
+					<label for="#placowka">ID placówki</label>
+					<input disabled type="text" id="placowka" value="<?php echo $sprawa->placowka; ?>">
+					<label for="#data">Data załozenia</label>
+					<input disabled type="text" id="data" value="<?php echo $sprawa->data_zalozenia; ?>">
+					<label for="#cel">Cel sprawy</label>
+					<input disabled type="text" id="cel" value="<?php echo $sprawa->cel; ?>">
+					<label for="#rozstrzygnieta">Rozstrzygnieta</label>
+					<input disabled type="text" id="rozstrzygnieta" value="<?php echo ($sprawa->czy_rozstrzygnieta == 0 ? "Nie" : "Tak"); ?>">
 				</form>
 			</div>
 			<div class="kontener-dodanie-sprawy">
