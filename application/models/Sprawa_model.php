@@ -9,9 +9,9 @@ class Sprawa_model extends CI_Model {
 		$this->db->select('S.id_lokalne, S.id_globalne, S.placowka, S.data_zalozenia, S.cel, S.czy_rozstrzygnieta,
 							D.nazwisko, D.imie, S.plec, D.data_urodzenia, D.obywatelstwo, S.narodowosc, D.typ_dokumentu_identyfikacyjnego, D.nr_dokumentu_identyfikacyjnego,
 							A.panstwo, A.miejscowosc, A.kod_pocztowy, A.ulica, A.nr_domu, A.nr_lokalu,
-							D1.nazwisko as "nazwisko1", D1.imie as "imie1", P1.pokrewienstwo as "pokrewienstwo1", D1.obywatelstwo as "obywatelstwo1", 
+							D1.nazwisko as "nazwisko1", D1.imie as "imie1", D1.data_urodzenia as "data_urodzenia1", P1.pokrewienstwo as "pokrewienstwo1", D1.obywatelstwo as "obywatelstwo1", 
 							D1.typ_dokumentu_identyfikacyjnego as "typ_dokumentu_identyfikacyjnego1", D1.nr_dokumentu_identyfikacyjnego as "nr_dokumentu_identyfikacyjnego1",
-							D2.nazwisko as "nazwisko2", D2.imie as "imie2", P2.pokrewienstwo as "pokrewienstwo2", D2.obywatelstwo as "obywatelstwo2", 
+							D2.nazwisko as "nazwisko2", D2.imie as "imie2", D2.data_urodzenia as "data_urodzenia2", P2.pokrewienstwo as "pokrewienstwo2", D2.obywatelstwo as "obywatelstwo2", 
 							D2.typ_dokumentu_identyfikacyjnego as "typ_dokumentu_identyfikacyjnego2", D2.nr_dokumentu_identyfikacyjnego as "nr_dokumentu_identyfikacyjnego2"');
 		$this->db->from('sprawy S');							
 		$this->db->join('dane_osobowe D', 'D.id = S.dane_osobowe', 'left');
