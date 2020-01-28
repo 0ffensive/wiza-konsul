@@ -27,8 +27,8 @@
                         $lp = 1;
                         foreach($decyzje as $key => $value){
                             echo '<tr>
-                                <td>'.$lp.'
-                                <td>'.($value->rodzaj == 'Pozytywny' ? 'Pozytywna' : $value->rodzaj == 'Negatywny' ? 'Negatywna' : $value->rodzaj).'
+                                <td>'.$lp.' 
+                                <td>'.($value->rodzaj == 'Pozytywny' ? "Pozytywna" : ($value->rodzaj == "Negatywny" ? "Negatywna" : $value->rodzaj)).'                                
                                 <td>'.$value->data_wydania.' 
                                 <td>'.$value->wydajacy.', '.$value->nazwisko.' '.$value->imie.'
                                 <td>'.$value->uzasadnienie;
