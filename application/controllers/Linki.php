@@ -4,8 +4,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Linki extends CI_Controller {
 
 	function __construct() {
-		parent::__construct();
-		$this->load->model('Dana_bazych_model', 'baza');
+		parent::__construct();		
+		$this->load->model('Sprawa_model', 'sprawa_m');
+		$this->load->model('Kraj_model', 'kraj_m');
+		$this->load->model('Typ_dokumentu_identyfikacyjnego_model', 'typ_dok_m');
+		$this->load->model('Wnioskodawca_model', 'wnioskodawca_m');
+		$this->load->model('Decyzja_model', 'decyzja_m');
+
 		$this->load->helper(array('url', 'form'));
 		$this->load->library('form_validation');
 	}
@@ -13,6 +18,7 @@ class Linki extends CI_Controller {
 	public function index(){}
 
 
+	// Główne
 	public function do_strona_glowna_wybor(){
 		$this->load->view('strona_glowna_wybor_view');
 	}
@@ -25,6 +31,8 @@ class Linki extends CI_Controller {
 		} else if ($this->input->post('pracownik') == "Kierownik") {
 			$_SESSION["id_pracownika_placowki"] = 2;
 		}
+		
+		$_SESSION["rodzaj_dokumentu"] = "Karta Polaka";
 
 		$this->load->view('strona_glowna_placowka_view');
 	}
@@ -32,10 +40,7 @@ class Linki extends CI_Controller {
 
 
 	// Zarzadzanie sprawami
-
 	function do_zarzadzanie_sprawami(){
-		$this->load->model('Sprawa_model', 'sprawa_m');
-
 		$dane['dane'] = $this->sprawa_m->pobierz_dane_lista();
 		$this->load->view('zarzadzanie_sprawami/zarzadzanie_sprawami_view', $dane);
 	}
@@ -45,8 +50,8 @@ class Linki extends CI_Controller {
 	}
 
 	function do_dodawanie_sprawy(){
-		$this->load->model('Kraj_model', 'kraj_m');
-		$this->load->model('Typ_dokumentu_identyfikacyjnego_model', 'typ_dok_m');
+		session_start();
+		$_SESSION["id_wnioskodawcy"] = NULL;
 
 		$dane['wnioskodawca'] = NULL;
 		$dane['kraje'] = $this->kraj_m->pobierz_dane();
@@ -55,8 +60,6 @@ class Linki extends CI_Controller {
 	}
 
 	function do_wyszukiwanie_wnioskodawcy(){
-		$this->load->model('Wnioskodawca_model', 'wnioskodawca_m');
-
 		$dane['wnioskodawcy'] = $this->wnioskodawca_m->pobierz_dane();
 		$this->load->view('zarzadzanie_sprawami/wyszukiwanie_wnioskodawcow_view', $dane);
 	}
@@ -75,7 +78,6 @@ class Linki extends CI_Controller {
 
 
 	// Zarzadzanie dokumentami
-
 	function do_zarzadzanie_dokumentami(){
 		$this->load->view('zarzadzanie_dokumentami/zarzadzanie_dokumentami_view');
 	}
@@ -90,11 +92,7 @@ class Linki extends CI_Controller {
 
 
 	// Zarzadzanie decyzjami
-
 	function do_zarzadzanie_decyzjami(){
-		$this->load->model('Decyzja_model', 'decyzja_m');
-		$this->load->model('Sprawa_model', 'sprawa_m');
-
 		$parametr_decyzji = array("decyzje.sprawa" => ($this->input->post("id_lokalne")));
 		$parametr_sprawy = array( "sprawy.id_lokalne" => ($this->input->post("id_lokalne")));
 		$dane['decyzje'] = $this->decyzja_m->pobierz_dane_lista($parametr_decyzji);

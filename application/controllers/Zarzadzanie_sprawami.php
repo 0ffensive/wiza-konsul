@@ -10,8 +10,8 @@ class Zarzadzanie_sprawami extends CI_Controller {
 		$this->load->model('Wnioskodawca_model', 'wnioskodawca_m');
 		$this->load->model('Kraj_model', 'kraj_m');
 		$this->load->model('Typ_dokumentu_identyfikacyjnego_model', 'typ_dok_m');
-		$this->load->helper(array('url', 'form'));
 
+		$this->load->helper(array('url', 'form'));
 		$this->load->library('form_validation');
 	}
 
@@ -107,11 +107,21 @@ class Zarzadzanie_sprawami extends CI_Controller {
 				foreach ($pola_adres_zamieszkania as $pole){
 					$dane[2] += array($pole => ($this->input->post($pole)));
 				}
-				foreach ($pola_dane_pierwszego_przodka as $pole){
-					$dane[3] += array(substr($pole, 0, -1) => ($this->input->post($pole)));
+
+				if ($this->input->post("przodek_pierwszy")){
+					foreach ($pola_dane_pierwszego_przodka as $pole){
+						$dane[3] += array(substr($pole, 0, -1) => ($this->input->post($pole)));
+					}
+				} else {
+					$dane[3] = NULL;
 				}
-				foreach ($pola_dane_drugiego_przodka as $pole){
-					$dane[4] += array(substr($pole, 0, -1) => ($this->input->post($pole)));
+
+				if ($this->input->post("przodek_drugi")){
+					foreach ($pola_dane_drugiego_przodka as $pole){
+						$dane[4] += array(substr($pole, 0, -1) => ($this->input->post($pole)));
+					}
+				} else {
+					$dane[4] = NULL;
 				}
 
 				$this->sprawa_m->dodaj_sprawe($dane[0],$dane[1],$dane[2],$dane[3],$dane[4]);
@@ -120,7 +130,7 @@ class Zarzadzanie_sprawami extends CI_Controller {
 				$this->load->view('zarzadzanie_sprawami/zarzadzanie_sprawami_view',$dane);
 			}
 		}
-		$_SESSION["id"] = NULL;
+		$_SESSION["id_wnioskodawcy"] = NULL;
 	}
 
 
@@ -144,7 +154,7 @@ class Zarzadzanie_sprawami extends CI_Controller {
 
 	function wybierz_wnioskodawce(){
 		session_start();
-		$_SESSION["id"] = $this->input->post("id");
+		$_SESSION["id_wnioskodawcy"] = $this->input->post("id");
 
 		$parametry_wyszukiwania = array("wnioskodawcy.id" => ($this->input->post("id")));
 

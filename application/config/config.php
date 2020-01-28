@@ -31,7 +31,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 // $config['base_url'] = 'http://localhost:8080/wiza-konsul/';
 
 // ------ strona na localhost -------
-$config['base_url'] = 'http://localhost:8080/wiza-konsul/';
+$config['base_url'] = 'http://localhost/wiza-konsul/';
 
 /*
 |--------------------------------------------------------------------------

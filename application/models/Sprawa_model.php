@@ -35,24 +35,130 @@ class Sprawa_model extends CI_Model {
 		return $zapytanie->result();
 	}
 
-	public function pobierz_dane($id){
-				 $this->db->where('id', $id);
-		$zapytanie = $this->db->get('adresy');
+	public function znajdz_placowke($id_pracownika_placowki){
+		$this->db->select('placowka');
+		$this->db->from('zatrudnienia');
+		$this->db->where('pracownik_placowki', $id_pracownika_placowki);
+		$zapytanie = $this->db->get();
 
-		return $zapytanie->result();
+		return $zapytanie->result()[0]->placowka;
 	}
 
-	public function dodaj_sprawe($input_dane_sprawy,$input_dane_wnioskodawcy,$input_dane_adresu_zamieszkania,$input_dane_pierwszego_przodka,$input_dane_drugiego_przodka){
-		$dane_dane_osobowe = array();
+	public function znajdz_wnioskodawce($id_wnioskodawcy){
+		$this->db->select('*');
+		$this->db->from('wnioskodawcy');
+		$this->db->where('id',$id_wnioskodawcy);
+		$zapytanie = $this->db->get();
+		
+		return $zapytanie->result()[0];
+	}
 
-		foreach($input_dane_wnioskodawcy as $klucz => $wartosc){
-			if ($klucz != "plec" && $klucz != "narodowosc")
-			$dane_dane_osobowe += array($klucz => $wartosc);
+	public function dodaj_sprawe($input_dane_sprawy,$input_dane_wnioskodawcy,$input_dane_adresu_zamieszkania,$input_dane_przodka_pierwszego,$input_dane_przodka_drugiego){
+
+		$dane_sprawy = array(
+			"placowka" => $this->znajdz_placowke($_SESSION["id_pracownika_placowki"]),
+			"pracownik_zakladajacy" => $_SESSION["id_pracownika_placowki"],
+			"cel" => $input_dane_sprawy["cel"],
+			"plec" => $input_dane_wnioskodawcy["plec"],
+			"przodek_pierwszy" => NULL,
+			"przodek_drugi" => NULL,
+			"rodzaj_dokumentu" => $_SESSION["rodzaj_dokumentu"],
+			"wnioskodawca" => NULL,
+			"dane_osobowe" => NULL,
+			"narodowosc" => $input_dane_wnioskodawcy["narodowosc"],
+			"adres_zamieszkania" => NULL
+		);
+
+		$dane_dane_osobowe_przodka_pierwszego = $input_dane_przodka_pierwszego;
+		$dane_dane_osobowe_przodka_drugiego = $input_dane_przodka_drugiego;
+		$dane_dane_osobowe_sprawy = $input_dane_wnioskodawcy;
+
+		//dodawanie przodka pierwszego
+		if ($input_dane_przodka_pierwszego != NULL){
+			unset($dane_dane_osobowe_przodka_pierwszego["pokrewienstwo"]);
+			$this->db->insert('dane_osobowe', $dane_dane_osobowe_przodka_pierwszego);
+
+			$dane_przodka_pierwszego = array(
+				"dane_osobowe" => $this->db->insert_id(),
+				"pokrewienstwo" => $input_dane_przodka_pierwszego["pokrewienstwo"]
+			);
+
+			$this->db->insert('przodkowie', $dane_przodka_pierwszego);
+			$dane_sprawy["przodek_pierwszy"] = $this->db->insert_id();
 		}
 
-		$this->db->insert('dane_osobowe', $dane_dane_osobowe);
-		$dane_osobowe = $this->db->insert_id();
+		//dodawanie przodka drugiego
+		if ($input_dane_przodka_drugiego != NULL){
+			unset($dane_dane_osobowe_przodka_drugiego["pokrewienstwo"]);
+			$this->db->insert('dane_osobowe', $dane_dane_osobowe_przodka_drugiego);
 
+			$dane_przodka_drugiego = array(
+				"dane_osobowe" => $this->db->insert_id(),
+				"pokrewienstwo" => $input_dane_przodka_drugiego["pokrewienstwo"]
+			);
+
+			$this->db->insert('przodkowie', $dane_przodka_drugiego);
+			$dane_sprawy["przodek_drugi"] = $this->db->insert_id();
+		}
+		
+		//dodawanie danych osobowych sprawy
+		unset($dane_dane_osobowe_sprawy["plec"]);
+		unset($dane_dane_osobowe_sprawy["narodowosc"]);
+
+		$this->db->insert('dane_osobowe', $dane_dane_osobowe_sprawy);
+		$dane_sprawy["dane_osobowe"] = $this->db->insert_id();
+
+		//dodawanie adresu sprawy
+		$this->db->insert('adresy', $input_dane_adresu_zamieszkania);
+		$dane_sprawy["adres_zamieszkania"] = $this->db->insert_id();
+
+		//dodawanie/updatowanie wnioskodawcy
+		if ($_SESSION["id_wnioskodawcy"] == NULL) {	
+			
+			$dane_wnioskodawcy = array(
+				"dane_osobowe" => NULL,
+				"plec" => $input_dane_wnioskodawcy["plec"],
+				"adres_zamieszkania" => NULL,
+				"narodowosc" => $input_dane_wnioskodawcy["narodowosc"]
+			);
+
+			$dane_osobowe_wnioskodawcy = $input_dane_wnioskodawcy;
+			unset($dane_osobowe_wnioskodawcy["plec"]);
+			unset($dane_osobowe_wnioskodawcy["narodowoosc"]);
+
+			$this->db->insert('dane_osobowe', $dane_osobowe_wnioskodawcy);
+			$dane_wnioskodawcy["dane_osobowe"] = $this->db->insert_id();
+
+			$this->db->insert('adresy', $input_dane_adresu_zamieszkania);
+			$dane_wnioskodawcy["adres_zamieszkania"] = $this->db->insert_id();
+
+			$this->db->insert('wnioskodawcy', $dane_wnioskodawcy);
+			$dane_sprawy["wnioskodawca"] = $this->db->insert_id();
+
+		} else {
+			$wnioskodawca = $this->znajdz_wnioskodawce($_SESSION["id_wnioskodawcy"]);
+			
+			$dane_osobowe_wnioskodawcy = $input_dane_wnioskodawcy;
+			unset($dane_osobowe_wnioskodawcy["plec"]);
+			unset($dane_osobowe_wnioskodawcy["narodowosc"]);
+
+			$this->db->where('id', $wnioskodawca->dane_osobowe);
+			$this->db->update('dane_osobowe', $dane_osobowe_wnioskodawcy);
+
+			$this->db->where('id', $wnioskodawca->adres_zamieszkania);
+			$this->db->update('adresy', $input_dane_adresu_zamieszkania);
+
+			$dane_wnioskodawcy = array(
+				"plec" => $input_dane_wnioskodawcy["plec"],
+				"narodowosc" => $input_dane_wnioskodawcy["narodowosc"]
+			);
+
+			$this->db->where('id', $wnioskodawca->id);
+			$this->db->update('wnioskodawcy', $dane_wnioskodawcy);
+			$dane_sprawy["wnioskodawca"] = $_SESSION["id_wnioskodawcy"];
+		}
+
+		$this->db->insert('sprawy', $dane_sprawy);
 	}
 
 	public function sprawdz_czy_rozstrzygnieta($id_lokalne) {

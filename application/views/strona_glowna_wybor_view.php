@@ -17,7 +17,7 @@
 			<div>
 				<h2>Wybór pracownika</h2>
 
-				<form action="<?php echo site_url('linki/do_strona_glowna_placowka'); ?>">
+				<form method="post" action="<?php echo site_url('linki/do_strona_glowna_placowka'); ?>">
 					<input type="submit" name="pracownik" value="Pracownik">
 					<input type="submit" name="pracownik" value="Kierownik">
 				</form>
