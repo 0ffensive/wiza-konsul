@@ -72,9 +72,10 @@ class Linki extends CI_Controller {
 	}
 
 	function do_edycja_sprawy(){
-		$id_lokalne_sprawy = $this->input->post('id_lokalne');
+		session_start();
+		$_SESSION["id_lokalne"] = $this->input->post("id_lokalne");
 
-		$dane['sprawa'] = $this->sprawa_m->pobierz_dane_sprawy($id_lokalne_sprawy);
+		$dane['sprawa'] = $this->sprawa_m->pobierz_dane_sprawy($_SESSION["id_lokalne"]);
 		$dane['kraje'] = $this->kraj_m->pobierz_dane();
 		$dane['typy'] = $this->typ_dok_m->pobierz_dane();
 		$this->load->view('zarzadzanie_sprawami/edytowanie_sprawy_view', $dane);
