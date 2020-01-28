@@ -25,17 +25,17 @@
 				<h2>Dane sprawy</h2>
 				<form>
 					<label for="#id-lokalne">ID lokalne</label>
-					<input disabled type="text" id="id-lokalne" value="<?php echo $dane->id_lokalne; ?>">
+					<input disabled type="text" id="id-lokalne" value="<?php echo $sprawa->id_lokalne; ?>">
 					<label for="#id-globalne">ID globalne</label>
-					<input disabled type="text" id="id-globalne" value="<?php echo $dane->id_globalne; ?>">
+					<input disabled type="text" id="id-globalne" value="<?php echo $sprawa->id_globalne; ?>">
 					<label for="#placowka">ID placówki</label>
-					<input disabled type="text" id="placowka" value="<?php echo $dane->placowka; ?>">
+					<input disabled type="text" id="placowka" value="<?php echo $sprawa->placowka; ?>">
 					<label for="#data">Data załozenia</label>
-					<input disabled type="text" id="data" value="<?php echo $dane->data_zalozenia; ?>">
+					<input disabled type="text" id="data" value="<?php echo $sprawa->data_zalozenia; ?>">
 					<label for="#cel">Cel sprawy</label>
-					<input disabled type="text" id="cel" value="<?php echo $dane->cel; ?>">
+					<input disabled type="text" id="cel" value="<?php echo $sprawa->cel; ?>">
 					<label for="#rozstrzygnieta">Rozstrzygnieta</label>
-					<input disabled type="text" id="rozstrzygnieta" value="<?php echo ($dane->czy_rozstrzygnieta == 0 ? "Nie" : "Tak"); ?>">
+					<input disabled type="text" id="rozstrzygnieta" value="<?php echo ($sprawa->czy_rozstrzygnieta == 0 ? "Nie" : "Tak"); ?>">
 				</form>
 			</div>
 			<div class="kontener-dodanie-sprawy">
