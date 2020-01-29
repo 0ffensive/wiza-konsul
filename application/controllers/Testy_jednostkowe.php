@@ -133,8 +133,8 @@ class Testy_jednostkowe extends CI_Controller {
 								false, "Funkcja \"dodaj_sprawe\" test");
 
 		echo "<h3>Sprawdź czy sprawa rozstrzygnięta</h3>";
-		echo $this->unit->run($this->sprawa_m->sprawdz_czy_rozstrzygnieta(array('id_lokalne' => "7")), array('czy_rozstrzygnieta' => 0), "Funkcja \"sprawdz_czy_rozstrzygnieta\" test");
-		echo $this->unit->run($this->sprawa_m->sprawdz_czy_rozstrzygnieta(array('id_lokalne' => "9")), array('czy_rozstrzygnieta' => 0), "Funkcja \"sprawdz_czy_rozstrzygnieta\" test");
+		echo $this->unit->run($this->sprawa_m->sprawdz_czy_rozstrzygnieta(array('id_lokalne' => "7")), false, "Funkcja \"sprawdz_czy_rozstrzygnieta\" test");
+		echo $this->unit->run($this->sprawa_m->sprawdz_czy_rozstrzygnieta(array('id_lokalne' => "9")), false, "Funkcja \"sprawdz_czy_rozstrzygnieta\" test");
 		
 		// echo "<h3>Sprawdz czy pracownik jest kierownikiem</h3>";
 		// echo $this->unit->run($this->sprawa_m->sprawdz_czy_kierownictwo(array('id_lokalne' => "7")), array('czy_rozstrzygnieta' => 0), "Funkcja \"sprawdz_czy_rozstrzygnieta\" test");

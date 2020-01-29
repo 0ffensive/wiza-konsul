@@ -492,8 +492,10 @@ class Sprawa_model extends CI_Model {
 		$this->db->from('sprawy');
 		$this->db->where($id_lokalne);
 		$zapytanie = $this->db->get();
-		
-		return $zapytanie->row()->czy_rozstrzygnieta == 1 ? true : false;
+		if ($zapytanie->row() == NULL){
+			return false;
+		}
+		return $zapytanie->row()->czy_rozstrzygnieta;
 	}
 
 }
