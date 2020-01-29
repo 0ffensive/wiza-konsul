@@ -19,17 +19,17 @@
 			<form id="edytowanie-sprawy" method="post" action="<?php echo site_url('zarzadzanie_sprawami/edytowanie_sprawy'); ?>">
 				<div class="dane-sprawy">
 					<label for="#id-lokalne">ID lokalne</label>
-					<input disabled type="text" id="id-lokalne" name="id_lokalne" value="<?php echo (set_value('id_lokalne') == NULL? ($sprawa == NULL ? "" : $sprawa->id_lokalne) : set_value('id_lokalne')); ?>" placeholder="-">
+					<input disabled type="text" id="id-lokalne" name="id_lokalne" value="<?php echo (set_value('id_lokalne') == NULL? ($sprawa == NULL ? "" : $sprawa->id_lokalne) : set_value('id_lokalne')); ?>" placeholder=" ― ">
 					<label for="#id-globalne">ID globalne</label>
-					<input disabled type="text" id="id-globalne" name="id_globalne" value="<?php echo (set_value('id_globalne') == NULL? ($sprawa == NULL ? "" : $sprawa->id_globalne) : set_value('id_globalne')); ?>" placeholder="-">
+					<input disabled type="text" id="id-globalne" name="id_globalne" value="<?php echo (set_value('id_globalne') == NULL? ($sprawa == NULL ? "" : $sprawa->id_globalne) : set_value('id_globalne')); ?>" placeholder=" ― ">
 					<label for="#placowka">ID placówki</label>
-					<input disabled type="text" id="placowka" name="placowka" value="<?php echo (set_value('placowka') == NULL? ($sprawa == NULL ? "" : $sprawa->placowka) : set_value('placowka')); ?>" placeholder="-">
+					<input disabled type="text" id="placowka" name="placowka" value="<?php echo (set_value('placowka') == NULL? ($sprawa == NULL ? "" : $sprawa->placowka) : set_value('placowka')); ?>" placeholder=" ― ">
 					<label for="#data">Data załozenia</label>
-					<input disabled type="text" id="data" name="data_zalozenia" value="<?php echo (set_value('data_zalozenia') == NULL? ($sprawa == NULL ? "" : $sprawa->data_zalozenia) : set_value('data_zalozenia')); ?>" placeholder="-">
+					<input disabled type="text" id="data" name="data_zalozenia" value="<?php echo (set_value('data_zalozenia') == NULL? ($sprawa == NULL ? "" : $sprawa->data_zalozenia) : set_value('data_zalozenia')); ?>" placeholder=" ― ">
 					<label for="#cel">Cel sprawy</label>
-					<input disabled type="text" id="cel" name="cel" value="<?php echo (set_value('cel') == NULL? ($sprawa == NULL ? "" : $sprawa->cel) : set_value('cel')); ?>" placeholder="-">
+					<input disabled type="text" id="cel" name="cel" value="<?php echo (set_value('cel') == NULL? ($sprawa == NULL ? "" : $sprawa->cel) : set_value('cel')); ?>" placeholder=" ― ">
 					<label for="#rozstrzygnieta">Rozstrzygnieta</label>
-					<input disabled type="text" id="rozstrzygnieta" name="czy_rozstrzygnieta" value="<?php echo (set_value('czy_rozstrzygnieta') == NULL? ($sprawa == NULL ? "" : ($sprawa->czy_rozstrzygnieta == 0 ? "Nie" : "Tak")) : set_value('czy_rozstrzygnieta')); ?>" placeholder="-">
+					<input disabled type="text" id="rozstrzygnieta" name="czy_rozstrzygnieta" value="<?php echo (set_value('czy_rozstrzygnieta') == NULL? ($sprawa == NULL ? "" : ($sprawa->czy_rozstrzygnieta == 0 ? "Nie" : "Tak")) : set_value('czy_rozstrzygnieta')); ?>" placeholder=" ― ">
 				</div>
 				<div class="kontener-dodanie-sprawy">
 					<div>
