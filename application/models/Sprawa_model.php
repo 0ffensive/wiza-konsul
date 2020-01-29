@@ -292,6 +292,11 @@ class Sprawa_model extends CI_Model {
 
 	public function edytuj_sprawe($input_dane_wnioskodawcy,$input_dane_adresu_zamieszkania,$input_dane_przodka_pierwszego,$input_dane_przodka_drugiego){
 		
+		$dane_sprawy = array(
+			"plec" => $input_dane_wnioskodawcy["plec"],
+			"narodowosc" => $input_dane_wnioskodawcy["narodowosc"]
+		);
+
 		$dane_osobowe_przodka_pierwszego = $input_dane_przodka_pierwszego;
 			unset($dane_osobowe_przodka_pierwszego["pokrewienstwo"]);
 
@@ -309,33 +314,76 @@ class Sprawa_model extends CI_Model {
 
 		//updatowanie przodka pierwszego
 		if ($input_dane_przodka_pierwszego != NULL){
+			if ($sprawa->przodek_pierwszy != NULL){
+				$przodek_pierwszy = $this->znajdz_przodka($sprawa->przodek_pierwszy);
+	
+				$this->db->where('id', $przodek_pierwszy->dane_osobowe);
+				$this->db->update('dane_osobowe', $dane_osobowe_przodka_pierwszego);
+
+				$dane_przodka_pierwszego = array(
+					"pokrewienstwo" => $input_dane_przodka_pierwszego["pokrewienstwo"]
+				);
+
+				$this->db->where('id', $sprawa->przodek_pierwszy);
+				$this->db->update('przodkowie', $dane_przodka_pierwszego);
+			} else {
+				$this->db->insert('dane_osobowe', $dane_osobowe_przodka_pierwszego);
+
+				$dane_przodka_pierwszego = array(
+					"dane_osobowe" => $this->db->insert_id(),
+					"pokrewienstwo" => $input_dane_przodka_pierwszego["pokrewienstwo"]
+				);
+
+				$this->db->insert('przodkowie', $dane_przodka_pierwszego);
+				$dane_sprawy += array("przodek_pierwszy" => $this->db->insert_id());
+			}
+		} else if ($sprawa->przodek_pierwszy != NULL){
 			$przodek_pierwszy = $this->znajdz_przodka($sprawa->przodek_pierwszy);
 	
 			$this->db->where('id', $przodek_pierwszy->dane_osobowe);
-			$this->db->update('dane_osobowe', $dane_osobowe_przodka_pierwszego);
-
-			$dane_przodka_pierwszego = array(
-				"pokrewienstwo" => $input_dane_przodka_pierwszego["pokrewienstwo"]
-			);
+			$this->db->delete('dane_osobowe');
 
 			$this->db->where('id', $sprawa->przodek_pierwszy);
-			$this->db->update('przodkowie', $dane_przodka_pierwszego);
+			$this->db->delete('przodkowie');
+			$dane_sprawy += array("przodek_pierwszy" => NULL);
 		}
 
 		//updatowanie przodka drugiego
 		if ($input_dane_przodka_drugiego != NULL){
+			if ($sprawa->przodek_drugi != NULL){
+				$przodek_drugi = $this->znajdz_przodka($sprawa->przodek_drugi);
+
+				$this->db->where('id', $przodek_drugi->dane_osobowe);
+				$this->db->update('dane_osobowe', $dane_osobowe_przodka_drugiego);
+
+				$dane_przodka_drugiego = array(
+					"pokrewienstwo" => $input_dane_przodka_drugiego["pokrewienstwo"]
+				);
+
+				$this->db->where('id', $sprawa->przodek_drugi);
+				$this->db->update('przodkowie', $dane_przodka_drugiego);
+			} else {
+				$this->db->insert('dane_osobowe', $dane_osobowe_przodka_drugiego);
+
+				$dane_przodka_drugiego = array(
+					"dane_osobowe" => $this->db->insert_id(),
+					"pokrewienstwo" => $input_dane_przodka_drugiego["pokrewienstwo"]
+				);
+
+				$this->db->insert('przodkowie', $dane_przodka_drugiego);
+				$dane_sprawy += array("przodek_drugi" => $this->db->insert_id());
+			}
+		} else if ($sprawa->przodek_drugi != NULL){
 			$przodek_drugi = $this->znajdz_przodka($sprawa->przodek_drugi);
-
+		
 			$this->db->where('id', $przodek_drugi->dane_osobowe);
-			$this->db->update('dane_osobowe', $dane_osobowe_przodka_drugiego);
-
-			$dane_przodka_drugiego = array(
-				"pokrewienstwo" => $input_dane_przodka_drugiego["pokrewienstwo"]
-			);
+			$this->db->delete('dane_osobowe');
 
 			$this->db->where('id', $sprawa->przodek_drugi);
-			$this->db->update('przodkowie', $dane_przodka_drugiego);
+			$this->db->delete('przodkowie');
+			$dane_sprawy += array("przodek_drugi" => NULL);
 		}
+		
 
 		//updatowanie wnioskodawcy
 		$this->db->where('id', $wnioskodawca->dane_osobowe);
@@ -361,11 +409,6 @@ class Sprawa_model extends CI_Model {
 		$this->db->update('adresy', $adres_zamieszkania);
 
 		//updatowanie sprawy
-		$dane_sprawy = array(
-			"plec" => $input_dane_wnioskodawcy["plec"],
-			"narodowosc" => $input_dane_wnioskodawcy["narodowosc"]
-		);
-
 		$this->db->where('id_lokalne', $sprawa->id_lokalne);
 		$this->db->update('sprawy', $dane_sprawy);
 	}
