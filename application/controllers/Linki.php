@@ -45,12 +45,13 @@ class Linki extends CI_Controller {
 	// Zarzadzanie sprawami
 	function do_zarzadzanie_sprawami(){
 		$config = array();
-        $config["base_url"] = base_url().'linki/do_zarzadzanie_sprawami';
+        $config["base_url"] = base_url().'index.php/linki/do_zarzadzanie_sprawami';
         $config["total_rows"] = $this->sprawa_m->liczba_spraw();
         $config["per_page"] = 5;
-        $config["uri_segment"] = 3;
+		$config["uri_segment"] = 3;
+		
 		$this->pagination->initialize($config);
-		$strona = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+		$strona = $this->uri->segment(3);
         $dane["sprawy"] = $this->sprawa_m->pobierz_dane_paginacja($config["per_page"], $strona);
 		$dane["paginacja"] = $this->pagination->create_links();
 		
