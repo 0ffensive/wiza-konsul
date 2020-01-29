@@ -43,7 +43,7 @@
                 }?>
 
                 <form method="post" action="<?php echo site_url('linki/do_dodawanie_decyzji'); ?>">
-                    <input type="submit" value="Dodaj nową decyzję" <?php echo ($czy_rozstrzygnieta ? "disabled" : "")?>>
+                    <input type="submit" value="Dodaj nową decyzję" <?php echo ($czy_rozstrzygnieta == 1 ? "disabled" : "")?>>
                 </form>
             </div>
         </div>
