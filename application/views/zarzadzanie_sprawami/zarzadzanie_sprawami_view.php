@@ -46,7 +46,7 @@
 				
                 <label for="#cel">Cel sprawy</label>
                 <select id="cel" name="cel">
-                    <option value="">Wybierz</option>
+                    <option value="" hidden>Wybierz</option>
                     <option value="Utworzenie">Utworzenie</option>
                     <option value="Duplikat">Duplikat</option>
                     <option value="Modyfikacja">Modyfikacja</option>
@@ -80,13 +80,13 @@
 				<td>Data urodzenia
 				<td>Data załozenia sprawy
 				<td>Cel
-				<td>Stan
+				<td>Stan sprawy
 				<?php echo !$czy_kierownik ? '<td>' : ""; ?>
 				<td><td><td><td>
 			</thead>
 				<?php
 					$lp = 1;
-					foreach($dane as $key => $value){
+					foreach($sprawy as $key => $value){
 						echo '<tr>
 							<td>'.$lp.'
 							<td>'.($value->id_globalne == NULL ? "-" : $value->id_globalne).' 
@@ -125,6 +125,9 @@
 					}
 				?>
 		</table>
+
+		<p><?php echo $paginacja; ?></p>
+
 		<div>
 			<i class="fas fa-angle-left"></i>
 			<i class="fas fa-angle-right"></i>

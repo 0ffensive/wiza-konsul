@@ -57,6 +57,54 @@ class Sprawa_model extends CI_Model {
 		return $zapytanie->result();
 	}
 
+	public function liczba_spraw() {
+		return $this->db->count_all('sprawy');
+	}
+
+	public function pobierz_dane_paginacja($limit, $start){
+		$this->db->limit($limit, $start);
+
+		$this->db->select('sprawy.id_globalne, 
+							sprawy.id_lokalne,
+							sprawy.wnioskodawca, 
+							dane_osobowe.nazwisko,
+							dane_osobowe.imie,
+							dane_osobowe.data_urodzenia, 
+							sprawy.data_zalozenia,
+							sprawy.cel, 
+							sprawy.czy_rozstrzygnieta,
+							case when count(decyzje.id) = 0 then "Brak decyzji"
+								when sprawy.czy_rozstrzygnieta = 0 then "Do uzupełnienia"
+								when (select d.rodzaj from decyzje d where d.sprawa = sprawy.id_lokalne and d.rodzaj != "Do uzupełnienia") = "Pozytywny" then "Pozytywna decyzja"
+								else "Negatywna decyzja" 
+								end as decyzje');
+		$this->db->from('sprawy');							
+		$this->db->join('dane_osobowe', 'dane_osobowe.id = sprawy.dane_osobowe', 'left');
+		$this->db->join('decyzje', 'decyzje.sprawa = sprawy.id_lokalne', 'left');
+		$this->db->group_by('sprawy.id_globalne, 
+							sprawy.id_lokalne,
+							sprawy.wnioskodawca, 
+							dane_osobowe.nazwisko,
+							dane_osobowe.imie,
+							dane_osobowe.data_urodzenia, 
+							sprawy.data_zalozenia,
+							sprawy.cel, 
+		    				sprawy.czy_rozstrzygnieta');
+		$this->db->order_by('sprawy.id_lokalne','ASC');
+		$zapytanie = $this->db->get();
+		
+		if ($zapytanie->num_rows() > 0) {
+			foreach ($zapytanie->result() as $wiersz) {
+				$sprawy[] = $wiersz;
+			}
+			return $sprawy;
+		}
+		return false;
+	}
+
+
+
+
 	public function pobierz_dane_lista(){
 		$this->db->select('sprawy.id_globalne, 
 							sprawy.id_lokalne,
@@ -67,13 +115,14 @@ class Sprawa_model extends CI_Model {
 							sprawy.data_zalozenia,
 							sprawy.cel, 
 							sprawy.czy_rozstrzygnieta,
-							case when count(*) = 0 then "Brak decyzji"
+							case when count(decyzje.id) = 0 then "Brak decyzji"
 								when sprawy.czy_rozstrzygnieta = 0 then "Do uzupełnienia"
-								else ""
+								when (select d.rodzaj from decyzje d where d.sprawa = sprawy.id_lokalne and d.rodzaj != "Do uzupełnienia") = "Pozytywny" then "Pozytywna decyzja"
+								else "Negatywna decyzja" 
 								end as decyzje');
 		$this->db->from('sprawy');							
 		$this->db->join('dane_osobowe', 'dane_osobowe.id = sprawy.dane_osobowe', 'left');
-		$this->db->join('decyzje', 'decyzje.sprawa = sprawy.id_lokalne', 'full');
+		$this->db->join('decyzje', 'decyzje.sprawa = sprawy.id_lokalne', 'left');
 		$this->db->group_by('sprawy.id_globalne, 
 							sprawy.id_lokalne,
 							sprawy.wnioskodawca, 
@@ -206,7 +255,7 @@ class Sprawa_model extends CI_Model {
 
 			$dane_osobowe_wnioskodawcy = $input_dane_wnioskodawcy;
 			unset($dane_osobowe_wnioskodawcy["plec"]);
-			unset($dane_osobowe_wnioskodawcy["narodowoosc"]);
+			unset($dane_osobowe_wnioskodawcy["narodowosc"]);
 
 			$this->db->insert('dane_osobowe', $dane_osobowe_wnioskodawcy);
 			$dane_wnioskodawcy["dane_osobowe"] = $this->db->insert_id();

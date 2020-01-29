@@ -12,6 +12,7 @@ class Zarzadzanie_sprawami extends CI_Controller {
 		$this->load->model('Typ_dokumentu_identyfikacyjnego_model', 'typ_dok_m');
 		$this->load->model('Pracownik_model', 'pracownik_m');
 
+		$this->load->library("pagination");
 
 		$this->load->helper(array('url', 'form'));
 		$this->load->library('form_validation');
@@ -223,7 +224,8 @@ class Zarzadzanie_sprawami extends CI_Controller {
 				}
 
 				$this->sprawa_m->edytuj_sprawe($dane[0],$dane[1],$dane[2],$dane[3]);
-				
+				$id_pracownika_placowki = $_SESSION["id_pracownika_placowki"];
+				$dane['czy_kierownik'] = $this->pracownik_m->sprawdz_czy_kierownictwo($id_pracownika_placowki);
 				$dane['dane'] = $this->sprawa_m->pobierz_dane_lista();
 				$this->load->view('zarzadzanie_sprawami/zarzadzanie_sprawami_view',$dane);
 			}

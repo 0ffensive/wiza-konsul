@@ -14,6 +14,8 @@ class Linki extends CI_Controller {
 
 		$this->load->helper(array('url', 'form'));
 		$this->load->library('form_validation');
+		$this->load->library("pagination");
+
 	}
 
 	public function index(){}
@@ -42,10 +44,20 @@ class Linki extends CI_Controller {
 
 	// Zarzadzanie sprawami
 	function do_zarzadzanie_sprawami(){
+		$config = array();
+        $config["base_url"] = base_url().'linki/do_zarzadzanie_sprawami';
+        $config["total_rows"] = $this->sprawa_m->liczba_spraw();
+        $config["per_page"] = 5;
+        $config["uri_segment"] = 3;
+		$this->pagination->initialize($config);
+		$strona = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        $dane["sprawy"] = $this->sprawa_m->pobierz_dane_paginacja($config["per_page"], $strona);
+		$dane["paginacja"] = $this->pagination->create_links();
+		
 		session_start();
 		$_SESSION["id_lokalne"] = NULL;
 		$id_pracownika_placowki = $_SESSION["id_pracownika_placowki"];
-		$dane['dane'] = $this->sprawa_m->pobierz_dane_lista();
+		//$dane['dane'] = $this->sprawa_m->pobierz_dane_lista();
 		$dane['czy_kierownik'] = $this->pracownik_m->sprawdz_czy_kierownictwo($id_pracownika_placowki);
 		$this->load->view('zarzadzanie_sprawami/zarzadzanie_sprawami_view', $dane);
 	}
