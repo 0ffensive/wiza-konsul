@@ -182,6 +182,15 @@ class Sprawa_model extends CI_Model {
 		return $zapytanie->result()[0];
 	}
 
+	private function znajdz_przodka($id_przodka){
+		$this->db->select('*');
+		$this->db->from('przodkowie');
+		$this->db->where('id',$id_przodka);
+		$zapytanie = $this->db->get();
+		
+		return $zapytanie->result()[0];
+	}
+
 
 
 	public function dodaj_sprawe($input_dane_sprawy,$input_dane_wnioskodawcy,$input_dane_adresu_zamieszkania,$input_dane_przodka_pierwszego,$input_dane_przodka_drugiego){
@@ -294,29 +303,58 @@ class Sprawa_model extends CI_Model {
 
 
 	public function edytuj_sprawe($input_dane_wnioskodawcy,$input_dane_adresu_zamieszkania,$input_dane_przodka_pierwszego,$input_dane_przodka_drugiego){
-		$dane_sprawy = array(
-			"plec" => $input_dane_wnioskodawcy["plec"],
-			"narodowosc" => $input_dane_wnioskodawcy["narodowosc"]
-		);
+		
+		$dane_osobowe_przodka_pierwszego = $input_dane_przodka_pierwszego;
+			unset($dane_osobowe_przodka_pierwszego["pokrewienstwo"]);
 
-		$sprawa = $this->znajdz_sprawe($_SESSION[id_lokalne]);
+		$dane_osobowe_przodka_drugiego = $input_dane_przodka_drugiego;
+			unset($dane_osobowe_przodka_drugiego["pokrewienstwo"]);
 
-		$sprawa->przodek_pierwszy;
-		$sprawa->przodek_drugi;
+		$dane_osobowe = $input_dane_wnioskodawcy;
+			unset($dane_osobowe["plec"]);
+			unset($dane_osobowe["narodowosc"]);
 
+		$adres_zamieszkania = $input_dane_adresu_zamieszkania;
+
+		$sprawa = $this->znajdz_sprawe($_SESSION["id_lokalne"]);
+		$wnioskodawca = $this->znajdz_wnioskodawce($sprawa->wnioskodawca);
+
+		//updatowanie przodka pierwszego
+		if ($input_dane_przodka_pierwszego != NULL){
+			$przodek_pierwszy = $this->znajdz_przodka($sprawa->przodek_pierwszy);
+	
+			$this->db->where('id', $przodek_pierwszy->dane_osobowe);
+			$this->db->update('dane_osobowe', $dane_osobowe_przodka_pierwszego);
+
+			$dane_przodka_pierwszego = array(
+				"pokrewienstwo" => $input_dane_przodka_pierwszego["pokrewienstwo"]
+			);
+
+			$this->db->where('id', $sprawa->przodek_pierwszy);
+			$this->db->update('przodkowie', $dane_przodka_pierwszego);
+		}
+
+		//updatowanie przodka drugiego
+		if ($input_dane_przodka_drugiego != NULL){
+			$przodek_drugi = $this->znajdz_przodka($sprawa->przodek_drugi);
+
+			$this->db->where('id', $przodek_drugi->dane_osobowe);
+			$this->db->update('dane_osobowe', $dane_osobowe_przodka_drugiego);
+
+			$dane_przodka_drugiego = array(
+				"pokrewienstwo" => $input_dane_przodka_drugiego["pokrewienstwo"]
+			);
+
+			$this->db->where('id', $sprawa->przodek_drugi);
+			$this->db->update('przodkowie', $dane_przodka_drugiego);
+		}
 
 		//updatowanie wnioskodawcy
-		$wnioskodawca = $this->znajdz_wnioskodawce($sprawa->wnioskodawca);
-			
-		$dane_osobowe_wnioskodawcy = $input_dane_wnioskodawcy;
-		unset($dane_osobowe_wnioskodawcy["plec"]);
-		unset($dane_osobowe_wnioskodawcy["narodowosc"]);
-
 		$this->db->where('id', $wnioskodawca->dane_osobowe);
-		$this->db->update('dane_osobowe', $dane_osobowe_wnioskodawcy);
+		$this->db->update('dane_osobowe', $dane_osobowe);
 
 		$this->db->where('id', $wnioskodawca->adres_zamieszkania);
-		$this->db->update('adresy', $input_dane_adresu_zamieszkania);
+		$this->db->update('adresy', $adres_zamieszkania);
 
 		$dane_wnioskodawcy = array(
 			"plec" => $input_dane_wnioskodawcy["plec"],
@@ -325,12 +363,23 @@ class Sprawa_model extends CI_Model {
 
 		$this->db->where('id', $wnioskodawca->id);
 		$this->db->update('wnioskodawcy', $dane_wnioskodawcy);
-		$dane_sprawy["wnioskodawca"] = $_SESSION["id_wnioskodawcy"];	
 
-		//
-		$sprawa->dane_osobowe;
-		$sprawa->adres_zamieszkania;
+		//updatowanie danych osobowych
+		$this->db->where('id', $sprawa->dane_osobowe);
+		$this->db->update('dane_osobowe', $dane_osobowe);
 
+		//updatowanie adresu
+		$this->db->where('id', $sprawa->adres_zamieszkania);
+		$this->db->update('adresy', $adres_zamieszkania);
+
+		//updatowanie sprawy
+		$dane_sprawy = array(
+			"plec" => $input_dane_wnioskodawcy["plec"],
+			"narodowosc" => $input_dane_wnioskodawcy["narodowosc"]
+		);
+
+		$this->db->where('id_lokalne', $sprawa->id_lokalne);
+		$this->db->update('sprawy', $dane_sprawy);
 	}
 
 	public function sprawdz_czy_rozstrzygnieta($id_lokalne) {
