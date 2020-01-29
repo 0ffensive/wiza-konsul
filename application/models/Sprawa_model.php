@@ -223,15 +223,41 @@ class Sprawa_model extends CI_Model {
 	public function edytuj_sprawe($input_dane_wnioskodawcy,$input_dane_adresu_zamieszkania,$input_dane_przodka_pierwszego,$input_dane_przodka_drugiego){
 		$dane_sprawy = array(
 			"plec" => $input_dane_wnioskodawcy["plec"],
-			"przodek_pierwszy" => NULL,
-			"przodek_drugi" => NULL,
-			"wnioskodawca" => NULL,
-			"dane_osobowe" => NULL,
-			"narodowosc" => $input_dane_wnioskodawcy["narodowosc"],
-			"adres_zamieszkania" => NULL
+			"narodowosc" => $input_dane_wnioskodawcy["narodowosc"]
 		);
 
-		$sprawa = 
+		$sprawa = $this->znajdz_sprawe($_SESSION[id_lokalne]);
+
+		$sprawa->przodek_pierwszy;
+		$sprawa->przodek_drugi;
+
+
+		//updatowanie wnioskodawcy
+		$wnioskodawca = $this->znajdz_wnioskodawce($sprawa->wnioskodawca);
+			
+		$dane_osobowe_wnioskodawcy = $input_dane_wnioskodawcy;
+		unset($dane_osobowe_wnioskodawcy["plec"]);
+		unset($dane_osobowe_wnioskodawcy["narodowosc"]);
+
+		$this->db->where('id', $wnioskodawca->dane_osobowe);
+		$this->db->update('dane_osobowe', $dane_osobowe_wnioskodawcy);
+
+		$this->db->where('id', $wnioskodawca->adres_zamieszkania);
+		$this->db->update('adresy', $input_dane_adresu_zamieszkania);
+
+		$dane_wnioskodawcy = array(
+			"plec" => $input_dane_wnioskodawcy["plec"],
+			"narodowosc" => $input_dane_wnioskodawcy["narodowosc"]
+		);
+
+		$this->db->where('id', $wnioskodawca->id);
+		$this->db->update('wnioskodawcy', $dane_wnioskodawcy);
+		$dane_sprawy["wnioskodawca"] = $_SESSION["id_wnioskodawcy"];	
+
+		//
+		$sprawa->dane_osobowe;
+		$sprawa->adres_zamieszkania;
+
 	}
 
 	public function sprawdz_czy_rozstrzygnieta($id_lokalne) {
