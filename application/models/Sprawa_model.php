@@ -102,27 +102,25 @@ class Sprawa_model extends CI_Model {
 		return false;
 	}
 
+	public function wyszukaj_sprawy_paginacja($limit, $start, $parametry_wyszukiwania, $data_zalozenia) {
+		$this->db->limit($limit, $start);
 
-
-
-	public function pobierz_dane_lista(){
-		$this->db->select('sprawy.id_globalne, 
-							sprawy.id_lokalne,
-							sprawy.wnioskodawca, 
-							dane_osobowe.nazwisko,
-							dane_osobowe.imie,
-							dane_osobowe.data_urodzenia, 
-							sprawy.data_zalozenia,
-							sprawy.cel, 
-							sprawy.czy_rozstrzygnieta,
+		$this->db->select('sprawy.id_globalne, sprawy.id_lokalne, sprawy.wnioskodawca, 
+						   	dane_osobowe.nazwisko, dane_osobowe.imie, dane_osobowe.data_urodzenia, 
+						   	sprawy.data_zalozenia, sprawy.cel, sprawy.czy_rozstrzygnieta,
 							case when count(decyzje.id) = 0 then "Brak decyzji"
-								when sprawy.czy_rozstrzygnieta = 0 then "Do uzupełnienia"
-								when (select d.rodzaj from decyzje d where d.sprawa = sprawy.id_lokalne and d.rodzaj != "Do uzupełnienia") = "Pozytywny" then "Pozytywna decyzja"
-								else "Negatywna decyzja" 
-								end as decyzje');
+						   		when sprawy.czy_rozstrzygnieta = 0 then "Do uzupełnienia"
+						   		when (select d.rodzaj from decyzje d where d.sprawa = sprawy.id_lokalne and d.rodzaj != "Do uzupełnienia") = "Pozytywny" then "Pozytywna decyzja"
+						   		else "Negatywna decyzja" 
+						   		end as decyzje');
 		$this->db->from('sprawy');							
 		$this->db->join('dane_osobowe', 'dane_osobowe.id = sprawy.dane_osobowe', 'left');
+		$this->db->join('zatrudnienia', 'zatrudnienia.pracownik_placowki = sprawy.pracownik_zakladajacy', 'left');
 		$this->db->join('decyzje', 'decyzje.sprawa = sprawy.id_lokalne', 'left');
+		$this->db->where($parametry_wyszukiwania);
+		if ($data_zalozenia != NULL){
+			$this->db->where('CAST(sprawy.data_zalozenia AS DATE) =', $data_zalozenia);
+		}
 		$this->db->group_by('sprawy.id_globalne, 
 							sprawy.id_lokalne,
 							sprawy.wnioskodawca, 
@@ -132,27 +130,17 @@ class Sprawa_model extends CI_Model {
 							sprawy.data_zalozenia,
 							sprawy.cel, 
 		    				sprawy.czy_rozstrzygnieta');
+		
 		$this->db->order_by('sprawy.id_lokalne','ASC');
 		$zapytanie = $this->db->get();
 		
-		return $zapytanie->result();		
-	}
-
-	public function wyszukaj_sprawy($parametry_wyszukiwania, $data_zalozenia){
-		$this->db->select('sprawy.id_globalne, sprawy.id_lokalne, sprawy.wnioskodawca, 
-						   dane_osobowe.nazwisko, dane_osobowe.imie, dane_osobowe.data_urodzenia, 
-						   sprawy.data_zalozenia, sprawy.cel, sprawy.czy_rozstrzygnieta');
-		$this->db->from('sprawy');							
-		$this->db->join('dane_osobowe', 'dane_osobowe.id = sprawy.dane_osobowe', 'left');
-		$this->db->join('zatrudnienia', 'zatrudnienia.pracownik_placowki = sprawy.pracownik_zakladajacy', 'left');
-		$this->db->where($parametry_wyszukiwania);
-		if ($data_zalozenia != NULL){
-			$this->db->where('CAST(sprawy.data_zalozenia AS DATE) =', $data_zalozenia);
+		if ($zapytanie->num_rows() > 0) {
+			foreach ($zapytanie->result() as $wiersz) {
+				$sprawy[] = $wiersz;
+			}
+			return $sprawy;
 		}
-		$this->db->order_by('sprawy.id_lokalne','ASC');
-		$zapytanie = $this->db->get();
-		
-		return $zapytanie->result();
+		return false;
 	}
 
 	private function znajdz_sprawe($id_lokalne_sprawy){

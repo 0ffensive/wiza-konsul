@@ -70,23 +70,26 @@
 
 		<h2>Lista spraw</h2>
         <table id="wyszukane-sprawy-zarzadzanie-sprawami">
-            <thead>
-                <td>L.p.
-				<td>ID globalne
-				<td>ID lokalne
-				<td>ID wnioskodawcy
-				<td>Nazwisko
-				<td>Imię
-				<td>Data urodzenia
-				<td>Data załozenia sprawy
-				<td>Cel
-				<td>Stan sprawy
-				<?php echo !$czy_kierownik ? '<td>' : ""; ?>
-				<td><td><td><td>
-			</thead>
-				<?php
-					$lp = 1;
-					foreach($sprawy as $key => $value){
+			<?php
+				$lp = 1;
+				if($sprawy == NULL) {
+					echo '<div class="komunikat-brak">Brak spraw do wyświetlenia</div>';
+				} else {            
+					echo '<thead>
+                	<td>L.p.
+					<td>ID globalne
+					<td>ID lokalne
+					<td>ID wnioskodawcy
+					<td>Nazwisko
+					<td>Imię
+					<td>Data urodzenia
+					<td>Data załozenia sprawy
+					<td>Cel
+					<td>Stan sprawy'.
+					!($czy_kierownik ? '<td>' : "").'<td><td><td><td>
+					</thead>';
+						foreach($sprawy as $key => $value){
+					
 						echo '<tr>
 							<td>'.$lp.'
 							<td>'.($value->id_globalne == NULL ? "-" : $value->id_globalne).' 
@@ -99,7 +102,7 @@
 							<td>'.$value->cel.' 
 							<td>'.$value->decyzje.'
 							<td>'.(!$czy_kierownik ? '
-								<form class="wybierz-form" method="post" action='.site_url("linki/do_zarzadzanie_decyzjami").'>
+							<form class="wybierz-form" method="post" action='.site_url("linki/do_zarzadzanie_decyzjami").'>
 									<input type="hidden" value='.$value->id_lokalne.' name="id_lokalne">
 									<input type="submit" value="Decyzje">
 								</form> <td>' : "") . '
@@ -122,8 +125,9 @@
 								</form>
 						';
 						$lp += 1;
-					}
-				?>
+						}
+				}
+			?>
 		</table>
 
 		<p><?php echo $paginacja; ?></p>
