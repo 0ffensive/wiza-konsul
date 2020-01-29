@@ -26,7 +26,6 @@ class Zarzadzanie_sprawami extends CI_Controller {
 		$parametry = array("id_lokalne", "id_globalne", "wnioskodawca", "nazwisko", "imie", "data_urodzenia", "data_zalozenia", "cel", "czy_rozstrzygnieta");
 		$parametry_wyszukiwania = array();
 		$data_zalozenia = NULL;
-		
 		$config = array();
 		$config["base_url"] = base_url().'index.php/zarzadzanie_sprawami/wyszukaj_sprawy';
 		$config["total_rows"] = $this->sprawa_m->liczba_spraw();
@@ -35,10 +34,10 @@ class Zarzadzanie_sprawami extends CI_Controller {
 		$this->pagination->initialize($config);
 		$strona = $this->uri->segment(3);
 		$dane["paginacja"] = $this->pagination->create_links();
+
 		session_start();
 		$id_pracownika_placowki = $_SESSION["id_pracownika_placowki"];
 		$dane['czy_kierownik'] = $this->pracownik_m->sprawdz_czy_kierownictwo($id_pracownika_placowki);
-
 		if ($this->input->post('submit') == "Wyszukaj sprawę"){
 			foreach ($parametry as $param){
 				if($this->input->post($param) != NULL){
@@ -60,24 +59,12 @@ class Zarzadzanie_sprawami extends CI_Controller {
 
 	function dodawanie_sprawy(){
 		session_start();
-		if ($this->input->post('reset') == "Anuluj"){
-			$config = array();
-			$config["base_url"] = base_url().'index.php/linki/do_zarzadzanie_sprawami';
-			$config["total_rows"] = $this->sprawa_m->liczba_spraw();
-			$config["per_page"] = 5;
-			$config["uri_segment"] = 3;
-			
-			$this->pagination->initialize($config);
-			$strona = $this->uri->segment(3);
-			$dane["sprawy"] = $this->sprawa_m->pobierz_dane_paginacja($config["per_page"], $strona);
-			$dane["paginacja"] = $this->pagination->create_links();
-			$id_pracownika_placowki = $_SESSION["id_pracownika_placowki"];
-			$dane['czy_kierownik'] = $this->pracownik_m->sprawdz_czy_kierownictwo($id_pracownika_placowki);
-			$this->load->view('zarzadzanie_sprawami/zarzadzanie_sprawami_view', $dane);
+		if ($this->input->post('submit') == "Anuluj"){
+			$this->do_zarzadzania_sprawami();
+			$_SESSION["id_wnioskodawcy"] = NULL;
 
 		} else if ($this->input->post('submit') == "Dodaj") {
-			
-			//validation rules
+		
 			$this->form_validation->set_rules("cel","Cel sprawy","required");
 			$this->form_validation->set_rules("nazwisko","Nazwisko","required");
 			$this->form_validation->set_rules("imie","Imię","required");
@@ -155,36 +142,20 @@ class Zarzadzanie_sprawami extends CI_Controller {
 
 				$this->sprawa_m->dodaj_sprawe($dane[0],$dane[1],$dane[2],$dane[3],$dane[4]);
 				
-				$dane['dane'] = $this->sprawa_m->pobierz_dane_lista();
-				$id_pracownika_placowki = $_SESSION["id_pracownika_placowki"];
-				$dane['czy_kierownik'] = $this->pracownik_m->sprawdz_czy_kierownictwo($id_pracownika_placowki);
-				$this->load->view('zarzadzanie_sprawami/zarzadzanie_sprawami_view',$dane);
+				$this->do_zarzadzania_sprawami();
+				$_SESSION["id_wnioskodawcy"] = NULL;
 			}
 		}
-		$_SESSION["id_wnioskodawcy"] = NULL;
 	}
 
 	function edytowanie_sprawy(){
 		session_start();
-		if ($this->input->post('reset') == "Anuluj"){
-
-			$config = array();
-			$config["base_url"] = base_url().'index.php/linki/do_zarzadzanie_sprawami';
-			$config["total_rows"] = $this->sprawa_m->liczba_spraw();
-			$config["per_page"] = 5;
-			$config["uri_segment"] = 3;
-			
-			$this->pagination->initialize($config);
-			$strona = $this->uri->segment(3);
-			$dane["sprawy"] = $this->sprawa_m->pobierz_dane_paginacja($config["per_page"], $strona);
-			$dane["paginacja"] = $this->pagination->create_links();
-			$id_pracownika_placowki = $_SESSION["id_pracownika_placowki"];
-			$dane['czy_kierownik'] = $this->pracownik_m->sprawdz_czy_kierownictwo($id_pracownika_placowki);
-			$this->load->view('zarzadzanie_sprawami/zarzadzanie_sprawami_view', $dane);
+		if ($this->input->post('submit') == "Anuluj"){
+			$this->do_zarzadzania_sprawami();
+			$_SESSION["id_wnioskodawcy"] = NULL;
 
 		} else if ($this->input->post('submit') == "Zatwierdź") {
 			
-			//validation rules
 			$this->form_validation->set_rules("nazwisko","Nazwisko","required");
 			$this->form_validation->set_rules("imie","Imię","required");
 			$this->form_validation->set_rules("plec","Płeć","required");
@@ -257,22 +228,18 @@ class Zarzadzanie_sprawami extends CI_Controller {
 				}
 
 				$this->sprawa_m->edytuj_sprawe($dane[0],$dane[1],$dane[2],$dane[3]);
-				$config = array();
-				$config["base_url"] = base_url().'index.php/linki/do_zarzadzanie_sprawami';
-				$config["total_rows"] = $this->sprawa_m->liczba_spraw();
-				$config["per_page"] = 5;
-				$config["uri_segment"] = 3;
-				
-				$this->pagination->initialize($config);
-				$strona = $this->uri->segment(3);
-				$dane["sprawy"] = $this->sprawa_m->pobierz_dane_paginacja($config["per_page"], $strona);
-				$dane["paginacja"] = $this->pagination->create_links();
-				$id_pracownika_placowki = $_SESSION["id_pracownika_placowki"];
-				$dane['czy_kierownik'] = $this->pracownik_m->sprawdz_czy_kierownictwo($id_pracownika_placowki);
-				$this->load->view('zarzadzanie_sprawami/zarzadzanie_sprawami_view', $dane);
+
+				$this->do_zarzadzania_sprawami();
+				$_SESSION["id_lokalne"] = NULL;
 			}
 		}
-		$_SESSION["id_lokalne"] = NULL;
+	}
+
+	function usuwanie_sprawy(){
+		$id_lokalne = $this->input->post("id_lokalne");
+		$this->sprawa_m->usun_sprawe($id_lokalne);
+
+		$this->do_zarzadzania_sprawami();
 	}
 
 
@@ -316,6 +283,4 @@ class Zarzadzanie_sprawami extends CI_Controller {
 		$dane['typy'] = $this->typ_dok_m->pobierz_dane();
 		$this->load->view('zarzadzanie_sprawami/dodawanie_sprawy_view', $dane);
 	}
-
-
 }

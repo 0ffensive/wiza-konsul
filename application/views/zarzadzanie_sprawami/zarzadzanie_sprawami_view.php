@@ -30,19 +30,20 @@
 			<h2>Wyszukaj sprawę</h2>
             <form method="post" action="<?php echo site_url('zarzadzanie_sprawami/wyszukaj_sprawy'); ?>">
                 <label for="#id-lokalne">ID lokalne sprawy</label>
-                <input type="text" id="id-lokalne" name="id_lokalne" value="<?php echo set_value('id_lokalne') ?>">
+                <input type="number" id="id-lokalne" name="id_lokalne" value="<?php echo set_value('id_lokalne') ?>" max="9999999999">
                 <label for="#id-globalne">ID globalne sprawy</label>
-                <input type="text" id="id-globalne" name="id_globalne" value="<?php echo set_value('id_globalne') ?>">
+                <input type="numer" id="id-globalne" name="id_globalne" value="<?php echo set_value('id_globalne') ?>" max="9999999999">
                 <label for="#id-wnioskodawcy">ID wnioskodawcy</label>
-                <input type="text" id="id-wnioskodawcy" name="wnioskodawca" value="<?php echo set_value('wnioskodawca') ?>">
+                <input type="number" id="id-wnioskodawcy" name="wnioskodawca" value="<?php echo set_value('wnioskodawca') ?>" max="9999999999">
                 <label for="#nazwisko">Nazwisko</label>
-                <input type="text" id="nazwisko" name="nazwisko" value="<?php echo set_value('nazwisko') ?>">
+                <input type="text" id="nazwisko" name="nazwisko" value="<?php echo set_value('nazwisko') ?>" maxlength="30">
                 <label for="#imie">Imię</label>
-                <input type="text" id="imie" name="imie" value="<?php echo set_value('imie') ?>">
+                <input type="text" id="imie" name="imie" value="<?php echo set_value('imie') ?>" maxlength="30">
                 <label for="#data-urodzenia">Data urodzenia</label>
-                <input type="date" id="data-urodzenia" name="data_urodzenia" value="<?php echo set_value('data_urodzenia') ?>">
+                <input type="date" id="data-urodzenia" name="data_urodzenia" value="<?php echo set_value('data_urodzenia') ?>" max="<?php echo date('Y-m-d'); ?>">
                 <label for="#data-zalozenia">Data założenia sprawy</label>
-				<input type="date" id="data-zalozenia" name="data_zalozenia" value="<?php echo set_value('data_zalozenia') ?>">
+				<input type="date" id="data-zalozenia" name="data_zalozenia" value="<?php echo set_value('data_zalozenia') ?>" max="<?php echo date('Y-m-d'); ?>">
+
 				
                 <label for="#cel">Cel sprawy</label>
                 <select id="cel" name="cel">
@@ -122,7 +123,8 @@
 									<input type="submit" value="Edytuj" '. ($value->czy_rozstrzygnieta == 1 ? "disabled" : "").'>
 								</form>
 							<td>
-								<form method="post" action="'.site_url('linki/usun_sprawe').'">
+								<form method="post" action="'.site_url('zarzadzanie_sprawami/usuwanie_sprawy').'">
+									<input type="hidden" value='.$value->id_lokalne.' name="id_lokalne">
 									<input type="submit" value="Usuń">
 								</form>
 							';
@@ -131,6 +133,7 @@
 						echo '</table> <div> <p id="paginacja">'.$paginacja.'</p></div>';
 					}
 			?>
+
     </div>
 </body>
 

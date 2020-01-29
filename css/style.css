@@ -46,7 +46,8 @@ input[type=file] {
 
 select,
 input[type="text"],
-input[type="date"]{
+input[type="date"],
+input[type="number"]{
     height: 30px;
     padding: 0 5px;
 }

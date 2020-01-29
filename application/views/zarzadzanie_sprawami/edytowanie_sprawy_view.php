@@ -35,11 +35,11 @@
 						<h2>Dane wnioskodawcy</h2>
 						<div>
 							<label for="#nazwisko">Nazwisko</label>
-							<input type="text" id="nazwisko" name="nazwisko" value="<?php echo (set_value('nazwisko') == NULL? ($sprawa == NULL ? "" : $sprawa->nazwisko) : set_value('nazwisko')); ?>">
+							<input type="text" id="nazwisko" name="nazwisko" maxlength="30" value="<?php echo (set_value('nazwisko') == NULL? ($sprawa == NULL ? "" : $sprawa->nazwisko) : set_value('nazwisko')); ?>">
 							<?php echo form_error('nazwisko','<div class="error-message">*','</div>') ?>
 								
 							<label for="#imie">Imię</label>
-							<input type="text" id="imie" name="imie" value="<?php echo (set_value('imie') == NULL? ($sprawa == NULL ? "" : $sprawa->imie) : set_value('imie')); ?>">
+							<input type="text" id="imie" name="imie" maxlength="30" value="<?php echo (set_value('imie') == NULL? ($sprawa == NULL ? "" : $sprawa->imie) : set_value('imie')); ?>">
 							<?php echo form_error('imie','<div class="error-message">*','</div>') ?>	
 
 							<label for="#plec">Płeć</label>
@@ -52,7 +52,7 @@
 							<?php echo form_error('plec','<div class="error-message">*','</div>') ?>
 								
 							<label for="#data-urodzenia">Data urodzenia</label>
-							<input type="date" id="data-urodzenia" name="data_urodzenia" value="<?php echo (set_value('data_urodzenia') == NULL ? ($sprawa == NULL ? "" : $sprawa->data_urodzenia) : set_value('data_urodzenia')); ?>">
+							<input type="date" id="data-urodzenia" name="data_urodzenia" max="<?php echo date('Y-m-d'); ?>" value="<?php echo (set_value('data_urodzenia') == NULL ? ($sprawa == NULL ? "" : $sprawa->data_urodzenia) : set_value('data_urodzenia')); ?>">
 							<?php echo form_error('data_urodzenia','<div class="error-message">*','</div>') ?>
 							
 							<label for="#obywatelstwo">Obywatelstwo</label>
@@ -89,7 +89,7 @@
 							<?php echo form_error('typ_dokumentu_identyfikacyjnego','<div class="error-message">*','</div>') ?>
 							
 							<label for="#nr-dokumentu">Nr dokumentu</label>
-							<input type="text" id="nr-dokumentu" name="nr_dokumentu_identyfikacyjnego" value="<?php echo (set_value('nr_dokumentu_identyfikacyjnego') == NULL ? ($sprawa == NULL ? "" : $sprawa->nr_dokumentu_identyfikacyjnego) : set_value('nr_dokumentu_identyfikacyjnego')); ?>">        
+							<input type="text" id="nr-dokumentu" name="nr_dokumentu_identyfikacyjnego" maxlength="15" value="<?php echo (set_value('nr_dokumentu_identyfikacyjnego') == NULL ? ($sprawa == NULL ? "" : $sprawa->nr_dokumentu_identyfikacyjnego) : set_value('nr_dokumentu_identyfikacyjnego')); ?>">        
 							<?php echo form_error('nr_dokumentu_identyfikacyjnego','<div class="error-message">*','</div>') ?>
 							
 						</div>
@@ -103,15 +103,15 @@
 						</div>
 						<div>
 							<label for="#nazwisko-1">Nazwisko</label>
-							<input type="text" id="nazwisko-1" name="nazwisko1" value="<?php echo (set_value('nazwisko1') == NULL ? ($sprawa == NULL ? "" : $sprawa->nazwisko1) : set_value('nazwisko1')); ?>">
+							<input type="text" id="nazwisko-1" name="nazwisko1" maxlength="30" value="<?php echo (set_value('nazwisko1') == NULL ? ($sprawa == NULL ? "" : $sprawa->nazwisko1) : set_value('nazwisko1')); ?>">
 							<?php echo form_error('nazwisko1','<div class="error-message">*','</div>') ?>
 
 							<label for="#imie-1">Imię</label>
-							<input type="text" id="imie-1" name="imie1" value="<?php echo (set_value('imie1') == NULL ? ($sprawa == NULL ? "" : $sprawa->imie1) : set_value('imie1')); ?>">
+							<input type="text" id="imie-1" name="imie1" maxlength="30" value="<?php echo (set_value('imie1') == NULL ? ($sprawa == NULL ? "" : $sprawa->imie1) : set_value('imie1')); ?>">
 							<?php echo form_error('imie1','<div class="error-message">*','</div>') ?>
 							
 							<label for="#data-urodzenia-1">Data urodzenia</label>
-							<input type="date" id="data-urodzenia-1" name="data_urodzenia1"  value="<?php echo (set_value('data_urodzenia1') == NULL ? ($sprawa == NULL ? "" : $sprawa->data_urodzenia1) : set_value('data_urodzenia1')); ?>">
+							<input type="date" id="data-urodzenia-1" name="data_urodzenia1" max="<?php echo date('Y-m-d'); ?>" value="<?php echo (set_value('data_urodzenia1') == NULL ? ($sprawa == NULL ? "" : $sprawa->data_urodzenia1) : set_value('data_urodzenia1')); ?>">
 							<?php echo form_error('data_urodzenia1','<div class="error-message">*','</div>') ?>
 							
 							<label for="#pokrewienstwo-1">Stopień pokrewieństwa</label>
@@ -149,7 +149,7 @@
 							<?php echo form_error('typ_dokumentu_identyfikacyjnego1','<div class="error-message">*','</div>') ?>
 							
 							<label for="#nr-dokumentu-1">Nr dokumentu</label>
-							<input type="text" id="nr-dokumentu-1" name="nr_dokumentu_identyfikacyjnego1" value="<?php echo (set_value('nr_dokumentu_identyfikacyjnego1') == NULL ? ($sprawa == NULL ? "" : $sprawa->nr_dokumentu_identyfikacyjnego1) : set_value('nr_dokumentu_identyfikacyjnego1')); ?>">
+							<input type="text" id="nr-dokumentu-1" name="nr_dokumentu_identyfikacyjnego1" maxlength="15" value="<?php echo (set_value('nr_dokumentu_identyfikacyjnego1') == NULL ? ($sprawa == NULL ? "" : $sprawa->nr_dokumentu_identyfikacyjnego1) : set_value('nr_dokumentu_identyfikacyjnego1')); ?>">
 							<?php echo form_error('nr_dokumentu_identyfikacyjnego1','<div class="error-message">*','</div>') ?>
 							                 
 						</div>
@@ -158,23 +158,23 @@
 						<h2>Adres zamieszkania</h2>
 						<div>
 							<label for="#ulica">Ulica</label>
-							<input type="text" id="ulica" name="ulica" value="<?php echo (set_value('ulica') == NULL ? ($sprawa == NULL ? "" : $sprawa->ulica) : set_value('ulica')); ?>">
+							<input type="text" id="ulica" name="ulica" maxlength="50" value="<?php echo (set_value('ulica') == NULL ? ($sprawa == NULL ? "" : $sprawa->ulica) : set_value('ulica')); ?>">
 							<?php echo form_error('ulica','<div class="error-message">*','</div>') ?>
 							
 							<label for="#nr-domu">Nr domu</label>
-							<input type="text" id="nr-domu" name="nr_domu" value="<?php echo (set_value('nr_domu') == NULL ? ($sprawa == NULL ? "" : $sprawa->nr_domu) : set_value('nr_domu')); ?>">
+							<input type="text" id="nr-domu" name="nr_domu" maxlength="10" value="<?php echo (set_value('nr_domu') == NULL ? ($sprawa == NULL ? "" : $sprawa->nr_domu) : set_value('nr_domu')); ?>">
 							<?php echo form_error('nr_domu','<div class="error-message">*','</div>') ?>
 							
 							<label for="#nr-lokalu">Nr lokalu</label>
-							<input type="text" id="nr-lokalu" name="nr_lokalu" value="<?php echo (set_value('nr_lokalu') == NULL ? ($sprawa == NULL ? "" : $sprawa->nr_lokalu) : set_value('nr_lokalu')); ?>">
+							<input type="text" id="nr-lokalu" name="nr_lokalu" maxlength="10" value="<?php echo (set_value('nr_lokalu') == NULL ? ($sprawa == NULL ? "" : $sprawa->nr_lokalu) : set_value('nr_lokalu')); ?>">
 							<?php echo form_error('nr_lokalu','<div class="error-message">*','</div>') ?>
 
 							<label for="#kod">Kod pocztowy</label>
-							<input type="text" id="kod" name="kod_pocztowy" value="<?php echo (set_value('kod_pocztowy') == NULL ? ($sprawa == NULL ? "" : $sprawa->kod_pocztowy) : set_value('kod_pocztowy')); ?>">
+							<input type="text" id="kod" name="kod_pocztowy" maxlength="15" value="<?php echo (set_value('kod_pocztowy') == NULL ? ($sprawa == NULL ? "" : $sprawa->kod_pocztowy) : set_value('kod_pocztowy')); ?>">
 							<?php echo form_error('kod_pocztowy','<div class="error-message">*','</div>') ?>
 							
 							<label for="#miejscowosc">Miejscowość</label>
-							<input type="text" id="miejscowosc" name="miejscowosc" value="<?php echo (set_value('miejscowosc') == NULL ? ($sprawa == NULL ? "" : $sprawa->miejscowosc) : set_value('miejscowosc')); ?>">
+							<input type="text" id="miejscowosc" name="miejscowosc" maxlength="50" value="<?php echo (set_value('miejscowosc') == NULL ? ($sprawa == NULL ? "" : $sprawa->miejscowosc) : set_value('miejscowosc')); ?>">
 							<?php echo form_error('miejscowosc','<div class="error-message">*','</div>') ?>
 							
 							<label for="#panstwo">Państwo</label>
@@ -199,15 +199,15 @@
 						</div>
 						<div>
 							<label for="#nazwisko-2">Nazwisko</label>
-							<input type="text" id="nazwisko-2" name="nazwisko2" value="<?php echo (set_value('nazwisko2') == NULL? ($sprawa == NULL ? "" : $sprawa->nazwisko2) : set_value('nazwisko2')); ?>">
+							<input type="text" id="nazwisko-2" name="nazwisko2" maxlength="30" value="<?php echo (set_value('nazwisko2') == NULL? ($sprawa == NULL ? "" : $sprawa->nazwisko2) : set_value('nazwisko2')); ?>">
 							<?php echo form_error('nazwisko2','<div class="error-message">*','</div>') ?>
 
 							<label for="#imie-2">Imię</label>
-							<input type="text" id="imie-2" name="imie2" value="<?php echo (set_value('imie2') == NULL ? ($sprawa == NULL ? "" : $sprawa->imie2) : set_value('imie2')); ?>">
+							<input type="text" id="imie-2" name="imie2" maxlength="30" value="<?php echo (set_value('imie2') == NULL ? ($sprawa == NULL ? "" : $sprawa->imie2) : set_value('imie2')); ?>">
 							<?php echo form_error('imie2','<div class="error-message">*','</div>') ?>
 
 							<label for="#data-urodzenia-2">Data urodzenia</label>
-							<input type="date" id="data-urodzenia-2" name="data_urodzenia2" value="<?php echo (set_value('data_urodzenia2') == NULL ? ($sprawa == NULL ? "" : $sprawa->data_urodzenia2) : set_value('data_urodzenia2')); ?>">
+							<input type="date" id="data-urodzenia-2" name="data_urodzenia2" max="<?php echo date('Y-m-d'); ?>" value="<?php echo (set_value('data_urodzenia2') == NULL ? ($sprawa == NULL ? "" : $sprawa->data_urodzenia2) : set_value('data_urodzenia2')); ?>">
 							<?php echo form_error('data_urodzenia2','<div class="error-message">*','</div>') ?>
 
 							<label for="#pokrewienstwo-2">Stopień pokrewieństwa</label>
@@ -245,7 +245,7 @@
 							<?php echo form_error('typ_dokumentu_identyfikacyjnego2','<div class="error-message">*','</div>') ?>
 							
 							<label for="#nr-dokumentu-2">Nr dokumentu</label>
-							<input type="text" id="nr-dokumentu-2" name="nr_dokumentu_identyfikacyjnego2" value="<?php echo (set_value('nr_dokumentu_identyfikacyjnego2') == NULL ? ($sprawa == NULL ? "" : $sprawa->nr_dokumentu_identyfikacyjnego2) : set_value('nr_dokumentu_identyfikacyjnego2')); ?>">
+							<input type="text" id="nr-dokumentu-2" name="nr_dokumentu_identyfikacyjnego2" maxlength="15" value="<?php echo (set_value('nr_dokumentu_identyfikacyjnego2') == NULL ? ($sprawa == NULL ? "" : $sprawa->nr_dokumentu_identyfikacyjnego2) : set_value('nr_dokumentu_identyfikacyjnego2')); ?>">
 							<?php echo form_error('nr_dokumentu_identyfikacyjnego2','<div class="error-message">*','</div>') ?>
 							   
 						</div>
@@ -254,7 +254,7 @@
 				<div>
 					<div id="przyciski-zatwierdzajace">
 						<input id="submit" name ="submit" type="submit" value="Zatwierdź">
-						<input id="reset" name ="reset" type="submit" value="Anuluj">
+						<input id="reset" name ="submit" type="submit" value="Anuluj">
 					</div>
 				</div>   
 			</form>
