@@ -24,41 +24,47 @@
 		<div class="wyszukaj-wnioskodawce">
             <form method="post" action="<?php echo site_url('zarzadzanie_sprawami/wyszukaj_wnioskodawcow'); ?>">
                 <label for="#id-w">ID wnioskodawcy</label>
-                <input type="text" id="id-w" name='id'>
+                <input type="text" id="id-w" name='id' value="<?php echo set_value('id')?>">
 				<label for="#nazwisko-w">Nazwisko</label>
-                <input type="text" id="nazwisko-w" name="nazwisko">
+                <input type="text" id="nazwisko-w" name="nazwisko" value="<?php echo set_value('nazwisko')?>">
                 <label for="#imie-w">Imię</label>
-                <input type="text" id="imie-w" name="imie">
+                <input type="text" id="imie-w" name="imie" value="<?php echo set_value('imie')?>">
                 <label for="#data-urodzenia-w">Data urodzenia</label>
-                <input type="date" id="data-urodzenia-w" name="data_urodzenia">
+                <input type="date" id="data-urodzenia-w" name="data_urodzenia" value="<?php echo set_value('data_urodzenia')?>">
 
-            	<input type="submit" id="submit" value="Wyszukaj">
-				<input type="reset" id="reset" value="Wyczyść">
+            	<input type="submit" name="submit" value="Wyszukaj">
+				<input type="submit" name="submit" value="Pokaż wszystko">
             </form>
                          
             <table id="wyszukane-profile">
-                <thead> 
-                    <td>ID<td>Nazwisko<td>Imię<td>Data urodzenia<td>
-                <tbody>
-					<?php
+				<?php 
+					if($wnioskodawcy == NULL) {
+						echo '<div class="komunikat-brak">Brak wnioskodawców do wyświetlenia</div>';
+					} else {
+						echo '
+						<thead> 
+							<td>ID
+							<td>Nazwisko
+							<td>Imię
+							<td>Data urodzenia
+							<td>
+						<tbody>';
 						foreach($wnioskodawcy as $klucz => $wartosc){
 							echo '<tr>
-									<td>'.$wartosc->id.'
-									<td>'.$wartosc->nazwisko.'
-									<td>'.$wartosc->imie.'
-									<td>'.$wartosc->data_urodzenia.'
-									<td>
-										<form class="wybierz-form" method="post" action='.site_url("zarzadzanie_sprawami/wybierz_wnioskodawce").'>
-											<input type="hidden" value='.$wartosc->id.' name="id">
-											<input type="submit" value="Wybierz">
-										</form>';
+								<td>'.$wartosc->id_wnioskodawcy.'
+								<td>'.$wartosc->nazwisko.'
+								<td>'.$wartosc->imie.'
+								<td>'.$wartosc->data_urodzenia.'
+								<td>
+								<form class="wybierz-form" method="post" action='.site_url("zarzadzanie_sprawami/wybierz_wnioskodawce").'>
+									<input type="hidden" value='.$wartosc->id_wnioskodawcy.' name="id">
+									<input type="submit" value="Wybierz">
+								</form>';
 						}
-					?>
-			</table>
-			<div>
-				<i class="fas fa-angle-left"></i>
-				<i class="fas fa-angle-right"></i>
-			</div>
+						
+						echo '</table><div><p id="paginacja">'.$paginacja.'</p></div>';
+					}
+				?>
         </div>
     </div>
 </body>

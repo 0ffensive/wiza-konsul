@@ -18,27 +18,32 @@
 				<input type="submit" value="Cofnij">
 			</form>
             <div class="inside-container">
-                <table id="decyzje-sprawy">
+
+                <?php if($decyzje != NULL) {
+                    echo '<table id="decyzje-sprawy">
                     <thead>
                         <td>L.p. <td>Decyzja <td>Data wydania <td>Wydana przez <td>Uzasadnienie
-                    <tbody>
+                    <tbody>';
+                    $lp = 1;
+                    foreach($decyzje as $key => $value){
+                        echo '<tr>
+                            <td>'.$lp.' 
+                            <td>'.($value->rodzaj == 'Pozytywny' ? "Pozytywna" : ($value->rodzaj == "Negatywny" ? "Negatywna" : $value->rodzaj)).'                                
+                            <td>'.$value->data_wydania.' 
+                            <td>'.$value->wydajacy.', '.$value->nazwisko.' '.$value->imie.'
+                            <td>'.$value->uzasadnienie;
+                        $lp += 1;
+                    }
                     
-                    <?php
-                        $lp = 1;
-                        foreach($decyzje as $key => $value){
-                            echo '<tr>
-                                <td>'.$lp.' 
-                                <td>'.($value->rodzaj == 'Pozytywny' ? "Pozytywna" : ($value->rodzaj == "Negatywny" ? "Negatywna" : $value->rodzaj)).'                                
-                                <td>'.$value->data_wydania.' 
-                                <td>'.$value->wydajacy.', '.$value->nazwisko.' '.$value->imie.'
-                                <td>'.$value->uzasadnienie;
-                            $lp += 1;
-                        }
-                    ?>
-                </table>
+                    echo '</table>';
 
-                <form method="post" action="<?php echo site_url('linki/do_dodawanie_decyzji');?>">
-                    <input type="submit" value="Dodaj nową decyzję" <?php echo ($czy_rozstrzygnieta->czy_rozstrzygnieta == 1 ? "disabled" : ""); ?>>
+
+                } else {
+                    echo '<div class="komunikat-brak">Brak decyzji do wyświetlenia</div>';
+                }?>
+
+                <form method="post" action="'. site_url('linki/do_dodawanie_decyzji').'">
+                    <input type="submit" value="Dodaj nową decyzję" <?php echo ($czy_rozstrzygnieta->czy_rozstrzygnieta == 1 ? "disabled" : "")?>>
                 </form>
             </div>
         </div>

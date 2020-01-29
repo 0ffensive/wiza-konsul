@@ -30,47 +30,48 @@
 			<h2>Wyszukaj sprawę</h2>
             <form method="post" action="<?php echo site_url('zarzadzanie_sprawami/wyszukaj_sprawy'); ?>">
                 <label for="#id-lokalne">ID lokalne sprawy</label>
-                <input type="text" id="id-lokalne" name="id_lokalne">
+                <input type="text" id="id-lokalne" name="id_lokalne" value="<?php echo set_value('id_lokalne') ?>">
                 <label for="#id-globalne">ID globalne sprawy</label>
-                <input type="text" id="id-globalne" name="id_globalne">
+                <input type="text" id="id-globalne" name="id_globalne" value="<?php echo set_value('id_globalne') ?>">
                 <label for="#id-wnioskodawcy">ID wnioskodawcy</label>
-                <input type="text" id="id-wnioskodawcy" name="wnioskodawca">
+                <input type="text" id="id-wnioskodawcy" name="wnioskodawca" value="<?php echo set_value('wnioskodawca') ?>">
                 <label for="#nazwisko">Nazwisko</label>
-                <input type="text" id="nazwisko" name="nazwisko">
+                <input type="text" id="nazwisko" name="nazwisko" value="<?php echo set_value('nazwisko') ?>">
                 <label for="#imie">Imię</label>
-                <input type="text" id="imie" name="imie">
+                <input type="text" id="imie" name="imie" value="<?php echo set_value('imie') ?>">
                 <label for="#data-urodzenia">Data urodzenia</label>
-                <input type="date" id="data-urodzenia" name="data_urodzenia">
+                <input type="date" id="data-urodzenia" name="data_urodzenia" value="<?php echo set_value('data_urodzenia') ?>">
                 <label for="#data-zalozenia">Data założenia sprawy</label>
-				<input type="date" id="data-zalozenia" name="data_zalozenia">
+				<input type="date" id="data-zalozenia" name="data_zalozenia" value="<?php echo set_value('data_zalozenia') ?>">
 				
                 <label for="#cel">Cel sprawy</label>
                 <select id="cel" name="cel">
                     <option value="" hidden>Wybierz</option>
-                    <option value="Utworzenie">Utworzenie</option>
-                    <option value="Duplikat">Duplikat</option>
-                    <option value="Modyfikacja">Modyfikacja</option>
-                    <option value="Przedłużenie">Przedłużenie</option>
+                    <option <?php echo (set_value('cel') == NULL? "" : (set_value('cel') == "Utworzenie" ? "selected":"" )); ?>>Utworzenie</option>
+                    <option <?php echo (set_value('cel') == NULL? "" : (set_value('cel') == "Duplikat" ? "selected":"" )); ?>>Duplikat</option>
+                    <option <?php echo (set_value('cel') == NULL? "" : (set_value('cel') == "Modyfikacja" ? "selected":"" )); ?>>Modyfikacja</option>
+                    <option <?php echo (set_value('cel') == NULL? "" : (set_value('cel') == "Przedłużenie" ? "selected":"" )); ?>>Przedłużenie</option>
 				</select>
 				
                 <label for="#czy-rozstrzygnieta">Rozstrzygnięta</label>
                 <div id="czy-rozstrzygnieta">
-                    <input type="radio" id="czy-rozstrzygnięta-tak" name="czy_rozstrzygnieta" value=1>
-                    <label for="czy-rozstrzygnięta-tak">Tak</label>
+                    <input type="radio" id="tak" name="czy_rozstrzygnieta" value=1 <?php echo (set_value('czy_rozstrzygnieta') == NULL? "" : (set_value('czy_rozstrzygnieta') == 1 ? "checked":"" )); ?>>
+                    <label for="tak">Tak</label>
                     <br>
-                    <input type="radio" id="czy-rozstrzygnięta-nie" name="czy_rozstrzygnieta" value=0>
-                    <label for="czy-rozstrzygnięta-nie">Nie</label>    
+                    <input type="radio" id="nie" name="czy_rozstrzygnieta" value=0 <?php echo (set_value('czy_rozstrzygnieta') == NULL? "" : (set_value('czy_rozstrzygnieta') == 0 ? "checked":"" )); ?>>
+                    <label for="nie">Nie</label>    
                 </div>    
             
-            	<input type="submit" id="submit" value="Wyszukaj">
-            	<br>
-				<input type="reset" id="reset" value="Wyczyść pola"> 
+				<input name="submit" type="submit" value="Wyszukaj sprawę">
+				<br>
+
+				<input name="submit" type="submit" value="Wszystkie sprawy">
 			</form> 
 		</div>
 
 		<h2>Lista spraw</h2>
-        <table id="wyszukane-sprawy-zarzadzanie-sprawami">
-			<?php
+		<?php
+			echo '<table id="wyszukane-sprawy-zarzadzanie-sprawami">';
 				$lp = 1;
 				if($sprawy == NULL) {
 					echo '<div class="komunikat-brak">Brak spraw do wyświetlenia</div>';
@@ -86,7 +87,8 @@
 					<td>Data załozenia sprawy
 					<td>Cel
 					<td>Stan sprawy'.
-					!($czy_kierownik ? '<td>' : "").'<td><td><td><td>
+					(!$czy_kierownik ? '<td>' : "").
+					'<td><td><td><td>
 					</thead>';
 						foreach($sprawy as $key => $value){
 					
@@ -123,20 +125,12 @@
 								<form method="post" action="'.site_url('linki/usun_sprawe').'">
 									<input type="submit" value="Usuń">
 								</form>
-						';
-						$lp += 1;
+							';
+							$lp += 1;
 						}
-				}
+						echo '</table> <div> <p id="paginacja">'.$paginacja.'</p></div>';
+					}
 			?>
-		</table>
-		<div>
-			<p id="paginacja"><?php echo $paginacja; ?></p>
-		</div>
-
-		<!-- <div>
-			<i class="fas fa-angle-left"></i>
-			<i class="fas fa-angle-right"></i>
-		</div> -->
     </div>
 </body>
 

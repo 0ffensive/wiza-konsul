@@ -49,10 +49,8 @@ class Linki extends CI_Controller {
         $config["total_rows"] = $this->sprawa_m->liczba_spraw();
         $config["per_page"] = 5;
 		$config["uri_segment"] = 3;
-		
 		$this->pagination->initialize($config);
 		$strona = $this->uri->segment(3);
-		//tutaj
         $dane["sprawy"] = $this->sprawa_m->pobierz_dane_paginacja($config["per_page"], $strona);
 		$dane["paginacja"] = $this->pagination->create_links();
 		
@@ -78,7 +76,15 @@ class Linki extends CI_Controller {
 	}
 
 	function do_wyszukiwanie_wnioskodawcy(){
-		$dane['wnioskodawcy'] = $this->wnioskodawca_m->pobierz_dane();
+		$config = array();
+		$config["base_url"] = base_url().'index.php/linki/do_wyszukiwanie_wnioskodawcy';
+		$config["total_rows"] = $this->wnioskodawca_m->liczba_wnioskodawcow();
+		$config["per_page"] = 5;
+		$config["uri_segment"] = 3;
+		$this->pagination->initialize($config);
+		$strona = $this->uri->segment(3);
+		$dane["wnioskodawcy"] = $this->wnioskodawca_m->pobierz_dane($config["per_page"], $strona);
+		$dane["paginacja"] = $this->pagination->create_links();
 		$this->load->view('zarzadzanie_sprawami/wyszukiwanie_wnioskodawcow_view', $dane);
 	}
 
