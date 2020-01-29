@@ -30,19 +30,19 @@
 			<h2>Wyszukaj sprawę</h2>
             <form method="post" action="<?php echo site_url('zarzadzanie_sprawami/wyszukaj_sprawy'); ?>">
                 <label for="#id-lokalne">ID lokalne sprawy</label>
-                <input type="text" id="id-lokalne" name="id_lokalne">
+                <input type="text" id="id-lokalne" name="id_lokalne" max="9999999999">
                 <label for="#id-globalne">ID globalne sprawy</label>
-                <input type="text" id="id-globalne" name="id_globalne">
+                <input type="text" id="id-globalne" name="id_globalne" max="9999999999">
                 <label for="#id-wnioskodawcy">ID wnioskodawcy</label>
-                <input type="text" id="id-wnioskodawcy" name="wnioskodawca">
+                <input type="text" id="id-wnioskodawcy" name="wnioskodawca" max="9999999999">
                 <label for="#nazwisko">Nazwisko</label>
-                <input type="text" id="nazwisko" name="nazwisko">
+                <input type="text" id="nazwisko" name="nazwisko" maxlength="30">
                 <label for="#imie">Imię</label>
-                <input type="text" id="imie" name="imie">
+                <input type="text" id="imie" name="imie" maxlength="30">
                 <label for="#data-urodzenia">Data urodzenia</label>
-                <input type="date" id="data-urodzenia" name="data_urodzenia">
+                <input type="date" id="data-urodzenia" name="data_urodzenia" max="<?php echo date('Y-m-d'); ?>">
                 <label for="#data-zalozenia">Data założenia sprawy</label>
-				<input type="date" id="data-zalozenia" name="data_zalozenia">
+				<input type="date" id="data-zalozenia" name="data_zalozenia" max="<?php echo date('Y-m-d'); ?>">
 				
                 <label for="#cel">Cel sprawy</label>
                 <select id="cel" name="cel">

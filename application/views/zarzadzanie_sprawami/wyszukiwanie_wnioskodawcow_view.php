@@ -24,14 +24,17 @@
 		<div class="wyszukaj-wnioskodawce">
             <form method="post" action="<?php echo site_url('zarzadzanie_sprawami/wyszukaj_wnioskodawcow'); ?>">
                 <label for="#id-w">ID wnioskodawcy</label>
-                <input type="text" id="id-w" name='id'>
+				<input type="number" id="id-w" name='id' max="9999999999">
+				
 				<label for="#nazwisko-w">Nazwisko</label>
-                <input type="text" id="nazwisko-w" name="nazwisko">
+				<input type="text" id="nazwisko-w" name="nazwisko" maxlength="30">
+				
                 <label for="#imie-w">Imię</label>
-                <input type="text" id="imie-w" name="imie">
+				<input type="text" id="imie-w" name="imie" maxlength="30">
+				
                 <label for="#data-urodzenia-w">Data urodzenia</label>
-                <input type="date" id="data-urodzenia-w" name="data_urodzenia">
-
+				<input type="date" id="data-urodzenia-w" name="data_urodzenia" max="<?php echo date('Y-m-d'); ?>">
+				
             	<input type="submit" id="submit" value="Wyszukaj">
 				<input type="reset" id="reset" value="Wyczyść">
             </form>
