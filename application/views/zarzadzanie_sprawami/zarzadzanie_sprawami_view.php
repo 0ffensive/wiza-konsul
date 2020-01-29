@@ -32,7 +32,7 @@
                 <label for="#id-lokalne">ID lokalne sprawy</label>
                 <input type="number" id="id-lokalne" name="id_lokalne" value="<?php echo set_value('id_lokalne') ?>" max="9999999999">
                 <label for="#id-globalne">ID globalne sprawy</label>
-                <input type="numer" id="id-globalne" name="id_globalne" value="<?php echo set_value('id_globalne') ?>" max="9999999999">
+                <input type="number" id="id-globalne" name="id_globalne" value="<?php echo set_value('id_globalne') ?>" max="9999999999">
                 <label for="#id-wnioskodawcy">ID wnioskodawcy</label>
                 <input type="number" id="id-wnioskodawcy" name="wnioskodawca" value="<?php echo set_value('wnioskodawca') ?>" max="9999999999">
                 <label for="#nazwisko">Nazwisko</label>
