@@ -52,13 +52,13 @@ class Linki extends CI_Controller {
 		
 		$this->pagination->initialize($config);
 		$strona = $this->uri->segment(3);
+		//tutaj
         $dane["sprawy"] = $this->sprawa_m->pobierz_dane_paginacja($config["per_page"], $strona);
 		$dane["paginacja"] = $this->pagination->create_links();
 		
 		session_start();
 		$_SESSION["id_lokalne"] = NULL;
 		$id_pracownika_placowki = $_SESSION["id_pracownika_placowki"];
-		//$dane['dane'] = $this->sprawa_m->pobierz_dane_lista();
 		$dane['czy_kierownik'] = $this->pracownik_m->sprawdz_czy_kierownictwo($id_pracownika_placowki);
 		$this->load->view('zarzadzanie_sprawami/zarzadzanie_sprawami_view', $dane);
 	}
