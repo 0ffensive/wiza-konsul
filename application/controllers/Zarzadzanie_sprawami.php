@@ -179,6 +179,7 @@ class Zarzadzanie_sprawami extends CI_Controller {
 
 			if($this->form_validation->run() == FALSE){
 
+				$dane['sprawa_stale'] = $this->sprawa_m->pobierz_stale_dane_sprawy($_SESSION["id_lokalne"]);
 				$dane['sprawa'] = NULL;
 				$dane['kraje'] = $this->kraj_m->pobierz_dane();
 				$dane['typy'] = $this->typ_dok_m->pobierz_dane();

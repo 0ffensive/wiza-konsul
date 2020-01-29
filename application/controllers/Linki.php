@@ -80,6 +80,7 @@ class Linki extends CI_Controller {
 		session_start();
 		$_SESSION["id_lokalne"] = $this->input->post("id_lokalne");
 
+		$dane['sprawa_stale'] = $this->sprawa_m->pobierz_stale_dane_sprawy($_SESSION["id_lokalne"]);
 		$dane['sprawa'] = $this->sprawa_m->pobierz_dane_sprawy($_SESSION["id_lokalne"]);
 		$dane['kraje'] = $this->kraj_m->pobierz_dane();
 		$dane['typy'] = $this->typ_dok_m->pobierz_dane();

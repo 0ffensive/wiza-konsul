@@ -5,6 +5,16 @@
 
 class Sprawa_model extends CI_Model {
 
+	public function pobierz_stale_dane_sprawy($id_lokalne_sprawy){
+		$this->db->select('S.id_lokalne, S.id_globalne, S.placowka, S.data_zalozenia, S.cel, S.czy_rozstrzygnieta');
+		$this->db->from('sprawy S');
+		$this->db->where('S.id_lokalne',$id_lokalne_sprawy);
+
+		$zapytanie = $this->db->get();
+		
+		return $zapytanie->result()[0];
+	}
+
 	public function pobierz_dane_sprawy($id_lokalne_sprawy){
 		$this->db->select('S.id_lokalne, S.id_globalne, S.placowka, S.data_zalozenia, S.cel, S.czy_rozstrzygnieta,
 							D.nazwisko, D.imie, S.plec, D.data_urodzenia, D.obywatelstwo, S.narodowosc, D.typ_dokumentu_identyfikacyjnego, D.nr_dokumentu_identyfikacyjnego,
