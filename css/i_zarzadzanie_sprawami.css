@@ -75,3 +75,11 @@ i.fas {
 h2{
 	margin: 30px 0;
 }
+
+p#paginacja{
+	color: black;
+}
+
+p#paginacja > * {
+	margin: 3px;
+}

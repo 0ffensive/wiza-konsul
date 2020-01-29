@@ -111,3 +111,13 @@ form.inline-form {
 form.inline-form input {
 	width: 250px;
 }
+
+a:link {
+	text-decoration: none;
+	color: black;
+}
+
+a:visited {
+	text-decoration: none;
+	color: black;
+}
