@@ -18,17 +18,17 @@
 			<form id="edytowanie-sprawy" method="post" action="<?php echo site_url('zarzadzanie_sprawami/edytowanie_sprawy'); ?>">
 				<div class="dane-sprawy">
 					<label for="#id-lokalne">ID lokalne</label>
-					<input disabled type="text" id="id-lokalne" name="id_lokalne" value="<?php echo $sprawa_stale->id_lokalne; ?>">
+					<input disabled type="text" id="id-lokalne" value="<?php echo $sprawa_stale->id_lokalne; ?>">
 					<label for="#id-globalne">ID globalne</label>
-					<input disabled type="text" id="id-globalne" name="id_globalne" value="<?php echo $sprawa_stale->id_globalne; ?>" placeholder="-">
+					<input disabled type="text" id="id-globalne" value="<?php echo $sprawa_stale->id_globalne; ?>" placeholder=" ― ">
 					<label for="#placowka">ID placówki</label>
-					<input disabled type="text" id="placowka" name="placowka" value="<?php echo $sprawa_stale->placowka; ?>">
+					<input disabled type="text" id="placowka" value="<?php echo $sprawa_stale->placowka; ?>">
 					<label for="#data">Data załozenia</label>
-					<input disabled type="text" id="data" name="data_zalozenia" value="<?php echo $sprawa_stale->data_zalozenia; ?>">
+					<input disabled type="text" id="data" value="<?php echo $sprawa_stale->data_zalozenia; ?>">
 					<label for="#cel">Cel sprawy</label>
-					<input disabled type="text" id="cel" name="cel" value="<?php echo $sprawa_stale->cel; ?>">
+					<input disabled type="text" id="cel" value="<?php echo $sprawa_stale->cel; ?>">
 					<label for="#rozstrzygnieta">Rozstrzygnieta</label>
-					<input disabled type="text" id="rozstrzygnieta" name="czy_rozstrzygnieta" value="<?php echo ($sprawa_stale->czy_rozstrzygnieta == 0 ? "Nie" : "Tak") ?>">
+					<input disabled type="text" id="rozstrzygnieta" value="<?php echo ($sprawa_stale->czy_rozstrzygnieta == 0 ? "Nie" : "Tak") ?>">
 				</div>
 				<div class="kontener-dodanie-sprawy">
 					<div>
