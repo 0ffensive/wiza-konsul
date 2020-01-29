@@ -370,6 +370,43 @@ class Sprawa_model extends CI_Model {
 		$this->db->update('sprawy', $dane_sprawy);
 	}
 
+
+
+	public function usun_sprawe($id_lokalne){
+		$sprawa = $this->znajdz_sprawe($id_lokalne);
+
+		if ($sprawa->przodek_pierwszy != NULL){
+			$przodek_pierwszy = $this->znajdz_przodka($sprawa->przodek_pierwszy);
+	
+			$this->db->where('id', $przodek_pierwszy->dane_osobowe);
+			$this->db->delete('dane_osobowe');
+
+			$this->db->where('id', $sprawa->przodek_pierwszy);
+			$this->db->delete('przodkowie');
+		}
+
+		if ($sprawa->przodek_drugi != NULL){
+			$przodek_drugi = $this->znajdz_przodka($sprawa->przodek_drugi);
+
+			$this->db->where('id', $przodek_drugi->dane_osobowe);
+			$this->db->delete('dane_osobowe');
+
+			$this->db->where('id', $sprawa->przodek_drugi);
+			$this->db->delete('przodkowie');
+		}
+
+		$this->db->where('id', $sprawa->dane_osobowe);
+		$this->db->delete('dane_osobowe');
+
+		$this->db->where('id', $sprawa->adres_zamieszkania);
+		$this->db->delete('adresy');
+
+		$this->db->where('id_lokalne', $id_lokalne);
+		$this->db->delete('sprawy');
+	}
+
+
+
 	public function sprawdz_czy_rozstrzygnieta($id_lokalne) {
 		$this->db->select('czy_rozstrzygnieta');
 		$this->db->from('sprawy');

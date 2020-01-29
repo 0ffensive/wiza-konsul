@@ -100,11 +100,6 @@ class Linki extends CI_Controller {
 		$this->load->view('zarzadzanie_sprawami/edytowanie_sprawy_view', $dane);
 	}
 
-	function usun_sprawe(){
-
-	}
-
-
 	// Zarzadzanie dokumentami
 	function do_zarzadzanie_dokumentami(){
 		$this->load->view('zarzadzanie_dokumentami/zarzadzanie_dokumentami_view');

@@ -120,7 +120,8 @@
 									<input type="submit" value="Edytuj" '. ($value->czy_rozstrzygnieta == 1 ? "disabled" : "").'>
 								</form>
 							<td>
-								<form method="post" action="'.site_url('linki/usun_sprawe').'">
+								<form method="post" action="'.site_url('zarzadzanie_sprawami/usun_sprawe').'">
+									<input type="hidden" value='.$value->id_lokalne.' name="id_lokalne">
 									<input type="submit" value="Usuń">
 								</form>
 						';
@@ -132,11 +133,6 @@
 		<div>
 			<p id="paginacja"><?php echo $paginacja; ?></p>
 		</div>
-
-		<!-- <div>
-			<i class="fas fa-angle-left"></i>
-			<i class="fas fa-angle-right"></i>
-		</div> -->
     </div>
 </body>
 
