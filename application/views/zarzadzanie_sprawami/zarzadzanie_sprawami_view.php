@@ -125,13 +125,14 @@
 					}
 				?>
 		</table>
-
-		<p><?php echo $paginacja; ?></p>
-
 		<div>
+			<p id="paginacja"><?php echo $paginacja; ?></p>
+		</div>
+
+		<!-- <div>
 			<i class="fas fa-angle-left"></i>
 			<i class="fas fa-angle-right"></i>
-		</div>
+		</div> -->
     </div>
 </body>
 
