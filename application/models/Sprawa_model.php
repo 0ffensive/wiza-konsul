@@ -182,8 +182,41 @@ class Sprawa_model extends CI_Model {
 
 
 	public function dodaj_sprawe($input_dane_sprawy,$input_dane_wnioskodawcy,$input_dane_adresu_zamieszkania,$input_dane_przodka_pierwszego,$input_dane_przodka_drugiego){
-		foreach ($input_dane_sprawy as $klucz => $wartosc)
+		session_id() == '' ? session_start() : "" ;
 
+		foreach ($input_dane_sprawy as $klucz => $wartosc){
+			if ($wartosc == NULL){
+				return false;
+			}
+		}
+
+		foreach ($input_dane_wnioskodawcy as $klucz => $wartosc){
+			if ($wartosc == NULL){
+				return false;
+			}
+		}
+
+		foreach ($input_dane_adresu_zamieszkania as $klucz => $wartosc){
+			if ($wartosc == NULL && ($klucz != "ulica" || $klucz != "nr_lokalu")){
+				return false;
+			}
+		}
+
+		if ($input_dane_przodka_pierwszego != NULL){
+			foreach ($input_dane_przodka_pierwszego as $klucz => $wartosc){
+				if ($wartosc == NULL){
+					return false;
+				}
+			}
+		}
+
+		if ($input_dane_przodka_drugiego != NULL){
+			foreach ($input_dane_przodka_drugiego as $klucz => $wartosc){
+				if ($wartosc == NULL){
+					return false;
+				}
+			}
+		}
 
 		$dane_sprawy = array(
 			"placowka" => $this->znajdz_placowke($_SESSION["id_pracownika_placowki"]),
@@ -288,6 +321,7 @@ class Sprawa_model extends CI_Model {
 			$dane_sprawy["wnioskodawca"] = $_SESSION["id_wnioskodawcy"];
 		}
 		$this->db->insert('sprawy', $dane_sprawy);
+		return true;
 	}
 
 
@@ -449,7 +483,6 @@ class Sprawa_model extends CI_Model {
 		$this->db->where('id_lokalne', $id_lokalne);
 		$this->db->delete('sprawy');
 	}
-
 
 
 	public function sprawdz_czy_rozstrzygnieta($id_lokalne) {
