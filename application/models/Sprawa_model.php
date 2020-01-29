@@ -182,6 +182,8 @@ class Sprawa_model extends CI_Model {
 
 
 	public function dodaj_sprawe($input_dane_sprawy,$input_dane_wnioskodawcy,$input_dane_adresu_zamieszkania,$input_dane_przodka_pierwszego,$input_dane_przodka_drugiego){
+		foreach ($input_dane_sprawy as $klucz => $wartosc)
+
 
 		$dane_sprawy = array(
 			"placowka" => $this->znajdz_placowke($_SESSION["id_pracownika_placowki"]),

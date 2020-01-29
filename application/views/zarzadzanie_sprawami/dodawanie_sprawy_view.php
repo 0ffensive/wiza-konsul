@@ -251,7 +251,7 @@
 				<div>
 					<div id="przyciski-zatwierdzajace">
 						<input id="submit" name ="submit" type="submit" value="Dodaj">
-						<input id="reset" name ="reset" type="submit" value="Anuluj">
+						<input id="reset" name ="submit" type="submit" value="Anuluj">
 					</div>
 				</div>   
 			</form>

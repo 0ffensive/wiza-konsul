@@ -120,7 +120,7 @@
 									<input type="submit" value="Edytuj" '. ($value->czy_rozstrzygnieta == 1 ? "disabled" : "").'>
 								</form>
 							<td>
-								<form method="post" action="'.site_url('zarzadzanie_sprawami/usun_sprawe').'">
+								<form method="post" action="'.site_url('zarzadzanie_sprawami/usuwanie_sprawy').'">
 									<input type="hidden" value='.$value->id_lokalne.' name="id_lokalne">
 									<input type="submit" value="Usuń">
 								</form>
