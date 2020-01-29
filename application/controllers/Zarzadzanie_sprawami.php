@@ -142,7 +142,6 @@ class Zarzadzanie_sprawami extends CI_Controller {
 		} else if ($this->input->post('submit') == "Zatwierdź") {
 			
 			//validation rules
-			$this->form_validation->set_rules("cel","Cel sprawy","required");
 			$this->form_validation->set_rules("nazwisko","Nazwisko","required");
 			$this->form_validation->set_rules("imie","Imię","required");
 			$this->form_validation->set_rules("plec","Płeć","required");
