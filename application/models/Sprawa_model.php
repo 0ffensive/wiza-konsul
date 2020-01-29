@@ -158,7 +158,7 @@ class Sprawa_model extends CI_Model {
 		$this->db->where('pracownik_placowki', $id_pracownika_placowki);
 		$zapytanie = $this->db->get();
 
-		return $zapytanie->result()[0]->placowka;
+		return $zapytanie->row()->placowka;
 	}
 
 	private function znajdz_wnioskodawce($id_wnioskodawcy){
