@@ -99,7 +99,6 @@ class Zarzadzanie_sprawami extends CI_Controller {
 				$pola_adres_zamieszkania = array('ulica','nr_domu','nr_lokalu','kod_pocztowy','miejscowosc','panstwo');
 				$pola_dane_pierwszego_przodka = array('nazwisko1','imie1','data_urodzenia1','pokrewienstwo1','obywatelstwo1','typ_dokumentu_identyfikacyjnego1','nr_dokumentu_identyfikacyjnego1');
 				$pola_dane_drugiego_przodka = array('nazwisko2','imie2','data_urodzenia2','pokrewienstwo2','obywatelstwo2','typ_dokumentu_identyfikacyjnego2','nr_dokumentu_identyfikacyjnego2');
-				$pola = array($pola_sprawa,$pola_dane_wnioskodawcy,$pola_adres_zamieszkania,$pola_dane_pierwszego_przodka,$pola_dane_drugiego_przodka);
 				$dane = array(array(), array(), array(), array(), array());
 
 				foreach ($pola_sprawa as $pole){
@@ -187,53 +186,49 @@ class Zarzadzanie_sprawami extends CI_Controller {
 
 			if($this->form_validation->run() == FALSE){
 
+				$dane['sprawa_stale'] = $this->sprawa_m->pobierz_stale_dane_sprawy($_SESSION["id_lokalne"]);
 				$dane['sprawa'] = NULL;
 				$dane['kraje'] = $this->kraj_m->pobierz_dane();
 				$dane['typy'] = $this->typ_dok_m->pobierz_dane();
 				$this->load->view('zarzadzanie_sprawami/edytowanie_sprawy_view', $dane);
 
 			} else {
-				// $pola_sprawa = array('cel');
-				// $pola_dane_wnioskodawcy = array('nazwisko','imie','plec','data_urodzenia','obywatelstwo','narodowosc','typ_dokumentu_identyfikacyjnego','nr_dokumentu_identyfikacyjnego');
-				// $pola_adres_zamieszkania = array('ulica','nr_domu','nr_lokalu','kod_pocztowy','miejscowosc','panstwo');
-				// $pola_dane_pierwszego_przodka = array('nazwisko1','imie1','data_urodzenia1','pokrewienstwo1','obywatelstwo1','typ_dokumentu_identyfikacyjnego1','nr_dokumentu_identyfikacyjnego1');
-				// $pola_dane_drugiego_przodka = array('nazwisko2','imie2','data_urodzenia2','pokrewienstwo2','obywatelstwo2','typ_dokumentu_identyfikacyjnego2','nr_dokumentu_identyfikacyjnego2');
-				// $pola = array($pola_sprawa,$pola_dane_wnioskodawcy,$pola_adres_zamieszkania,$pola_dane_pierwszego_przodka,$pola_dane_drugiego_przodka);
-				// $dane = array(array(), array(), array(), array(), array());
+				$pola_dane_wnioskodawcy = array('nazwisko','imie','plec','data_urodzenia','obywatelstwo','narodowosc','typ_dokumentu_identyfikacyjnego','nr_dokumentu_identyfikacyjnego');
+				$pola_adres_zamieszkania = array('ulica','nr_domu','nr_lokalu','kod_pocztowy','miejscowosc','panstwo');
+				$pola_dane_pierwszego_przodka = array('nazwisko1','imie1','data_urodzenia1','pokrewienstwo1','obywatelstwo1','typ_dokumentu_identyfikacyjnego1','nr_dokumentu_identyfikacyjnego1');
+				$pola_dane_drugiego_przodka = array('nazwisko2','imie2','data_urodzenia2','pokrewienstwo2','obywatelstwo2','typ_dokumentu_identyfikacyjnego2','nr_dokumentu_identyfikacyjnego2');
+				$dane = array(array(), array(), array(), array());
 
-				// foreach ($pola_sprawa as $pole){
-				// 	$dane[0] += array($pole => ($this->input->post($pole)));
-				// }
-				// foreach ($pola_dane_wnioskodawcy as $pole){
-				// 	$dane[1] += array($pole => ($this->input->post($pole)));
-				// }
-				// foreach ($pola_adres_zamieszkania as $pole){
-				// 	$dane[2] += array($pole => ($this->input->post($pole)));
-				// }
+				foreach ($pola_dane_wnioskodawcy as $pole){
+					$dane[0] += array($pole => ($this->input->post($pole)));
+				}
+				foreach ($pola_adres_zamieszkania as $pole){
+					$dane[1] += array($pole => ($this->input->post($pole)));
+				}
 
-				// if ($this->input->post("przodek_pierwszy")){
-				// 	foreach ($pola_dane_pierwszego_przodka as $pole){
-				// 		$dane[3] += array(substr($pole, 0, -1) => ($this->input->post($pole)));
-				// 	}
-				// } else {
-				// 	$dane[3] = NULL;
-				// }
+				if ($this->input->post("przodek_pierwszy")){
+					foreach ($pola_dane_pierwszego_przodka as $pole){
+						$dane[2] += array(substr($pole, 0, -1) => ($this->input->post($pole)));
+					}
+				} else {
+					$dane[2] = NULL;
+				}
 
-				// if ($this->input->post("przodek_drugi")){
-				// 	foreach ($pola_dane_drugiego_przodka as $pole){
-				// 		$dane[4] += array(substr($pole, 0, -1) => ($this->input->post($pole)));
-				// 	}
-				// } else {
-				// 	$dane[4] = NULL;
-				// }
+				if ($this->input->post("przodek_drugi")){
+					foreach ($pola_dane_drugiego_przodka as $pole){
+						$dane[3] += array(substr($pole, 0, -1) => ($this->input->post($pole)));
+					}
+				} else {
+					$dane[3] = NULL;
+				}
 
-				// $this->sprawa_m->dodaj_sprawe($dane[0],$dane[1],$dane[2],$dane[3],$dane[4]);
+				$this->sprawa_m->edytuj_sprawe($dane[0],$dane[1],$dane[2],$dane[3]);
 				
-				// $dane['dane'] = $this->sprawa_m->pobierz_dane_lista();
-				// $this->load->view('zarzadzanie_sprawami/zarzadzanie_sprawami_view',$dane);
+				$dane['dane'] = $this->sprawa_m->pobierz_dane_lista();
+				$this->load->view('zarzadzanie_sprawami/zarzadzanie_sprawami_view',$dane);
 			}
 		}
-		$_SESSION["id_wnioskodawcy"] = NULL;
+		$_SESSION["id_lokalne"] = NULL;
 	}
 
 

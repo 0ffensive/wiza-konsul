@@ -5,6 +5,16 @@
 
 class Sprawa_model extends CI_Model {
 
+	public function pobierz_stale_dane_sprawy($id_lokalne_sprawy){
+		$this->db->select('S.id_lokalne, S.id_globalne, S.placowka, S.data_zalozenia, S.cel, S.czy_rozstrzygnieta');
+		$this->db->from('sprawy S');
+		$this->db->where('S.id_lokalne',$id_lokalne_sprawy);
+
+		$zapytanie = $this->db->get();
+		
+		return $zapytanie->result()[0];
+	}
+
 	public function pobierz_dane_sprawy($id_lokalne_sprawy){
 		$this->db->select('S.id_lokalne, S.id_globalne, S.placowka, S.data_zalozenia, S.cel, S.czy_rozstrzygnieta,
 							D.nazwisko, D.imie, S.plec, D.data_urodzenia, D.obywatelstwo, S.narodowosc, D.typ_dokumentu_identyfikacyjnego, D.nr_dokumentu_identyfikacyjnego,
@@ -96,7 +106,16 @@ class Sprawa_model extends CI_Model {
 		return $zapytanie->result();
 	}
 
-	public function znajdz_placowke($id_pracownika_placowki){
+	private function znajdz_sprawe($id_lokalne_sprawy){
+		$this->db->select('*');
+		$this->db->from('sprawy');
+		$this->db->where('id_lokalne', $id_lokalne_sprawy);
+		$zapytanie = $this->db->get();
+		
+		return $zapytanie->result()[0];
+	}
+
+	private function znajdz_placowke($id_pracownika_placowki){
 		$this->db->select('placowka');
 		$this->db->from('zatrudnienia');
 		$this->db->where('pracownik_placowki', $id_pracownika_placowki);
@@ -105,7 +124,7 @@ class Sprawa_model extends CI_Model {
 		return $zapytanie->result()[0]->placowka;
 	}
 
-	public function znajdz_wnioskodawce($id_wnioskodawcy){
+	private function znajdz_wnioskodawce($id_wnioskodawcy){
 		$this->db->select('*');
 		$this->db->from('wnioskodawcy');
 		$this->db->where('id',$id_wnioskodawcy);
@@ -113,6 +132,8 @@ class Sprawa_model extends CI_Model {
 		
 		return $zapytanie->result()[0];
 	}
+
+
 
 	public function dodaj_sprawe($input_dane_sprawy,$input_dane_wnioskodawcy,$input_dane_adresu_zamieszkania,$input_dane_przodka_pierwszego,$input_dane_przodka_drugiego){
 
@@ -218,8 +239,49 @@ class Sprawa_model extends CI_Model {
 			$this->db->update('wnioskodawcy', $dane_wnioskodawcy);
 			$dane_sprawy["wnioskodawca"] = $_SESSION["id_wnioskodawcy"];
 		}
-
 		$this->db->insert('sprawy', $dane_sprawy);
+	}
+
+
+
+	public function edytuj_sprawe($input_dane_wnioskodawcy,$input_dane_adresu_zamieszkania,$input_dane_przodka_pierwszego,$input_dane_przodka_drugiego){
+		$dane_sprawy = array(
+			"plec" => $input_dane_wnioskodawcy["plec"],
+			"narodowosc" => $input_dane_wnioskodawcy["narodowosc"]
+		);
+
+		$sprawa = $this->znajdz_sprawe($_SESSION[id_lokalne]);
+
+		$sprawa->przodek_pierwszy;
+		$sprawa->przodek_drugi;
+
+
+		//updatowanie wnioskodawcy
+		$wnioskodawca = $this->znajdz_wnioskodawce($sprawa->wnioskodawca);
+			
+		$dane_osobowe_wnioskodawcy = $input_dane_wnioskodawcy;
+		unset($dane_osobowe_wnioskodawcy["plec"]);
+		unset($dane_osobowe_wnioskodawcy["narodowosc"]);
+
+		$this->db->where('id', $wnioskodawca->dane_osobowe);
+		$this->db->update('dane_osobowe', $dane_osobowe_wnioskodawcy);
+
+		$this->db->where('id', $wnioskodawca->adres_zamieszkania);
+		$this->db->update('adresy', $input_dane_adresu_zamieszkania);
+
+		$dane_wnioskodawcy = array(
+			"plec" => $input_dane_wnioskodawcy["plec"],
+			"narodowosc" => $input_dane_wnioskodawcy["narodowosc"]
+		);
+
+		$this->db->where('id', $wnioskodawca->id);
+		$this->db->update('wnioskodawcy', $dane_wnioskodawcy);
+		$dane_sprawy["wnioskodawca"] = $_SESSION["id_wnioskodawcy"];	
+
+		//
+		$sprawa->dane_osobowe;
+		$sprawa->adres_zamieszkania;
+
 	}
 
 	public function sprawdz_czy_rozstrzygnieta($id_lokalne) {
