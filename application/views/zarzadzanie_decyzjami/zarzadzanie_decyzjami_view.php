@@ -42,8 +42,8 @@
                     echo '<div class="komunikat-brak">Brak decyzji do wyświetlenia</div>';
                 }?>
 
-                <form method="post" action="'. site_url('linki/do_dodawanie_decyzji').'">
-                    <input type="submit" value="Dodaj nową decyzję" <?php echo ($czy_rozstrzygnieta->czy_rozstrzygnieta == 1 ? "disabled" : "")?>>
+                <form method="post" action="<?php echo site_url('linki/do_dodawanie_decyzji'); ?>">
+                    <input type="submit" value="Dodaj nową decyzję" <?php echo ($czy_rozstrzygnieta ? "disabled" : "")?>>
                 </form>
             </div>
         </div>
