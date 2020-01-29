@@ -197,8 +197,10 @@ class Sprawa_model extends CI_Model {
 		}
 
 		foreach ($input_dane_adresu_zamieszkania as $klucz => $wartosc){
-			if ($wartosc == NULL && ($klucz != "ulica" || $klucz != "nr_lokalu")){
-				return false;
+			if ($wartosc == NULL){
+				if($klucz != "ulica" && $klucz != "nr_lokalu"){
+					return false;
+				}
 			}
 		}
 
