@@ -10,6 +10,8 @@ class Zarzadzanie_sprawami extends CI_Controller {
 		$this->load->model('Wnioskodawca_model', 'wnioskodawca_m');
 		$this->load->model('Kraj_model', 'kraj_m');
 		$this->load->model('Typ_dokumentu_identyfikacyjnego_model', 'typ_dok_m');
+		$this->load->model('Pracownik_model', 'pracownik_m');
+
 
 		$this->load->helper(array('url', 'form'));
 		$this->load->library('form_validation');
@@ -34,8 +36,10 @@ class Zarzadzanie_sprawami extends CI_Controller {
 			}
 		}
 		
-		$wyniki['dane'] = $this->sprawa_m->wyszukaj_sprawy($parametry_wyszukiwania, $data_zalozenia);
-		$this->load->view('zarzadzanie_sprawami/zarzadzanie_sprawami_view', $wyniki);
+		$dane['dane'] = $this->sprawa_m->wyszukaj_sprawy($parametry_wyszukiwania, $data_zalozenia);
+		$id_pracownika_placowki = $_SESSION["id_pracownika_placowki"];
+		$dane['czy_kierownik'] = $this->pracownik_m->sprawdz_czy_kierownictwo($id_pracownika_placowki);
+		$this->load->view('zarzadzanie_sprawami/zarzadzanie_sprawami_view', $dane);
 	}
 
 	function dodawanie_sprawy(){
@@ -126,6 +130,8 @@ class Zarzadzanie_sprawami extends CI_Controller {
 				$this->sprawa_m->dodaj_sprawe($dane[0],$dane[1],$dane[2],$dane[3],$dane[4]);
 				
 				$dane['dane'] = $this->sprawa_m->pobierz_dane_lista();
+				$id_pracownika_placowki = $_SESSION["id_pracownika_placowki"];
+				$dane['czy_kierownik'] = $this->pracownik_m->sprawdz_czy_kierownictwo($id_pracownika_placowki);
 				$this->load->view('zarzadzanie_sprawami/zarzadzanie_sprawami_view',$dane);
 			}
 		}
@@ -137,6 +143,8 @@ class Zarzadzanie_sprawami extends CI_Controller {
 		if ($this->input->post('reset') == "Anuluj"){
 
 			$dane['dane'] = $this->sprawa_m->pobierz_dane_lista();
+			$id_pracownika_placowki = $_SESSION["id_pracownika_placowki"];
+			$dane['czy_kierownik'] = $this->pracownik_m->sprawdz_czy_kierownictwo($id_pracownika_placowki);
 			$this->load->view('zarzadzanie_sprawami/zarzadzanie_sprawami_view',$dane);
 
 		} else if ($this->input->post('submit') == "Zatwierdź") {

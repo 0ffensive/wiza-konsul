@@ -97,7 +97,7 @@
 							<td>'.$value->data_urodzenia.' 
 							<td>'.$value->data_zalozenia.' 
 							<td>'.$value->cel.' 
-							<td>'.($value->czy_rozstrzygnieta == 1 ? "Tak" : "Nie").'
+							<td>'.$value->decyzje.'
 							<td>'.(!$czy_kierownik ? '
 								<form class="wybierz-form" method="post" action='.site_url("linki/do_zarzadzanie_decyzjami").'>
 									<input type="hidden" value='.$value->id_lokalne.' name="id_lokalne">

@@ -40,10 +40,15 @@ class Sprawa_model extends CI_Model {
 		return $zapytanie->result()[0];
 	}
 
-	public function pobierz_dane_lista(){
-		$this->db->select('sprawy.id_globalne, sprawy.id_lokalne, sprawy.wnioskodawca, 
-						   dane_osobowe.nazwisko, dane_osobowe.imie, dane_osobowe.data_urodzenia, 
-						   sprawy.data_zalozenia, sprawy.cel, sprawy.czy_rozstrzygnieta');
+	public function pobierz_dane(){
+		$this->db->select('sprawy.id_globalne, 
+							sprawy.id_lokalne, 
+							sprawy.wnioskodawca, 
+							dane_osobowe.nazwisko, 
+							dane_osobowe.imie, dane_osobowe.data_urodzenia, 
+							sprawy.data_zalozenia, 
+							sprawy.cel, 
+							sprawy.czy_rozstrzygnieta');
 		$this->db->from('sprawy');							
 		$this->db->join('dane_osobowe', 'dane_osobowe.id = sprawy.dane_osobowe', 'left');
 		$this->db->order_by('sprawy.id_lokalne','ASC');
@@ -52,17 +57,36 @@ class Sprawa_model extends CI_Model {
 		return $zapytanie->result();
 	}
 
-	public function pobierz_dane_lista_i(){
-		$this->db->select('sprawy.id_globalne, sprawy.id_lokalne, sprawy.wnioskodawca, 
-						   dane_osobowe.nazwisko, dane_osobowe.imie, dane_osobowe.data_urodzenia, 
-						   sprawy.data_zalozenia, sprawy.cel, sprawy.czy_rozstrzygnieta');
+	public function pobierz_dane_lista(){
+		$this->db->select('sprawy.id_globalne, 
+							sprawy.id_lokalne,
+							sprawy.wnioskodawca, 
+							dane_osobowe.nazwisko,
+							dane_osobowe.imie,
+							dane_osobowe.data_urodzenia, 
+							sprawy.data_zalozenia,
+							sprawy.cel, 
+							sprawy.czy_rozstrzygnieta,
+							case when count(*) = 0 then "Brak decyzji"
+								when sprawy.czy_rozstrzygnieta = 0 then "Do uzupełnienia"
+								else ""
+								end as decyzje');
 		$this->db->from('sprawy');							
 		$this->db->join('dane_osobowe', 'dane_osobowe.id = sprawy.dane_osobowe', 'left');
-		$this->db->join('decyzje', 'decyzje.id = sprawy.dane_osobowe', 'left');
+		$this->db->join('decyzje', 'decyzje.sprawa = sprawy.id_lokalne', 'full');
+		$this->db->group_by('sprawy.id_globalne, 
+							sprawy.id_lokalne,
+							sprawy.wnioskodawca, 
+							dane_osobowe.nazwisko,
+							dane_osobowe.imie,
+							dane_osobowe.data_urodzenia, 
+							sprawy.data_zalozenia,
+							sprawy.cel, 
+		    				sprawy.czy_rozstrzygnieta');
 		$this->db->order_by('sprawy.id_lokalne','ASC');
 		$zapytanie = $this->db->get();
 		
-		return $zapytanie->result();
+		return $zapytanie->result();		
 	}
 
 	public function wyszukaj_sprawy($parametry_wyszukiwania, $data_zalozenia){
