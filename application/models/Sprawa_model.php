@@ -197,8 +197,10 @@ class Sprawa_model extends CI_Model {
 		}
 
 		foreach ($input_dane_adresu_zamieszkania as $klucz => $wartosc){
-			if ($wartosc == NULL && ($klucz != "ulica" || $klucz != "nr_lokalu")){
-				return false;
+			if ($wartosc == NULL){
+				if($klucz != "ulica" && $klucz != "nr_lokalu"){
+					return false;
+				}
 			}
 		}
 
@@ -490,8 +492,10 @@ class Sprawa_model extends CI_Model {
 		$this->db->from('sprawy');
 		$this->db->where($id_lokalne);
 		$zapytanie = $this->db->get();
-		
-		return $zapytanie->row()->czy_rozstrzygnieta == 1 ? true : false;
+		if ($zapytanie->row() == NULL){
+			return false;
+		}
+		return $zapytanie->row()->czy_rozstrzygnieta;
 	}
 
 }
