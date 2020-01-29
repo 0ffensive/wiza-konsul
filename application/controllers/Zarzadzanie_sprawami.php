@@ -158,6 +158,11 @@ class Zarzadzanie_sprawami extends CI_Controller {
 				$this->sprawa_m->dodaj_sprawe($dane[0],$dane[1],$dane[2],$dane[3],$dane[4]);
 				
 				$this->do_zarzadzania_sprawami();
+				
+				$alert = "Sprawa dodana pomyślnie.";
+
+				echo "<script type='text/javascript'>alert('$alert');</script>";
+
 				$_SESSION["id_wnioskodawcy"] = NULL;
 			}
 		}
@@ -272,17 +277,15 @@ class Zarzadzanie_sprawami extends CI_Controller {
 			}
 		}
 		
-		$dane['wnioskodawcy'] = $this->wnioskodawca_m->wyszukaj_wnioskodawcow($parametry_wyszukiwania);
+		$dane['wnioskodawcy'] = $this->wnioskodawca_m->znajdz_wnioskodawce($parametry_wyszukiwania);
 		$this->load->view('zarzadzanie_sprawami/wyszukiwanie_wnioskodawcow_view', $dane);
 	}
 
 	function wybierz_wnioskodawce(){
 		session_start();
 		$_SESSION["id_wnioskodawcy"] = $this->input->post("id");
-
-		$parametry_wyszukiwania = array("wnioskodawcy.id" => ($this->input->post("id")));
-
-		$dane['wnioskodawca'] = $this->wnioskodawca_m->wyszukaj_wnioskodawcow($parametry_wyszukiwania)[0];
+		$id_wnioskodawcy = array("wnioskodawcy.id" => ($this->input->post("id")));
+		$dane['wnioskodawca'] = $this->wnioskodawca_m->znajdz_wnioskodawce($id_wnioskodawcy);
 		$dane['kraje'] = $this->kraj_m->pobierz_dane();
 		$dane['typy'] = $this->typ_dok_m->pobierz_dane();
 		$this->load->view('zarzadzanie_sprawami/dodawanie_sprawy_view', $dane);

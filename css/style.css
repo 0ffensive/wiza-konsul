@@ -122,3 +122,18 @@ a:visited {
 	text-decoration: none;
 	color: black;
 }
+
+.komunikat-brak {
+    text-align: center;
+    font-size: large;
+    padding: 15px;
+    border-color: #82292C;
+    border: solid 1px;
+    border-radius: 6px;
+    background-color: rgb(231, 173, 175);
+    color: #82292C;
+    margin-bottom: 30px;
+    margin-top: 30px;
+
+
+}

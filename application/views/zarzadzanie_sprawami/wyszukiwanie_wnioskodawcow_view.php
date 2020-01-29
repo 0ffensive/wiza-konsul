@@ -23,45 +23,52 @@
 		</form>
 		<div class="wyszukaj-wnioskodawce">
             <form method="post" action="<?php echo site_url('zarzadzanie_sprawami/wyszukaj_wnioskodawcow'); ?>">
-                <label for="#id-w">ID wnioskodawcy</label>
-				<input type="number" id="id-w" name='id' max="9999999999">
+				<label for="#id-w">ID wnioskodawcy</label>
+				<input type="number" id="id-w" name='id' value="<?php echo set_value('id')?>" max="9999999999">
 				
 				<label for="#nazwisko-w">Nazwisko</label>
-				<input type="text" id="nazwisko-w" name="nazwisko" maxlength="30">
+				<input type="text" id="nazwisko-w" name="nazwisko" value="<?php echo set_value('nazwisko')?>" maxlength="30">
 				
                 <label for="#imie-w">Imię</label>
-				<input type="text" id="imie-w" name="imie" maxlength="30">
+				<input type="text" id="imie-w" name="imie" value="<?php echo set_value('imie')?>" maxlength="30">
 				
                 <label for="#data-urodzenia-w">Data urodzenia</label>
-				<input type="date" id="data-urodzenia-w" name="data_urodzenia" max="<?php echo date('Y-m-d'); ?>">
-				
-            	<input type="submit" id="submit" value="Wyszukaj">
-				<input type="reset" id="reset" value="Wyczyść">
+                <input type="date" id="data-urodzenia-w" name="data_urodzenia" value="<?php echo set_value('data_urodzenia')?>" max="<?php echo date('Y-m-d'); ?>">
+
+            	<input type="submit" name="submit" value="Wyszukaj">
+				<input type="submit" name="submit" value="Pokaż wszystko">
+
             </form>
                          
             <table id="wyszukane-profile">
-                <thead> 
-                    <td>ID<td>Nazwisko<td>Imię<td>Data urodzenia<td>
-                <tbody>
-					<?php
+				<?php 
+					if($wnioskodawcy == NULL) {
+						echo '<div class="komunikat-brak">Brak wnioskodawców do wyświetlenia</div>';
+					} else {
+						echo '
+						<thead> 
+							<td>ID
+							<td>Nazwisko
+							<td>Imię
+							<td>Data urodzenia
+							<td>
+						<tbody>';
 						foreach($wnioskodawcy as $klucz => $wartosc){
 							echo '<tr>
-									<td>'.$wartosc->id.'
-									<td>'.$wartosc->nazwisko.'
-									<td>'.$wartosc->imie.'
-									<td>'.$wartosc->data_urodzenia.'
-									<td>
-										<form class="wybierz-form" method="post" action='.site_url("zarzadzanie_sprawami/wybierz_wnioskodawce").'>
-											<input type="hidden" value='.$wartosc->id.' name="id">
-											<input type="submit" value="Wybierz">
-										</form>';
+								<td>'.$wartosc->id_wnioskodawcy.'
+								<td>'.$wartosc->nazwisko.'
+								<td>'.$wartosc->imie.'
+								<td>'.$wartosc->data_urodzenia.'
+								<td>
+								<form class="wybierz-form" method="post" action='.site_url("zarzadzanie_sprawami/wybierz_wnioskodawce").'>
+									<input type="hidden" value='.$wartosc->id_wnioskodawcy.' name="id">
+									<input type="submit" value="Wybierz">
+								</form>';
 						}
-					?>
-			</table>
-			<div>
-				<i class="fas fa-angle-left"></i>
-				<i class="fas fa-angle-right"></i>
-			</div>
+						
+						echo '</table><div><p id="paginacja">'.$paginacja.'</p></div>';
+					}
+				?>
         </div>
     </div>
 </body>
