@@ -54,6 +54,7 @@
 							<td>
 						<tbody>';
 						foreach($wnioskodawcy as $klucz => $wartosc){
+
 							echo '<tr>
 								<td>'.$wartosc->id_wnioskodawcy.'
 								<td>'.$wartosc->nazwisko.'

@@ -92,7 +92,6 @@
 					'<td><td><td><td>
 					</thead>';
 						foreach($sprawy as $key => $value){
-					
 						echo '<tr>
 							<td>'.$lp.'
 							<td>'.($value->id_globalne == NULL ? "-" : $value->id_globalne).' 

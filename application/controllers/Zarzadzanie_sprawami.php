@@ -158,9 +158,7 @@ class Zarzadzanie_sprawami extends CI_Controller {
 				$this->sprawa_m->dodaj_sprawe($dane[0],$dane[1],$dane[2],$dane[3],$dane[4]);
 				
 				$this->do_zarzadzania_sprawami();
-				
-				$alert = "Sprawa dodana pomyślnie.";
-
+				$_SESSION["id_wnioskodawcy"] == NULL ? $alert = "Sprawa została dodana." : $alert = "Sprawa została dodana. Dane wnioskodawcy zostały zaktualizowane.";
 				echo "<script type='text/javascript'>alert('$alert');</script>";
 
 				$_SESSION["id_wnioskodawcy"] = NULL;
@@ -248,8 +246,9 @@ class Zarzadzanie_sprawami extends CI_Controller {
 				}
 
 				$this->sprawa_m->edytuj_sprawe($dane[0],$dane[1],$dane[2],$dane[3]);
-
 				$this->do_zarzadzania_sprawami();
+				$alert = "Zmiany zostały zapisane.";
+				echo "<script type='text/javascript'>alert('$alert');</script>";
 				$_SESSION["id_lokalne"] = NULL;
 			}
 		}
@@ -260,25 +259,48 @@ class Zarzadzanie_sprawami extends CI_Controller {
 		$this->sprawa_m->usun_sprawe($id_lokalne);
 
 		$this->do_zarzadzania_sprawami();
+		$alert = "Sprawa została usunięta.";
+		echo "<script type='text/javascript'>alert('$alert');</script>";
 	}
 
 
-	function wyszukaj_wnioskodawcow(){
-		$parametry = array('id', "nazwisko", "imie", "data_urodzenia");
-		$parametry_wyszukiwania = array();
+	function wyszukaj_wnioskodawcow(){			
+		$config = array();
+		$config["base_url"] = base_url().'index.php/linki/wyszukaj_wnioskodawcow';
+		$config["per_page"] = 5;
+		$config["uri_segment"] = 3;			
+		$this->pagination->initialize($config);
+		$strona = $this->uri->segment(3);
+		$dane["paginacja"] = $this->pagination->create_links();
+		if($this->input->post('submit') == "Pokaż wszystko") {
+			$config = array();
+			$config["total_rows"] = $this->wnioskodawca_m->liczba_wnioskodawcow();
+			$this->pagination->initialize($config);
+			$strona = $this->uri->segment(3);
+			$dane["wnioskodawcy"] = $this->wnioskodawca_m->pobierz_dane($config["per_page"], $strona);
+			$dane["paginacja"] = $this->pagination->create_links();
+			$this->load->view('zarzadzanie_sprawami/wyszukiwanie_wnioskodawcow_view', $dane);
+		} else if($this->input->post('submit') == "Wyszukaj"){
+			$parametry = array('id', "nazwisko", "imie", "data_urodzenia");
+			$parametry_wyszukiwania = array();
 
-		foreach ($parametry as $param){
-			if($this->input->post($param) != NULL){
-				if ($param == "id"){
-					$parametry_wyszukiwania += array("wnioskodawcy.id" => ($this->input->post($param)));
-				} else {
-					$parametry_wyszukiwania += array($param => ($this->input->post($param)));
+			foreach ($parametry as $param){
+				if($this->input->post($param) != NULL){
+					if ($param == "id"){
+						$parametry_wyszukiwania += array("wnioskodawcy.id" => ($this->input->post($param)));
+					} else {
+						$parametry_wyszukiwania += array($param => ($this->input->post($param)));
+					}
 				}
 			}
+
+			$config["total_rows"] = $this->wnioskodawca_m->liczba_znalezionych_wnioskodawcow($parametry_wyszukiwania);
+			$dane['wnioskodawcy'] = $this->wnioskodawca_m->wyszukaj_wnioskodawcow($parametry_wyszukiwania, $config["per_page"], $strona);
+			$this->load->view('zarzadzanie_sprawami/wyszukiwanie_wnioskodawcow_view', $dane);
 		}
+
 		
-		$dane['wnioskodawcy'] = $this->wnioskodawca_m->znajdz_wnioskodawce($parametry_wyszukiwania);
-		$this->load->view('zarzadzanie_sprawami/wyszukiwanie_wnioskodawcow_view', $dane);
+
 	}
 
 	function wybierz_wnioskodawce(){
