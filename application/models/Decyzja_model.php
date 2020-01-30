@@ -32,17 +32,23 @@ class Decyzja_model extends CI_Model {
         return $placowka->row();
     }
 
-    private function rozstrzygnij_sprawe($id_lokalne) {
+    function rozstrzygnij_sprawe($id_lokalne) {
         $this->db->select('czy_rozstrzygnieta');
         $this->db->from('sprawy');
-        $this->db->where('id_lokalne', $id_lokalne);
-        $czy_rozstrzygnieta = $this->db->get()->row()->czy_rozstrzygnieta;
-        if($czy_rozstrzygnieta == 1) {
-            return false;
-        } else {
-            $this->db->where('id_lokalne', $id_lokalne);
-            $this->db->update('sprawy', array('czy_rozstrzygnieta' => 1));
-        }
+		$this->db->where('id_lokalne', $id_lokalne);
+		$wynik = $this->db->get()->result();
+		if ($wynik == NULL){
+			return false;
+		} else {
+			$czy_rozstrzygnieta = $wynik[0]->czy_rozstrzygnieta;
+			if($czy_rozstrzygnieta == 1) {
+				return false;
+			} else {
+				$this->db->where('id_lokalne', $id_lokalne);
+				$this->db->update('sprawy', array('czy_rozstrzygnieta' => 1));
+				return true;
+			}
+		}
     }
 
     public function dodaj_decyzje($parametry) {        
