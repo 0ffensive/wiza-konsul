@@ -22,38 +22,6 @@ class Zarzadzanie_sprawami extends CI_Controller {
 
 	}
 
-	function wyszukaj_sprawy(){
-		$parametry = array("id_lokalne", "id_globalne", "wnioskodawca", "nazwisko", "imie", "data_urodzenia", "data_zalozenia", "cel", "czy_rozstrzygnieta");
-		$parametry_wyszukiwania = array();
-		$data_zalozenia = NULL;
-
-		foreach ($parametry as $param){
-			if($this->input->post($param) != NULL){
-				if ($param == "data_zalozenia"){
-					$data_zalozenia = $this->input->post($param);
-				} else{
-					$parametry_wyszukiwania += array($param => ($this->input->post($param)));
-				}
-			}
-		}
-
-		$config = array();
-        $config["base_url"] = base_url().'index.php/zarzadzanie_sprawami/wyszukaj_sprawy';
-        $config["total_rows"] = $this->sprawa_m->liczba_spraw();
-        $config["per_page"] = 5;
-		$config["uri_segment"] = 3;
-		$this->pagination->initialize($config);
-		$strona = $this->uri->segment(3);
-		$dane["paginacja"] = $this->pagination->create_links();
-		$dane["sprawy"] = $this->sprawa_m->wyszukaj_sprawy_paginacja($config["per_page"], $strona, $parametry_wyszukiwania, $data_zalozenia);
-	
-		session_start();
-		$_SESSION["id_lokalne"] = NULL;
-		$id_pracownika_placowki = $_SESSION["id_pracownika_placowki"];
-		$dane['czy_kierownik'] = $this->pracownik_m->sprawdz_czy_kierownictwo($id_pracownika_placowki);
-		$this->load->view('zarzadzanie_sprawami/zarzadzanie_sprawami_view', $dane);
-	}
-
 	private function do_zarzadzania_sprawami(){
 		session_id() == '' ? session_start() : "" ;
 
@@ -71,6 +39,41 @@ class Zarzadzanie_sprawami extends CI_Controller {
 		$dane['czy_kierownik'] = $this->pracownik_m->sprawdz_czy_kierownictwo($id_pracownika_placowki);
 		$this->load->view('zarzadzanie_sprawami/zarzadzanie_sprawami_view', $dane);	
 	}
+	function wyszukaj_sprawy(){
+
+
+		if ($this->input->post('submit') == "Wszystkie sprawy"){
+			$this->do_zarzadzania_sprawami();
+
+		} else if ($this->input->post('submit') == "Wyszukaj sprawę") {
+			$parametry = array("id_lokalne", "id_globalne", "wnioskodawca", "nazwisko", "imie", "data_urodzenia", "data_zalozenia", "cel", "czy_rozstrzygnieta");
+			$parametry_wyszukiwania = array();
+			$data_zalozenia = NULL;
+			foreach ($parametry as $param){
+				if($this->input->post($param) != NULL){
+					if ($param == "data_zalozenia"){
+						$data_zalozenia = $this->input->post($param);
+					} else{
+						$parametry_wyszukiwania += array($param => ($this->input->post($param)));
+					}
+				}
+			}
+			session_start();
+			$id_pracownika_placowki = $_SESSION["id_pracownika_placowki"];
+			$dane['czy_kierownik'] = $this->pracownik_m->sprawdz_czy_kierownictwo($id_pracownika_placowki);
+			$config = array();
+			$config["base_url"] = base_url().'index.php/zarzadzanie_sprawami/wyszukaj_sprawy';
+			$config["per_page"] = 5;
+			$config["uri_segment"] = 3;
+			$this->pagination->initialize($config);
+			$strona = $this->uri->segment(3);
+			$dane["paginacja"] = $this->pagination->create_links();
+			$config["total_rows"] = $this->sprawa_m->liczba_znalezionych_spraw($parametry_wyszukiwania, $data_zalozenia);
+			$dane["sprawy"] = $this->sprawa_m->wyszukaj_sprawy_paginacja($config["per_page"], $strona, $parametry_wyszukiwania, $data_zalozenia);
+			$this->load->view('zarzadzanie_sprawami/zarzadzanie_sprawami_view', $dane);
+		}
+	}
+
 
 	function dodawanie_sprawy(){
 		session_start();

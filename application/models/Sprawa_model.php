@@ -102,6 +102,32 @@ class Sprawa_model extends CI_Model {
 		return false;
 	}
 
+	public function liczba_znalezionych_spraw($parametry_wyszukiwania, $data_zalozenia) {
+		$this->db->select('*');
+		$this->db->from('sprawy');							
+		$this->db->join('dane_osobowe', 'dane_osobowe.id = sprawy.dane_osobowe', 'left');
+		$this->db->join('zatrudnienia', 'zatrudnienia.pracownik_placowki = sprawy.pracownik_zakladajacy', 'left');
+		$this->db->join('decyzje', 'decyzje.sprawa = sprawy.id_lokalne', 'left');
+		$this->db->where($parametry_wyszukiwania);
+		if ($data_zalozenia != NULL){
+			$this->db->where('CAST(sprawy.data_zalozenia AS DATE) =', $data_zalozenia);
+		}
+		$this->db->group_by('sprawy.id_globalne, 
+							sprawy.id_lokalne,
+							sprawy.wnioskodawca, 
+							dane_osobowe.nazwisko,
+							dane_osobowe.imie,
+							dane_osobowe.data_urodzenia, 
+							sprawy.data_zalozenia,
+							sprawy.cel, 
+		    				sprawy.czy_rozstrzygnieta');
+		
+		$this->db->order_by('sprawy.id_lokalne','ASC');
+		$zapytanie = $this->db->get();
+
+		return $zapytanie->num_rows();
+	}
+
 	public function wyszukaj_sprawy_paginacja($limit, $start, $parametry_wyszukiwania, $data_zalozenia) {
 		$this->db->limit($limit, $start);
 
