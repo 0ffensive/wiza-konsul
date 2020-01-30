@@ -28,8 +28,8 @@
                     <textarea rows="5" id="uzasadnienie" name="uzasadnienie" maxlength="255"><?php echo set_value('uzasadnienie')?></textarea>
                 </div>
                 <div>
-					<input name ="submit" type="submit" value="Zatwierdź">
-				    <input name ="reset" type="submit" value="Anuluj">
+					<input type="submit" name="submit" value="Zatwierdź">
+				    <input type="submit" name="submit" value="Anuluj">
                 </div>
             </form>
 
