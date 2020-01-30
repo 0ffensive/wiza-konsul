@@ -12,10 +12,12 @@
     </head>
 
     <body>
+		<header>e-Konsulat</header>
         <div class="container">
+
 			<h1>Konsulat - Placówka</h1>
 			<div>
-				<h2>Wybór pracownika</h2>
+				<h2>Logowanie</h2>
 
 				<form method="post" action="<?php echo site_url('linki/do_strona_glowna_placowka'); ?>">
 					<input type="submit" name="pracownik" value="Pracownik">

@@ -14,7 +14,8 @@
     </head>
 
     <body>
-        <div class="container">
+		<header>e-Konsulat</header>
+		<div class="container">
             <h1>Dodawanie sprawy</h1>
             <form id="dodanie-sprawy" method="post" action="<?php echo site_url('zarzadzanie_sprawami/dodawanie_sprawy'); ?>">
 				<div class="dane-sprawy">

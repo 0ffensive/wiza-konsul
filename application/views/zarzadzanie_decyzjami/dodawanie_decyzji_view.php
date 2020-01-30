@@ -12,6 +12,7 @@
         <link href="https://fonts.googleapis.com/css?family=Muli:400,800&display=swap" rel="stylesheet">
     </head>
     <body>
+        <header>e-Konsulat</header>
         <div class="container">
             <h1>Dodawanie decyzji</h1>
             <form id="dodawanie-decyzji" method="post" action="<?php echo site_url('zarzadzanie_decyzjami/dodawanie_decyzji'); ?>">

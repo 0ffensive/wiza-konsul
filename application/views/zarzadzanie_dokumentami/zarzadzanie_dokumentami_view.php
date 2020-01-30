@@ -16,6 +16,7 @@
 </head>
 
 <body>
+    <header>e-Konsulat</header>
     <div class="container">
 		<h1>Dokumenty sprawy</h1>
 		<form method="post" action="<?php echo site_url('linki/do_zarzadzanie_sprawami'); ?>">

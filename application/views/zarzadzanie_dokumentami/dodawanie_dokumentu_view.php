@@ -15,6 +15,7 @@
 </head>
 
 <body>
+    <header>e-Konsulat</header>
     <div class="container">
         <h1>Dodawanie nowego dokumentu</h1>
         <form method="post" action="<?php echo site_url('zarzadzanie_dokumentami/dodawanie_dokumentu'); ?>">

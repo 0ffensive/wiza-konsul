@@ -13,7 +13,8 @@
     </head>
 
     <body>
-        <div class="container">
+		<header>e-Konsulat</header>
+		<div class="container">
 			<h1>Edytowanie sprawy</h1>
 			<form id="edytowanie-sprawy" method="post" action="<?php echo site_url('zarzadzanie_sprawami/edytowanie_sprawy'); ?>">
 				<div class="dane-sprawy">

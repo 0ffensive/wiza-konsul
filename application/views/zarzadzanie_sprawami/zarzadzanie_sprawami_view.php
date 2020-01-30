@@ -15,7 +15,8 @@
 </head>
 
 <body>
-    <div class="container">
+	<header>e-Konsulat</header>
+	<div class="container">
 		<h1>Zarządzanie sprawami</h1>
 		<div>
 			<form class="inline-form" action="<?php echo site_url('linki/do_strona_glowna_placowka'); ?>">

@@ -12,6 +12,7 @@
         <link href="https://fonts.googleapis.com/css?family=Muli:400,800&display=swap" rel="stylesheet">
     </head>
     <body>
+        <header>e-Konsulat</header>
         <div class="container">
 			<h1>Decyzje rozstrzygające sprawę</h1>
 			<form method="post" action="<?php echo site_url('linki/do_zarzadzanie_sprawami'); ?>">

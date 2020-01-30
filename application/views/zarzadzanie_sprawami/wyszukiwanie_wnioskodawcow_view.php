@@ -16,7 +16,8 @@
 </head>
 
 <body>
-    <div class="container">
+	<header>e-Konsulat</header>
+	<div class="container">
         <h1>Wyszukiwanie profilu wnioskodawcy</h1>
 		<form id="cofnij-form" method="post" action="<?php echo site_url('linki/do_dodawanie_sprawy_wybor'); ?>">
 			<input type="submit" value="Cofnij">

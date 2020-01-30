@@ -15,6 +15,7 @@
 </head>
 
 <body>
+    <header>e-Konsulat</header>
     <div class="container">
         <h1>Wszystkie dokumenty wnioskodawcy</h1>
         <form>
