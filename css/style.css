@@ -68,6 +68,21 @@ input[type=file]:hover{
     background-color: rgba(115, 138, 205, 0.767);
 }
 
+button[disabled],
+input[type=submit][disabled],
+input[type=reset][disabled],
+input[type=file][disabled]{
+    background-color: rgba(116, 116, 116, 0.767);
+}
+
+
+button[disabled]:hover,
+input[type=submit][disabled]:hover,
+input[type=reset][disabled]:hover,
+input[type=file][disabled]:hover{
+    background-color: rgba(116, 116, 116, 0.767);
+}
+
 select,
 input[type="text"],
 input[type="date"],
