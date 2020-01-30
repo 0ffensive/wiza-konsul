@@ -273,7 +273,6 @@ class Zarzadzanie_sprawami extends CI_Controller {
 		$strona = $this->uri->segment(3);
 		$dane["paginacja"] = $this->pagination->create_links();
 		if($this->input->post('submit') == "Pokaż wszystko") {
-			$config = array();
 			$config["total_rows"] = $this->wnioskodawca_m->liczba_wnioskodawcow();
 			$this->pagination->initialize($config);
 			$strona = $this->uri->segment(3);
